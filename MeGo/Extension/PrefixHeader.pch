@@ -1,0 +1,44 @@
+//
+//  PrefixHeader.pch
+//  Test-BS
+//
+//  Created by 郑博辰 on 16/4/7.
+//  Copyright © 2016年 com.link. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+//
+//#import "UIView+LINKExtension.h"
+//
+//#import "NSDate+LINKExtension.h"
+//
+//#import "UIBarButtonItem+LINKExtension.h"
+//
+//#import "LINKConst.h"
+
+//#pragma mark - 大众点评API
+#define kAPP_KEY @"4123794720"
+#define kAPP_SECRET @"5a908d5484254cf4879bb47131bfd822"
+//#define CC_SHA1_DIGEST_LENGTH   20          /* digest length in bytes */
+//typedef unsigned int uint32_t;
+
+//extern unsigned char *CC_SHA1(const void *data, uint32_t len, unsigned char *md)
+
+
+
+#ifdef DEBUG
+#define JKLog(...) NSLog(__VA_ARGS__)
+#else
+#define JKLog(...)
+#endif
+
+#define JKLogFunction JKLog(@"%s", __func__)
+
+#define LINKRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define LINKGlobalBg LINKRGBColor(223, 223, 223)
+
+#define LINKScreenSize [UIScreen mainScreen].bounds.size
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,803 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		22DAD024D7E2274E4CDABDF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0245AE24E51F405294790BD9 /* libPods.a */; };
+		3B9A2B5F1CC5EE28001C7440 /* MeGo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B5D1CC5EE28001C7440 /* MeGo.xcdatamodeld */; };
+		3B9A2B611CC5EE28001C7440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A2B601CC5EE28001C7440 /* Assets.xcassets */; };
+		3B9A2B6F1CC5EE28001C7440 /* MeGoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B6E1CC5EE28001C7440 /* MeGoTests.m */; };
+		3B9A2B7A1CC5EE28001C7440 /* MeGoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B791CC5EE28001C7440 /* MeGoUITests.m */; };
+		3B9A2BA61CC5F9F9001C7440 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B8D1CC5F9F9001C7440 /* AppDelegate.m */; };
+		3B9A2BA71CC5F9F9001C7440 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B8E1CC5F9F9001C7440 /* main.m */; };
+		3B9A2BA81CC5F9F9001C7440 /* LINKTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2BA51CC5F9F9001C7440 /* LINKTabbarController.m */; };
+		3B9A2BAC1CC60CB5001C7440 /* LINKIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2BAA1CC60CB5001C7440 /* LINKIndexViewController.m */; };
+		3B9A2BAD1CC60CB5001C7440 /* LINKIndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A2BAB1CC60CB5001C7440 /* LINKIndexViewController.xib */; };
+		3B9A2BB11CC613EE001C7440 /* LINKGroupSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2BAF1CC613EE001C7440 /* LINKGroupSaleViewController.m */; };
+		3B9A2BB21CC613EE001C7440 /* LINKGroupSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A2BB01CC613EE001C7440 /* LINKGroupSaleViewController.xib */; };
+		3B9A2BB81CC61849001C7440 /* LINKHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2BB71CC61849001C7440 /* LINKHTTPSessionManager.m */; };
+		3B9A2BBE1CC652B2001C7440 /* LINKEncryption.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2BBD1CC652B2001C7440 /* LINKEncryption.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3B9A2B6B1CC5EE28001C7440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B9A2B461CC5EE28001C7440 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B9A2B4D1CC5EE28001C7440;
+			remoteInfo = MeGo;
+		};
+		3B9A2B761CC5EE28001C7440 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3B9A2B461CC5EE28001C7440 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3B9A2B4D1CC5EE28001C7440;
+			remoteInfo = MeGo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0245AE24E51F405294790BD9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9A2B4E1CC5EE28001C7440 /* MeGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9A2B5E1CC5EE28001C7440 /* MeGo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeGo.xcdatamodel; sourceTree = "<group>"; };
+		3B9A2B601CC5EE28001C7440 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3B9A2B651CC5EE28001C7440 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9A2B6A1CC5EE28001C7440 /* MeGoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeGoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9A2B6E1CC5EE28001C7440 /* MeGoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeGoTests.m; sourceTree = "<group>"; };
+		3B9A2B701CC5EE28001C7440 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9A2B751CC5EE28001C7440 /* MeGoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeGoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B9A2B791CC5EE28001C7440 /* MeGoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MeGoUITests.m; sourceTree = "<group>"; };
+		3B9A2B7B1CC5EE28001C7440 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B9A2B8C1CC5F9F9001C7440 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3B9A2B8D1CC5F9F9001C7440 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3B9A2B8E1CC5F9F9001C7440 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3B9A2BA41CC5F9F9001C7440 /* LINKTabbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LINKTabbarController.h; sourceTree = "<group>"; };
+		3B9A2BA51CC5F9F9001C7440 /* LINKTabbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LINKTabbarController.m; sourceTree = "<group>"; };
+		3B9A2BA91CC60CB5001C7440 /* LINKIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LINKIndexViewController.h; sourceTree = "<group>"; };
+		3B9A2BAA1CC60CB5001C7440 /* LINKIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LINKIndexViewController.m; sourceTree = "<group>"; };
+		3B9A2BAB1CC60CB5001C7440 /* LINKIndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LINKIndexViewController.xib; sourceTree = "<group>"; };
+		3B9A2BAE1CC613EE001C7440 /* LINKGroupSaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LINKGroupSaleViewController.h; sourceTree = "<group>"; };
+		3B9A2BAF1CC613EE001C7440 /* LINKGroupSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LINKGroupSaleViewController.m; sourceTree = "<group>"; };
+		3B9A2BB01CC613EE001C7440 /* LINKGroupSaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LINKGroupSaleViewController.xib; sourceTree = "<group>"; };
+		3B9A2BB61CC61849001C7440 /* LINKHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LINKHTTPSessionManager.h; sourceTree = "<group>"; };
+		3B9A2BB71CC61849001C7440 /* LINKHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LINKHTTPSessionManager.m; sourceTree = "<group>"; };
+		3B9A2BBC1CC652B2001C7440 /* LINKEncryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LINKEncryption.h; sourceTree = "<group>"; };
+		3B9A2BBD1CC652B2001C7440 /* LINKEncryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LINKEncryption.m; sourceTree = "<group>"; };
+		3B9A2BC01CC6673D001C7440 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		9123AC89C1A1CE91796B358C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		CDC7D20899174FE09AC27DD7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3B9A2B4B1CC5EE28001C7440 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22DAD024D7E2274E4CDABDF3 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9A2B671CC5EE28001C7440 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9A2B721CC5EE28001C7440 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3B9A2B451CC5EE28001C7440 = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B501CC5EE28001C7440 /* MeGo */,
+				3B9A2B6D1CC5EE28001C7440 /* MeGoTests */,
+				3B9A2B781CC5EE28001C7440 /* MeGoUITests */,
+				3B9A2B4F1CC5EE28001C7440 /* Products */,
+				CA3497329BDF6325B56E7701 /* Pods */,
+				ADBB278334A68240415F4CC7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3B9A2B4F1CC5EE28001C7440 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B4E1CC5EE28001C7440 /* MeGo.app */,
+				3B9A2B6A1CC5EE28001C7440 /* MeGoTests.xctest */,
+				3B9A2B751CC5EE28001C7440 /* MeGoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3B9A2B501CC5EE28001C7440 /* MeGo */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B921CC5F9F9001C7440 /* UI */,
+				3B9A2B8F1CC5F9F9001C7440 /* Service */,
+				3B9A2B8B1CC5F9F9001C7440 /* Others */,
+				3B9A2B511CC5EE28001C7440 /* Supporting Files */,
+			);
+			path = MeGo;
+			sourceTree = "<group>";
+		};
+		3B9A2B511CC5EE28001C7440 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B601CC5EE28001C7440 /* Assets.xcassets */,
+				3B9A2B651CC5EE28001C7440 /* Info.plist */,
+				3B9A2B5D1CC5EE28001C7440 /* MeGo.xcdatamodeld */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B9A2B6D1CC5EE28001C7440 /* MeGoTests */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B6E1CC5EE28001C7440 /* MeGoTests.m */,
+				3B9A2B701CC5EE28001C7440 /* Info.plist */,
+			);
+			path = MeGoTests;
+			sourceTree = "<group>";
+		};
+		3B9A2B781CC5EE28001C7440 /* MeGoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B791CC5EE28001C7440 /* MeGoUITests.m */,
+				3B9A2B7B1CC5EE28001C7440 /* Info.plist */,
+			);
+			path = MeGoUITests;
+			sourceTree = "<group>";
+		};
+		3B9A2B8A1CC5F9F9001C7440 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2BC01CC6673D001C7440 /* PrefixHeader.pch */,
+			);
+			name = Extension;
+			path = ../Extension;
+			sourceTree = "<group>";
+		};
+		3B9A2B8B1CC5F9F9001C7440 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B8C1CC5F9F9001C7440 /* AppDelegate.h */,
+				3B9A2B8D1CC5F9F9001C7440 /* AppDelegate.m */,
+				3B9A2B8E1CC5F9F9001C7440 /* main.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		3B9A2B8F1CC5F9F9001C7440 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2BB61CC61849001C7440 /* LINKHTTPSessionManager.h */,
+				3B9A2BB71CC61849001C7440 /* LINKHTTPSessionManager.m */,
+				3B9A2BBC1CC652B2001C7440 /* LINKEncryption.h */,
+				3B9A2BBD1CC652B2001C7440 /* LINKEncryption.m */,
+				3B9A2B8A1CC5F9F9001C7440 /* Extension */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		3B9A2B921CC5F9F9001C7440 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B9B1CC5F9F9001C7440 /* Index */,
+				3B9A2B971CC5F9F9001C7440 /* GroupSale */,
+				3B9A2B931CC5F9F9001C7440 /* Community */,
+				3B9A2B9F1CC5F9F9001C7440 /* Me */,
+				3B9A2BA31CC5F9F9001C7440 /* Root */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3B9A2B931CC5F9F9001C7440 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B941CC5F9F9001C7440 /* Controller */,
+				3B9A2B951CC5F9F9001C7440 /* Model */,
+				3B9A2B961CC5F9F9001C7440 /* View */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		3B9A2B941CC5F9F9001C7440 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B9A2B951CC5F9F9001C7440 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B9A2B961CC5F9F9001C7440 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B9A2B971CC5F9F9001C7440 /* GroupSale */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B981CC5F9F9001C7440 /* Controller */,
+				3B9A2B991CC5F9F9001C7440 /* Model */,
+				3B9A2B9A1CC5F9F9001C7440 /* View */,
+			);
+			path = GroupSale;
+			sourceTree = "<group>";
+		};
+		3B9A2B981CC5F9F9001C7440 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2BAE1CC613EE001C7440 /* LINKGroupSaleViewController.h */,
+				3B9A2BAF1CC613EE001C7440 /* LINKGroupSaleViewController.m */,
+				3B9A2BB01CC613EE001C7440 /* LINKGroupSaleViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B9A2B991CC5F9F9001C7440 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B9A2B9A1CC5F9F9001C7440 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B9A2B9B1CC5F9F9001C7440 /* Index */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2B9C1CC5F9F9001C7440 /* Controller */,
+				3B9A2B9D1CC5F9F9001C7440 /* Model */,
+				3B9A2B9E1CC5F9F9001C7440 /* View */,
+			);
+			path = Index;
+			sourceTree = "<group>";
+		};
+		3B9A2B9C1CC5F9F9001C7440 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2BA91CC60CB5001C7440 /* LINKIndexViewController.h */,
+				3B9A2BAA1CC60CB5001C7440 /* LINKIndexViewController.m */,
+				3B9A2BAB1CC60CB5001C7440 /* LINKIndexViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B9A2B9D1CC5F9F9001C7440 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B9A2B9E1CC5F9F9001C7440 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B9A2B9F1CC5F9F9001C7440 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2BA01CC5F9F9001C7440 /* Controller */,
+				3B9A2BA11CC5F9F9001C7440 /* Model */,
+				3B9A2BA21CC5F9F9001C7440 /* View */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		3B9A2BA01CC5F9F9001C7440 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B9A2BA11CC5F9F9001C7440 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B9A2BA21CC5F9F9001C7440 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B9A2BA31CC5F9F9001C7440 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				3B9A2BA41CC5F9F9001C7440 /* LINKTabbarController.h */,
+				3B9A2BA51CC5F9F9001C7440 /* LINKTabbarController.m */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		ADBB278334A68240415F4CC7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0245AE24E51F405294790BD9 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CA3497329BDF6325B56E7701 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9123AC89C1A1CE91796B358C /* Pods.debug.xcconfig */,
+				CDC7D20899174FE09AC27DD7 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3B9A2B4D1CC5EE28001C7440 /* MeGo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B9A2B7E1CC5EE28001C7440 /* Build configuration list for PBXNativeTarget "MeGo" */;
+			buildPhases = (
+				5FD2A59CF2D4512D9837965E /* Check Pods Manifest.lock */,
+				3B9A2B4A1CC5EE28001C7440 /* Sources */,
+				3B9A2B4B1CC5EE28001C7440 /* Frameworks */,
+				3B9A2B4C1CC5EE28001C7440 /* Resources */,
+				50EFD59DCFCF0A95CAD440F0 /* Embed Pods Frameworks */,
+				A655FB9B1BB943F0ACB112C0 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MeGo;
+			productName = MeGo;
+			productReference = 3B9A2B4E1CC5EE28001C7440 /* MeGo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3B9A2B691CC5EE28001C7440 /* MeGoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B9A2B811CC5EE28001C7440 /* Build configuration list for PBXNativeTarget "MeGoTests" */;
+			buildPhases = (
+				3B9A2B661CC5EE28001C7440 /* Sources */,
+				3B9A2B671CC5EE28001C7440 /* Frameworks */,
+				3B9A2B681CC5EE28001C7440 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B9A2B6C1CC5EE28001C7440 /* PBXTargetDependency */,
+			);
+			name = MeGoTests;
+			productName = MeGoTests;
+			productReference = 3B9A2B6A1CC5EE28001C7440 /* MeGoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3B9A2B741CC5EE28001C7440 /* MeGoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3B9A2B841CC5EE28001C7440 /* Build configuration list for PBXNativeTarget "MeGoUITests" */;
+			buildPhases = (
+				3B9A2B711CC5EE28001C7440 /* Sources */,
+				3B9A2B721CC5EE28001C7440 /* Frameworks */,
+				3B9A2B731CC5EE28001C7440 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3B9A2B771CC5EE28001C7440 /* PBXTargetDependency */,
+			);
+			name = MeGoUITests;
+			productName = MeGoUITests;
+			productReference = 3B9A2B751CC5EE28001C7440 /* MeGoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3B9A2B461CC5EE28001C7440 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = com.link;
+				TargetAttributes = {
+					3B9A2B4D1CC5EE28001C7440 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Y892HGW99U;
+					};
+					3B9A2B691CC5EE28001C7440 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Y892HGW99U;
+						TestTargetID = 3B9A2B4D1CC5EE28001C7440;
+					};
+					3B9A2B741CC5EE28001C7440 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Y892HGW99U;
+						TestTargetID = 3B9A2B4D1CC5EE28001C7440;
+					};
+				};
+			};
+			buildConfigurationList = 3B9A2B491CC5EE28001C7440 /* Build configuration list for PBXProject "MeGo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3B9A2B451CC5EE28001C7440;
+			productRefGroup = 3B9A2B4F1CC5EE28001C7440 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3B9A2B4D1CC5EE28001C7440 /* MeGo */,
+				3B9A2B691CC5EE28001C7440 /* MeGoTests */,
+				3B9A2B741CC5EE28001C7440 /* MeGoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3B9A2B4C1CC5EE28001C7440 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9A2B611CC5EE28001C7440 /* Assets.xcassets in Resources */,
+				3B9A2BB21CC613EE001C7440 /* LINKGroupSaleViewController.xib in Resources */,
+				3B9A2BAD1CC60CB5001C7440 /* LINKIndexViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9A2B681CC5EE28001C7440 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9A2B731CC5EE28001C7440 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50EFD59DCFCF0A95CAD440F0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5FD2A59CF2D4512D9837965E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A655FB9B1BB943F0ACB112C0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3B9A2B4A1CC5EE28001C7440 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9A2BA61CC5F9F9001C7440 /* AppDelegate.m in Sources */,
+				3B9A2BBE1CC652B2001C7440 /* LINKEncryption.m in Sources */,
+				3B9A2BAC1CC60CB5001C7440 /* LINKIndexViewController.m in Sources */,
+				3B9A2BA71CC5F9F9001C7440 /* main.m in Sources */,
+				3B9A2BB11CC613EE001C7440 /* LINKGroupSaleViewController.m in Sources */,
+				3B9A2B5F1CC5EE28001C7440 /* MeGo.xcdatamodeld in Sources */,
+				3B9A2BB81CC61849001C7440 /* LINKHTTPSessionManager.m in Sources */,
+				3B9A2BA81CC5F9F9001C7440 /* LINKTabbarController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9A2B661CC5EE28001C7440 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9A2B6F1CC5EE28001C7440 /* MeGoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B9A2B711CC5EE28001C7440 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9A2B7A1CC5EE28001C7440 /* MeGoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3B9A2B6C1CC5EE28001C7440 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B9A2B4D1CC5EE28001C7440 /* MeGo */;
+			targetProxy = 3B9A2B6B1CC5EE28001C7440 /* PBXContainerItemProxy */;
+		};
+		3B9A2B771CC5EE28001C7440 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3B9A2B4D1CC5EE28001C7440 /* MeGo */;
+			targetProxy = 3B9A2B761CC5EE28001C7440 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3B9A2B7C1CC5EE28001C7440 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3B9A2B7D1CC5EE28001C7440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3B9A2B7F1CC5EE28001C7440 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9123AC89C1A1CE91796B358C /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				GCC_PREFIX_HEADER = MeGo/Extension/PrefixHeader.pch;
+				INFOPLIST_FILE = MeGo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3B9A2B801CC5EE28001C7440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDC7D20899174FE09AC27DD7 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				GCC_PREFIX_HEADER = MeGo/Extension/PrefixHeader.pch;
+				INFOPLIST_FILE = MeGo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		3B9A2B821CC5EE28001C7440 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MeGoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeGo.app/MeGo";
+			};
+			name = Debug;
+		};
+		3B9A2B831CC5EE28001C7440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MeGoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MeGo.app/MeGo";
+			};
+			name = Release;
+		};
+		3B9A2B851CC5EE28001C7440 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MeGoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MeGo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		3B9A2B861CC5EE28001C7440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MeGoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MeGo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3B9A2B491CC5EE28001C7440 /* Build configuration list for PBXProject "MeGo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9A2B7C1CC5EE28001C7440 /* Debug */,
+				3B9A2B7D1CC5EE28001C7440 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B9A2B7E1CC5EE28001C7440 /* Build configuration list for PBXNativeTarget "MeGo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9A2B7F1CC5EE28001C7440 /* Debug */,
+				3B9A2B801CC5EE28001C7440 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B9A2B811CC5EE28001C7440 /* Build configuration list for PBXNativeTarget "MeGoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9A2B821CC5EE28001C7440 /* Debug */,
+				3B9A2B831CC5EE28001C7440 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3B9A2B841CC5EE28001C7440 /* Build configuration list for PBXNativeTarget "MeGoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9A2B851CC5EE28001C7440 /* Debug */,
+				3B9A2B861CC5EE28001C7440 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3B9A2B5D1CC5EE28001C7440 /* MeGo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3B9A2B5E1CC5EE28001C7440 /* MeGo.xcdatamodel */,
+			);
+			currentVersion = 3B9A2B5E1CC5EE28001C7440 /* MeGo.xcdatamodel */;
+			path = MeGo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3B9A2B461CC5EE28001C7440 /* Project object */;
+}
