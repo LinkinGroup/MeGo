@@ -33,7 +33,7 @@
 
 #define LKRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
-#define LKGlobalBg LINKRGBColor(223, 223, 223)
+#define LKGlobalBg LKRGBColor(223, 223, 223)
 
 #define LKScreenSize [UIScreen mainScreen].bounds.size
 

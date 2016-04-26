@@ -10,7 +10,7 @@
 #import "LKBasedataAPI.h"
 #import "LKStoreModel.h"
 #import "MJExtension.h"
-
+#import "LKLocalViewController.h"
 
 @interface LKStoreViewController ()
 
@@ -26,7 +26,7 @@
 
     UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
-    btn.frame = CGRectMake(150, 150, 99, 99);
+    btn.frame = CGRectMake(150, 150, 99, 600);
     
     [self.view addSubview:btn];
     
@@ -37,29 +37,41 @@
 
 - (void)click
 {
-    LKBasedataAPI *req = [[LKBasedataAPI alloc] init];
+    LKLocalViewController *vc = [[LKLocalViewController alloc] init];
+ 
+    UIView *view = [[UIView alloc]initWithFrame:(CGRectMake(0, 64, LKScreenSize.width, LKScreenSize.height))];
+    view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     
-    NSString *url = @"http://api.dianping.com/v1/metadata/get_regions_with_businesses";
+    [self.view addSubview:view];
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"city"] = @"北京";
+    [self addChildViewController:vc];
     
-    [req findBusinessesWithURL:url params:params success:^(id responseObject) {
+    vc.view.frame = CGRectMake(0, -600, LKScreenSize.width, LKScreenSize.height *0.6);
+    
+    [view addSubview:vc.view];
+    
+    [UIView animateWithDuration:2 animations:^{
         
-//        self.cities = [LKStoreModel mj_objectArrayWithKeyValuesArray:[responseObject[@"cities"] firstObject][@"districts"]];
+        vc.view.frame = CGRectMake(0, 60, LKScreenSize.width, LKScreenSize.height *0.6);
         
-        self.cities = [responseObject[@"cities"] firstObject][@"districts"];
-        
-        JKLog(@"%@",self.cities[2]);
-        //将plist文件写至桌面，以便确认参数；
-//        [responseObject writeToFile:@"/Users/LinK/Desktop/cities.plist" atomically:YES];
-        
-        
-    } failure:^(id error) {
-        
-        JKLog(@"%@",error);
     }];
-     
+
+    
+/////    [self.navigationController  pushViewController:vc animated:YES];
+//    [self.view.layer addAnimation:animation forKey:nil];
+////    [self.navigationController presentViewController:vc animated:YES completion:nil];
+    
+    vc.view.frame = CGRectMake(0, -600, LKScreenSize.width, LKScreenSize.height *0.6);
+    
+    [self.view addSubview:vc.view];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        vc.view.frame = CGRectMake(0, 60, LKScreenSize.width, LKScreenSize.height *0.6);
+
+        
+    }];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

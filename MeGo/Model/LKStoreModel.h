@@ -9,11 +9,4 @@
 #import <Foundation/Foundation.h>
 
 @interface LKStoreModel : NSObject
-
-/** 商区*/
-@property (nonatomic, strong) NSString *district_name;
-/** 附近*/
-@property (nonatomic, strong) NSArray *neighborhoods;
-
-
 @end
