@@ -11,9 +11,17 @@
 #import "LKStoreModel.h"
 #import "MJExtension.h"
 #import "LKLocalViewController.h"
+#import "LKDelicacyStoreCell.h"
 
-@interface LKStoreViewController ()
+#import "LKPopUpMenu.h"
 
+
+@interface LKStoreViewController ()<UITableViewDataSource, UITableViewDelegate>
+
+/** 记录工具栏按钮状态*/
+@property (nonatomic, strong) UIButton *selectedBtn;
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 /** 帖子数据 */
 @property (nonatomic, strong) NSMutableArray *cities;
 
@@ -21,57 +29,108 @@
 
 @implementation LKStoreViewController
 
+static NSString * const LKStoreCellID = @"store";
+
+- (UIButton *)selectedBtn
+{
+    if (!_selectedBtn) {
+        _selectedBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    }
+    return _selectedBtn;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //测试API
     UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
-    btn.frame = CGRectMake(150, 150, 99, 600);
+    btn.frame = CGRectMake(300, 150, 60, 30);
     
     [self.view addSubview:btn];
+    
+    [btn setTitle:@"testAPI" forState:UIControlStateNormal];
     
     btn.backgroundColor = [UIColor redColor];
     
     [btn addTarget:self action:@selector(click) forControlEvents:(UIControlEventTouchUpInside)];
+    
+    
+    //初始化表格
+    [self setUpTableView];
+    
 }
 
+
+
+#pragma mark - menu
+
+- (IBAction)aroundClick:(UIButton *)sender
+{
+    if (sender.selected == NO) {
+        
+        [LKPopUpMenu menuWithLinkageMenuInController:self completion:^{
+            
+            sender.selected = YES;
+            self.selectedBtn = sender;
+        }];
+    }else{
+        [LKPopUpMenu dismissInViewController:self completion:^{
+            
+            sender.selected = NO;
+        }];
+    }
+}
+
+#pragma mark - 测试API
 - (void)click
 {
-    LKLocalViewController *vc = [[LKLocalViewController alloc] init];
- 
-    UIView *view = [[UIView alloc]initWithFrame:(CGRectMake(0, 64, LKScreenSize.width, LKScreenSize.height))];
-    view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.6];
     
-    [self.view addSubview:view];
-    
-    [self addChildViewController:vc];
-    
-    vc.view.frame = CGRectMake(0, -600, LKScreenSize.width, LKScreenSize.height *0.6);
-    
-    [view addSubview:vc.view];
-    
-    [UIView animateWithDuration:2 animations:^{
+    [LKBasedataAPI findDelicacyStoreSuccess:^(id responseObject) {
         
-        vc.view.frame = CGRectMake(0, 60, LKScreenSize.width, LKScreenSize.height *0.6);
+        JKLog(@"%@",responseObject);
         
+//        将plist文件写至桌面，以便确认参数；
+//                [responseObject writeToFile:@"/Users/LinK/Desktop/DelicacyStore.plist" atomically:YES];
+        
+    } failure:^(id error) {
+        
+        JKLog(@"%@",error);
     }];
+}
 
-    
-/////    [self.navigationController  pushViewController:vc animated:YES];
-//    [self.view.layer addAnimation:animation forKey:nil];
-////    [self.navigationController presentViewController:vc animated:YES completion:nil];
-    
-    vc.view.frame = CGRectMake(0, -600, LKScreenSize.width, LKScreenSize.height *0.6);
-    
-    [self.view addSubview:vc.view];
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        
-        vc.view.frame = CGRectMake(0, 60, LKScreenSize.width, LKScreenSize.height *0.6);
+#pragma mark - tableViewDataSouce
 
-        
-    }];
-//    [self.navigationController pushViewController:vc animated:YES];
+- (void)indexViewController:(LKIndexViewController *)viewController didClickBtnWithArray:(NSMutableArray *)stores
+{
+    self.stores = stores;
+    
+    [self.tableView reloadData];
+}
+
+- (void)setUpTableView
+{
+    self.tableView.dataSource = self;
+//    self.tableView.autoresizingMask = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view sendSubviewToBack:self.tableView];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LKDelicacyStoreCell class]) bundle:nil] forCellReuseIdentifier:LKStoreCellID];
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.stores.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LKDelicacyStoreCell *cell = [tableView dequeueReusableCellWithIdentifier:LKStoreCellID];
+    
+    cell.store = self.stores[indexPath.row];
+    
+    return cell;
 }
 
 @end

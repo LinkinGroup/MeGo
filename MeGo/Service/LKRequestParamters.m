@@ -11,12 +11,9 @@
 
 @implementation LKRequestParamters
 
+#pragma mark - 公共参数
 + (NSMutableDictionary *)paramtersWithBaseUrl:(NSString *)baseUrl paramters:(NSMutableDictionary *)params
 {
-    
-    //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    //
-    //    params[@"city"] = @"北京";
     
     NSString *signUrl = [LKEncryption serializeURL:baseUrl params:params];
     
@@ -24,6 +21,57 @@
     
     return params;
 
+}
+
+#pragma mark - 业务参数
+
+//获取当前城市的地区信息
++ (NSMutableDictionary *)locationParamters
+{
+    NSString *url = @"http://api.dianping.com/v1/metadata/get_regions_with_businesses";
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    //关键参数
+    params[@"city"] = @"北京";
+    
+    //获取参数
+    params = [self paramtersWithBaseUrl:url paramters:params];
+    
+    return params;
+}
+
+//获取可选城市
++ (NSMutableDictionary *)cityParamters
+{
+    NSString *url = @"http://api.dianping.com/v1/metadata/get_cities_with_businesses";
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    //关键参数为空时，返回可选城市
+    
+    //获取参数
+    params = [self paramtersWithBaseUrl:url paramters:params];
+    
+    return params;
+}
+
+//获取美食商户
++ (NSMutableDictionary *)delicacyStoreParamters
+{
+    NSString *url = @"http://api.dianping.com/v1/business/find_businesses";
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    //关键参数
+    params[@"city"]     = @"北京";
+    params[@"category"] = @"美食";
+    
+    //获取参数
+    params = [self paramtersWithBaseUrl:url paramters:params];
+
+    
+    return params;
 }
 
 @end

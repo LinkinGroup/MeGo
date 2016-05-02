@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		22DAD024D7E2274E4CDABDF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0245AE24E51F405294790BD9 /* libPods.a */; };
+		3B3A8B481CD277ED000CB955 /* LKToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3A8B471CD277ED000CB955 /* LKToolBar.m */; };
+		3B3A8B4C1CD27810000CB955 /* LKToolBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A8B4B1CD27810000CB955 /* LKToolBar.xib */; };
 		3B9A2B5F1CC5EE28001C7440 /* MeGo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B5D1CC5EE28001C7440 /* MeGo.xcdatamodeld */; };
 		3B9A2B611CC5EE28001C7440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A2B601CC5EE28001C7440 /* Assets.xcassets */; };
 		3B9A2B6F1CC5EE28001C7440 /* MeGoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B6E1CC5EE28001C7440 /* MeGoTests.m */; };
@@ -18,6 +20,7 @@
 		3BAD643A1CCE556F00066626 /* LKLocalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD64381CCE556F00066626 /* LKLocalViewController.m */; };
 		3BAD643B1CCE556F00066626 /* LKLocalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BAD64391CCE556F00066626 /* LKLocalViewController.xib */; };
 		3BAD643E1CCE60A100066626 /* LKDataProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD643D1CCE60A100066626 /* LKDataProcessing.m */; };
+		3BC1D7E51CD0630B002F05D0 /* LKPopUpMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC1D7E41CD0630B002F05D0 /* LKPopUpMenu.m */; };
 		3BCCA5E61CC743C400D1B3E6 /* LKGroupSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5DE1CC743C400D1B3E6 /* LKGroupSaleViewController.m */; };
 		3BCCA5E71CC743C400D1B3E6 /* LKGroupSaleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCCA5DF1CC743C400D1B3E6 /* LKGroupSaleViewController.xib */; };
 		3BCCA5E81CC743C400D1B3E6 /* LKIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5E11CC743C400D1B3E6 /* LKIndexViewController.m */; };
@@ -30,6 +33,9 @@
 		3BCCA60E1CC7758400D1B3E6 /* UIView+LINKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA60D1CC7758400D1B3E6 /* UIView+LINKExtension.m */; };
 		3BCCA6121CC799F500D1B3E6 /* LKCircularBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA6111CC799F500D1B3E6 /* LKCircularBtn.m */; };
 		3BCCA6621CC8058400D1B3E6 /* LKIndexPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */; };
+		3BD941B31CD34B50009B3A37 /* LKDelicacyStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD941B21CD34B50009B3A37 /* LKDelicacyStoreModel.m */; };
+		3BD941B71CD35785009B3A37 /* LKDelicacyStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD941B51CD35785009B3A37 /* LKDelicacyStoreCell.m */; };
+		3BD941B81CD35785009B3A37 /* LKDelicacyStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD941B61CD35785009B3A37 /* LKDelicacyStoreCell.xib */; };
 		3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF421CC8A48F00B52E02 /* LKNavigationController.m */; };
 		3BF1AF4C1CC9020E00B52E02 /* LKStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */; };
 		3BF1AF4D1CC9020E00B52E02 /* LKStoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4B1CC9020E00B52E02 /* LKStoreViewController.xib */; };
@@ -55,6 +61,9 @@
 
 /* Begin PBXFileReference section */
 		0245AE24E51F405294790BD9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B3A8B461CD277ED000CB955 /* LKToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKToolBar.h; sourceTree = "<group>"; };
+		3B3A8B471CD277ED000CB955 /* LKToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKToolBar.m; sourceTree = "<group>"; };
+		3B3A8B4B1CD27810000CB955 /* LKToolBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKToolBar.xib; sourceTree = "<group>"; };
 		3B9A2B4E1CC5EE28001C7440 /* MeGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B9A2B5E1CC5EE28001C7440 /* MeGo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeGo.xcdatamodel; sourceTree = "<group>"; };
 		3B9A2B601CC5EE28001C7440 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,11 +80,13 @@
 		3BAD642D1CCE45CA00066626 /* LKStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStoreModel.m; sourceTree = "<group>"; };
 		3BAD642F1CCE460900066626 /* LKLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLocationModel.h; sourceTree = "<group>"; };
 		3BAD64301CCE460900066626 /* LKLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocationModel.m; sourceTree = "<group>"; };
-		3BAD64371CCE556F00066626 /* LKLocalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLocalViewController.h; sourceTree = "<group>"; };
-		3BAD64381CCE556F00066626 /* LKLocalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocalViewController.m; sourceTree = "<group>"; };
-		3BAD64391CCE556F00066626 /* LKLocalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKLocalViewController.xib; sourceTree = "<group>"; };
+		3BAD64371CCE556F00066626 /* LKLocalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKLocalViewController.h; path = ../Controller/LKLocalViewController.h; sourceTree = "<group>"; };
+		3BAD64381CCE556F00066626 /* LKLocalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKLocalViewController.m; path = ../Controller/LKLocalViewController.m; sourceTree = "<group>"; };
+		3BAD64391CCE556F00066626 /* LKLocalViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LKLocalViewController.xib; path = ../Controller/LKLocalViewController.xib; sourceTree = "<group>"; };
 		3BAD643C1CCE60A100066626 /* LKDataProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDataProcessing.h; sourceTree = "<group>"; };
 		3BAD643D1CCE60A100066626 /* LKDataProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDataProcessing.m; sourceTree = "<group>"; };
+		3BC1D7E31CD0630B002F05D0 /* LKPopUpMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKPopUpMenu.h; path = ../Controller/LKPopUpMenu.h; sourceTree = "<group>"; };
+		3BC1D7E41CD0630B002F05D0 /* LKPopUpMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKPopUpMenu.m; path = ../Controller/LKPopUpMenu.m; sourceTree = "<group>"; };
 		3BCCA5DD1CC743C400D1B3E6 /* LKGroupSaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKGroupSaleViewController.h; sourceTree = "<group>"; };
 		3BCCA5DE1CC743C400D1B3E6 /* LKGroupSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKGroupSaleViewController.m; sourceTree = "<group>"; };
 		3BCCA5DF1CC743C400D1B3E6 /* LKGroupSaleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKGroupSaleViewController.xib; sourceTree = "<group>"; };
@@ -98,6 +109,11 @@
 		3BCCA6111CC799F500D1B3E6 /* LKCircularBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKCircularBtn.m; sourceTree = "<group>"; };
 		3BCCA6601CC8058400D1B3E6 /* LKIndexPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKIndexPageView.h; sourceTree = "<group>"; };
 		3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKIndexPageView.m; sourceTree = "<group>"; };
+		3BD941B11CD34B50009B3A37 /* LKDelicacyStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDelicacyStoreModel.h; sourceTree = "<group>"; };
+		3BD941B21CD34B50009B3A37 /* LKDelicacyStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDelicacyStoreModel.m; sourceTree = "<group>"; };
+		3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDelicacyStoreCell.h; sourceTree = "<group>"; };
+		3BD941B51CD35785009B3A37 /* LKDelicacyStoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDelicacyStoreCell.m; sourceTree = "<group>"; };
+		3BD941B61CD35785009B3A37 /* LKDelicacyStoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKDelicacyStoreCell.xib; sourceTree = "<group>"; };
 		3BF1AF411CC8A48F00B52E02 /* LKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKNavigationController.h; sourceTree = "<group>"; };
 		3BF1AF421CC8A48F00B52E02 /* LKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKNavigationController.m; sourceTree = "<group>"; };
 		3BF1AF491CC9020E00B52E02 /* LKStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStoreViewController.h; sourceTree = "<group>"; };
@@ -210,6 +226,8 @@
 				3BAD642D1CCE45CA00066626 /* LKStoreModel.m */,
 				3BAD642F1CCE460900066626 /* LKLocationModel.h */,
 				3BAD64301CCE460900066626 /* LKLocationModel.m */,
+				3BD941B11CD34B50009B3A37 /* LKDelicacyStoreModel.h */,
+				3BD941B21CD34B50009B3A37 /* LKDelicacyStoreModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,9 +241,6 @@
 				3BF1AF491CC9020E00B52E02 /* LKStoreViewController.h */,
 				3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */,
 				3BF1AF4B1CC9020E00B52E02 /* LKStoreViewController.xib */,
-				3BAD64371CCE556F00066626 /* LKLocalViewController.h */,
-				3BAD64381CCE556F00066626 /* LKLocalViewController.m */,
-				3BAD64391CCE556F00066626 /* LKLocalViewController.xib */,
 				3BCCA5DD1CC743C400D1B3E6 /* LKGroupSaleViewController.h */,
 				3BCCA5DE1CC743C400D1B3E6 /* LKGroupSaleViewController.m */,
 				3BCCA5DF1CC743C400D1B3E6 /* LKGroupSaleViewController.xib */,
@@ -283,6 +298,17 @@
 				3BCCA6111CC799F500D1B3E6 /* LKCircularBtn.m */,
 				3BCCA6601CC8058400D1B3E6 /* LKIndexPageView.h */,
 				3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */,
+				3BC1D7E31CD0630B002F05D0 /* LKPopUpMenu.h */,
+				3BC1D7E41CD0630B002F05D0 /* LKPopUpMenu.m */,
+				3B3A8B461CD277ED000CB955 /* LKToolBar.h */,
+				3B3A8B471CD277ED000CB955 /* LKToolBar.m */,
+				3B3A8B4B1CD27810000CB955 /* LKToolBar.xib */,
+				3BAD64371CCE556F00066626 /* LKLocalViewController.h */,
+				3BAD64381CCE556F00066626 /* LKLocalViewController.m */,
+				3BAD64391CCE556F00066626 /* LKLocalViewController.xib */,
+				3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */,
+				3BD941B51CD35785009B3A37 /* LKDelicacyStoreCell.m */,
+				3BD941B61CD35785009B3A37 /* LKDelicacyStoreCell.xib */,
 			);
 			path = Element;
 			sourceTree = "<group>";
@@ -416,9 +442,11 @@
 			files = (
 				3BCCA5E71CC743C400D1B3E6 /* LKGroupSaleViewController.xib in Resources */,
 				3BAD643B1CCE556F00066626 /* LKLocalViewController.xib in Resources */,
+				3B3A8B4C1CD27810000CB955 /* LKToolBar.xib in Resources */,
 				3BF1AF4D1CC9020E00B52E02 /* LKStoreViewController.xib in Resources */,
 				3BCCA5E91CC743C400D1B3E6 /* LKIndexViewController.xib in Resources */,
 				3B9A2B611CC5EE28001C7440 /* Assets.xcassets in Resources */,
+				3BD941B81CD35785009B3A37 /* LKDelicacyStoreCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,12 +523,15 @@
 				3BF1AF4F1CC91FAB00B52E02 /* Foundation+Log.m in Sources */,
 				3BAD643E1CCE60A100066626 /* LKDataProcessing.m in Sources */,
 				3BCCA5E61CC743C400D1B3E6 /* LKGroupSaleViewController.m in Sources */,
+				3BD941B31CD34B50009B3A37 /* LKDelicacyStoreModel.m in Sources */,
 				3BCCA6621CC8058400D1B3E6 /* LKIndexPageView.m in Sources */,
 				3BCCA5E81CC743C400D1B3E6 /* LKIndexViewController.m in Sources */,
 				3B9A2B5F1CC5EE28001C7440 /* MeGo.xcdatamodeld in Sources */,
 				3BCCA6121CC799F500D1B3E6 /* LKCircularBtn.m in Sources */,
+				3BC1D7E51CD0630B002F05D0 /* LKPopUpMenu.m in Sources */,
 				3BCCA5F11CC743FC00D1B3E6 /* main.m in Sources */,
 				3BCCA6061CC773B500D1B3E6 /* LKEncryption.m in Sources */,
+				3BD941B71CD35785009B3A37 /* LKDelicacyStoreCell.m in Sources */,
 				3BCCA5F51CC7460000D1B3E6 /* LKTabbarController.m in Sources */,
 				3BAD64311CCE460900066626 /* LKLocationModel.m in Sources */,
 				3BF1AF4C1CC9020E00B52E02 /* LKStoreViewController.m in Sources */,
@@ -508,6 +539,7 @@
 				3BAD643A1CCE556F00066626 /* LKLocalViewController.m in Sources */,
 				3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */,
 				3BAD642A1CCE328100066626 /* LKRequestParamters.m in Sources */,
+				3B3A8B481CD277ED000CB955 /* LKToolBar.m in Sources */,
 				3BAD642E1CCE45CA00066626 /* LKStoreModel.m in Sources */,
 				3BCCA60E1CC7758400D1B3E6 /* UIView+LINKExtension.m in Sources */,
 			);

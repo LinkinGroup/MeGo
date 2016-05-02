@@ -15,4 +15,20 @@
  */
 + (NSMutableDictionary *)paramtersWithBaseUrl:(NSString *)baseUrl paramters:(NSMutableDictionary *)params;
 
+
+/**
+ * 获取当前城市的地区信息
+ */
++ (NSMutableDictionary *)locationParamters;
+
+/**
+ * 获取可选城市
+ */
++ (NSMutableDictionary *)cityParamters;
+
+/**
+ * 获取美食商户
+ */
++ (NSMutableDictionary *)delicacyStoreParamters;
+
 @end

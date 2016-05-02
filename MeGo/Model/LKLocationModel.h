@@ -11,7 +11,7 @@
 @interface LKLocationModel : NSObject
 
 /** 商区*/
-@property (nonatomic, strong) NSString *district_name;
+@property (nonatomic, copy) NSString *district_name;
 /** 附近*/
 @property (nonatomic, strong) NSArray *neighborhoods;
 

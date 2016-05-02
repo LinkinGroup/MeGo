@@ -22,35 +22,12 @@
 /** scrollView*/
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-
 @end
 
 @implementation LKIndexViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSString *baseURL = @"http://api.dianping.com/v1/deal/get_all_id_list";
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    params[@"city"] = @"北京";
-    
-    NSString *url = [LKEncryption serializeURL:baseURL params:params];
-    
-    params[@"sign"] = url;
-    
-//    [[AFHTTPSessionManager manager] GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
-//        
-//        
-//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        
-//        JKLog(@"%@",responseObject);
-//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        JKLog(@"%@",error);
-//        
-//    }];
-    
     
     [self setUpScrollView];
 }
@@ -62,6 +39,7 @@
 //
 //}
 
+#pragma mark - 设置按钮
 - (void)setUpScrollView
 {
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, 291))];
@@ -112,22 +90,11 @@
         [btn setImage:[UIImage imageNamed:@"findhome_20160126194705meishi"] forState:(UIControlStateNormal)];
         [btn setTitle:@"美食" forState:(UIControlStateNormal)];
         
-        [btn addTarget:self action:@selector(btnClick) forControlEvents:(UIControlEventTouchUpInside)];
+        [btn addTarget:self action:@selector(btnClick:) forControlEvents:(UIControlEventTouchUpInside)];
         
         [self.scrollView addSubview:btn];
         
     }
-    
-}
-
-- (void)btnClick
-{
-    LKStoreViewController *storeVc = [[LKStoreViewController alloc] init];
-    [self.navigationController pushViewController:storeVc animated:YES];
-    
-    JKLog(@"123");
-    
-    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -136,7 +103,30 @@
     self.pageControl.currentPage = (int)(scrollView.contentOffset.x / scrollView.frame.size.width);
 }
 
-#pragma mark - scrollView
+#pragma mark - 向Push出的控制器传值
+
+- (void)btnClick:(UIButton *)btn
+{
+    LKStoreViewController *storeVc = [[LKStoreViewController alloc] init];
+    
+    storeVc.title = btn.titleLabel.text;
+    
+    _delegate = storeVc;
+    
+    [LKBasedataAPI findDelicacyStoreSuccess:^(id  _Nullable responseObject) {
+        
+        if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithArray:)]) {
+            [_delegate indexViewController:self didClickBtnWithArray:responseObject];
+        }
+        
+    } failure:^(id  _Nullable error) {
+        
+        
+    }];
+
+    [self.navigationController pushViewController:storeVc animated:YES];
+    
+}
 
 
 @end

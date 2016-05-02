@@ -15,4 +15,9 @@
  */
 + (NSMutableArray *)localWithArray:(NSDictionary *)dict;
 
+/**
+ * 商户数据转换
+ */
++ (NSMutableArray *)storeWithArray:(NSDictionary *)dict;
+
 @end

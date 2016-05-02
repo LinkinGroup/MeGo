@@ -8,10 +8,12 @@
 
 #import "LKDataProcessing.h"
 #import "LKLocationModel.h"
+#import "LKDelicacyStoreModel.h"
 #import <MJExtension.h>
 
 @implementation LKDataProcessing
 
+//地区数据转换
 + (NSMutableArray *)localWithArray:(NSDictionary *)dict
 {
     NSMutableArray *modelArray = [NSMutableArray array];
@@ -20,5 +22,17 @@
     
     return modelArray;
 }
+
+//商户数据转换
++ (NSMutableArray *)storeWithArray:(NSDictionary *)dict
+{
+    NSMutableArray *modelArray = [NSMutableArray array];
+    
+    modelArray = [LKDelicacyStoreModel mj_objectArrayWithKeyValuesArray:dict[@"businesses"]];
+    
+    return modelArray;
+}
+
+
 
 @end

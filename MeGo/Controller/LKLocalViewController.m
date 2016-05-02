@@ -137,7 +137,10 @@ static NSString * const localID = @"local";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.localTableView reloadData];
+    if (tableView == self.distreetTableView) {
+        
+        [self.localTableView reloadData];
+    }
 }
 
 @end

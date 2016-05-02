@@ -12,28 +12,18 @@
 
 @implementation LKBasedataAPI
 
-//+ (void)findBusinessesWithURL:(nullable NSString *)url
-//                       params:(nullable NSMutableDictionary *)params
-//                      success:(void(^)(id responseObject))success
-//                      failure:(void(^)(id error))failure
+//获取当前城市的地区信息
 + (void)findLocationSuccess:(void(^)(id responseObject))success
                       failure:(void(^)(id error))failure
 {
-    
-    NSString *url = @"http://api.dianping.com/v1/metadata/get_regions_with_businesses";
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"city"] = @"北京";
-
-    //获取参数
-    params = [LKRequestParamters paramtersWithBaseUrl:url paramters:params];
+    //获取地区信息参数字典
+    NSMutableDictionary *params = [LKRequestParamters locationParamters];
     
     //取出带有签名信息的url
     NSString *signUrl = params[@"sign"];
     
     //用AFN发送网络请求
     [[AFHTTPSessionManager manager] GET:signUrl parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
-        
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
@@ -53,7 +43,74 @@
         if (failure) {
             failure(error);
         }
+    }];
+}
+
+//获取可选城市
++ (void)findCitySuccess:(void(^)(id responseObject))success
+                    failure:(void(^)(id error))failure
+{
+    //获取城市参数字典
+    NSMutableDictionary *params = [LKRequestParamters cityParamters];
+    
+    //取出带有签名信息的url
+    NSString *signUrl = params[@"sign"];
+    
+    //用AFN发送网络请求
+    [[AFHTTPSessionManager manager] GET:signUrl parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //成功后返回数据
+        if (success) {
+            
+            //数据处理
+//            NSMutableArray * array = [LKDataProcessing localWithArray:responseObject];
+            
+            //返回数据
+            success(responseObject);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //失败后返回失败原因
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+//获取美食商户
++ (void)findDelicacyStoreSuccess:(void(^)(id responseObject))success
+                failure:(void(^)(id error))failure
+{
+    //获取城市参数字典
+    NSMutableDictionary *params = [LKRequestParamters delicacyStoreParamters];
+    
+    //取出带有签名信息的url
+    NSString *signUrl = params[@"sign"];
+    
+    //用AFN发送网络请求
+    [[AFHTTPSessionManager manager] GET:signUrl parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //成功后返回数据
+        if (success) {
+            
+            //数据处理
+            NSMutableArray * array = [LKDataProcessing storeWithArray:responseObject];
+            
+            //返回数据
+            success(array);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //失败后返回失败原因
+        if (failure) {
+            failure(error);
+        }
     }];
 }
 

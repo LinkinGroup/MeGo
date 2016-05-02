@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKIndexViewController.h"
 
-@interface LKStoreViewController : UIViewController
+@interface LKStoreViewController : UIViewController<LKIndexViewControllerDelegate>
+
+/** 表格数据数组*/
+@property (nonatomic, strong) NSMutableArray *stores;
 
 @end
