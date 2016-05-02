@@ -123,7 +123,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="91" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NNt-wP-5Fw">
-                    <rect key="frame" x="0.0" y="44" width="375" height="579"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" red="0.90002003210000003" green="0.90002003210000003" blue="0.90002003210000003" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
@@ -131,7 +131,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="nFz-30-NML" secondAttribute="trailing" id="3Kl-ej-L3v"/>
                 <constraint firstItem="NNt-wP-5Fw" firstAttribute="top" secondItem="nFz-30-NML" secondAttribute="bottom" constant="-64" id="IzN-jF-Osr"/>
-                <constraint firstAttribute="bottom" secondItem="NNt-wP-5Fw" secondAttribute="bottom" constant="44" id="NON-7f-aEZ"/>
+                <constraint firstAttribute="bottom" secondItem="NNt-wP-5Fw" secondAttribute="bottom" id="NON-7f-aEZ"/>
                 <constraint firstItem="nFz-30-NML" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QnP-Wl-iXu"/>
                 <constraint firstAttribute="trailing" secondItem="NNt-wP-5Fw" secondAttribute="trailing" id="Zg6-tB-NNL"/>
                 <constraint firstItem="nFz-30-NML" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="51" id="iyp-c3-3hk"/>

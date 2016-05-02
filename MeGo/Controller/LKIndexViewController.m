@@ -109,9 +109,14 @@
 {
     LKStoreViewController *storeVc = [[LKStoreViewController alloc] init];
     
+    //设置导航栏标题
     storeVc.title = btn.titleLabel.text;
     
+    //隐藏导航栏
+    self.hidesBottomBarWhenPushed = YES;
+    
     _delegate = storeVc;
+    
     
     [LKBasedataAPI findDelicacyStoreSuccess:^(id  _Nullable responseObject) {
         
@@ -125,6 +130,9 @@
     }];
 
     [self.navigationController pushViewController:storeVc animated:YES];
+    
+    //为了让跳转回来时正常显示tabbar
+    self.hidesBottomBarWhenPushed = NO;
     
 }
 
