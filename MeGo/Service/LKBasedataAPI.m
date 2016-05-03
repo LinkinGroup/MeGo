@@ -81,11 +81,15 @@
 }
 
 //获取美食商户
-+ (void)findDelicacyStoreSuccess:(void(^)(id responseObject))success
-                failure:(void(^)(id error))failure
++ (void)findDelicacyStoreWithParamter:(NSMutableDictionary *)params
+                              Success:(void(^)(id responseObject))success
+                              Failure:(void(^)(id error))failure
 {
+    if (!params) {
+        params = [NSMutableDictionary dictionary];
+    }
     //获取城市参数字典
-    NSMutableDictionary *params = [LKRequestParamters delicacyStoreParamters];
+    params = [LKRequestParamters delicacyStoreParamtersWithParams:params];
     
     //取出带有签名信息的url
     NSString *signUrl = params[@"sign"];

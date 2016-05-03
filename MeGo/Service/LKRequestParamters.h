@@ -29,6 +29,5 @@
 /**
  * 获取美食商户
  */
-+ (NSMutableDictionary *)delicacyStoreParamters;
-
++ (NSMutableDictionary *)delicacyStoreParamtersWithParams:(NSMutableDictionary *)params;
 @end

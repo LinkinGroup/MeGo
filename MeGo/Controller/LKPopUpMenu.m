@@ -62,7 +62,7 @@
     
     [viewController addChildViewController:vc];
     
-    vc.view.frame = CGRectMake(0, -600, LKScreenSize.width, LKScreenSize.height *0.7);
+    vc.view.frame = CGRectMake(0, - LKScreenSize.height *0.7, LKScreenSize.width, LKScreenSize.height *0.7);
     
     
     //创建菜单

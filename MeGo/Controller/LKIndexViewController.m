@@ -118,13 +118,13 @@
     _delegate = storeVc;
     
     
-    [LKBasedataAPI findDelicacyStoreSuccess:^(id  _Nullable responseObject) {
+    [LKBasedataAPI findDelicacyStoreWithParamter:nil Success:^(id  _Nullable responseObject) {
         
         if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithArray:)]) {
             [_delegate indexViewController:self didClickBtnWithArray:responseObject];
         }
         
-    } failure:^(id  _Nullable error) {
+    } Failure:^(id  _Nullable error) {
         
         
     }];

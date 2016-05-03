@@ -25,8 +25,9 @@
 /**
  * 获取美食商户
  */
-+ (void)findDelicacyStoreSuccess:(nullable void(^)(id _Nullable responseObject))success
-                         failure:(nullable void(^)(id _Nullable error))failure;
++ (void)findDelicacyStoreWithParamter:(nullable NSMutableDictionary *)params
+                         Success:(nullable void(^)(id _Nullable responseObject))success
+                         Failure:(nullable void(^)(id _Nullable error))failure;
 
 
 

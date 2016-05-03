@@ -57,11 +57,9 @@
 }
 
 //获取美食商户
-+ (NSMutableDictionary *)delicacyStoreParamters
++ (NSMutableDictionary *)delicacyStoreParamtersWithParams:(NSMutableDictionary *)params
 {
     NSString *url = @"http://api.dianping.com/v1/business/find_businesses";
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     //关键参数
     params[@"city"]     = @"北京";
@@ -69,7 +67,6 @@
     
     //获取参数
     params = [self paramtersWithBaseUrl:url paramters:params];
-
     
     return params;
 }
