@@ -7,9 +7,10 @@
 //
 
 #import "LKGroupSaleViewController.h"
-#import "LKToolBar.h"
+#import "LKToolBarMenu.h"
 
-@interface LKGroupSaleViewController ()
+
+@interface LKGroupSaleViewController ()<LKToolBarMenuDelegate>
 
 @end
 
@@ -19,20 +20,12 @@
     [super viewDidLoad];
     
     [self setUpToolBar];
-
 }
 
 - (void)setUpToolBar
 {
     
     
-    LKToolBar *toolBar = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([LKToolBar class]) owner:nil options:nil].firstObject;
-    
-    toolBar.frame = CGRectMake(0, 100, LKScreenSize.width, 57);
-//    toolBar.center = CGPointMake(0, 100);
-    
-    [self.view addSubview:toolBar];
 }
-
 
 @end

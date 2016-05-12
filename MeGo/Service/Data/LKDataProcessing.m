@@ -9,6 +9,7 @@
 #import "LKDataProcessing.h"
 #import "LKLocationModel.h"
 #import "LKDelicacyStoreModel.h"
+#import "LKCategoryModel.h"
 #import <MJExtension.h>
 
 @implementation LKDataProcessing
@@ -19,6 +20,16 @@
     NSMutableArray *modelArray = [NSMutableArray array];
     
     modelArray = [LKLocationModel mj_objectArrayWithKeyValuesArray:[dict[@"cities"] firstObject][@"districts"]];
+    
+    return modelArray;
+}
+
+//类型数据转换
++ (NSMutableArray *)categoryWithArray:(NSDictionary *)dict
+{
+    NSMutableArray *modelArray = [NSMutableArray array];
+    
+    modelArray = [LKCategoryModel mj_objectArrayWithKeyValuesArray:dict[@"categories"]];
     
     return modelArray;
 }

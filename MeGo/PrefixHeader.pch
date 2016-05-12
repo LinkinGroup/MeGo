@@ -28,12 +28,17 @@
 #define JKLog(...)
 #endif
 
+#define JKCity @"JKCity"
 
 #define JKLogFunction JKLog(@"%s", __func__)
 
-#define LKRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define JKCloudsColor JKRGBColor(236, 240, 241)
 
-#define LKGlobalBg LKRGBColor(223, 223, 223)
+#define JKRGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define JKGlobalBg JKRGBColor(223, 223, 223)
+
+#define LKScreenFrame [UIScreen mainScreen].bounds
 
 #define LKScreenSize [UIScreen mainScreen].bounds.size
 

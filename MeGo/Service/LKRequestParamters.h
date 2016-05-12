@@ -21,13 +21,22 @@
  */
 + (NSMutableDictionary *)locationParamters;
 
+
+/**
+ * 获取可选类型
+ */
++ (NSMutableDictionary *)categoryParamters;
+
+
 /**
  * 获取可选城市
  */
 + (NSMutableDictionary *)cityParamters;
 
+
 /**
  * 获取美食商户
  */
 + (NSMutableDictionary *)delicacyStoreParamtersWithParams:(NSMutableDictionary *)params;
+
 @end

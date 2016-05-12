@@ -46,6 +46,40 @@
     }];
 }
 
+//获取可选类型
++ (void)findCategorySuccess:(void(^)(id responseObject))success
+                    failure:(void(^)(id error))failure
+{
+    //获取地区信息参数字典
+    NSMutableDictionary *params = [LKRequestParamters categoryParamters];
+    
+    //取出带有签名信息的url
+    NSString *signUrl = params[@"sign"];
+    
+    //用AFN发送网络请求
+    [[AFHTTPSessionManager manager] GET:signUrl parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //成功后返回数据
+        if (success) {
+            
+            //数据处理
+            NSMutableArray * array = [LKDataProcessing categoryWithArray:responseObject];
+            
+            //返回数据
+            success(array);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //失败后返回失败原因
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 //获取可选城市
 + (void)findCitySuccess:(void(^)(id responseObject))success
                     failure:(void(^)(id error))failure

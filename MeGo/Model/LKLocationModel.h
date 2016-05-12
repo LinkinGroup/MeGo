@@ -13,6 +13,6 @@
 /** 商区*/
 @property (nonatomic, copy) NSString *district_name;
 /** 附近*/
-@property (nonatomic, strong) NSArray *neighborhoods;
+@property (nonatomic, strong) NSMutableArray *neighborhoods;
 
 @end

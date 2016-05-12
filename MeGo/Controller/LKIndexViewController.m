@@ -11,11 +11,18 @@
 #import "LKCircularBtn.h"
 #import "LKBasedataAPI.h"
 #import "LKStoreViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
-#import <AFNetworking.h>
 
 
-@interface LKIndexViewController () <UIScrollViewDelegate,UIScrollViewAccessibilityDelegate>
+@interface LKIndexViewController () <UIScrollViewDelegate,UIScrollViewAccessibilityDelegate, CLLocationManagerDelegate>
+
+/** 位置管理者 */
+@property (nonatomic, strong) CLLocationManager *locationManager;
+
+/** 保存最新的位置信息*/
+@property (nonatomic, strong) CLLocation *currentLocation;
+
 
 /** 指示器*/
 @property (nonatomic, strong) UIPageControl *pageControl;
@@ -26,18 +33,70 @@
 
 @implementation LKIndexViewController
 
+- (CLLocationManager *)locationManager
+{
+    if (!_locationManager) {
+        // 创建位置管理者
+        _locationManager = [[CLLocationManager alloc] init];
+        // 成为代理
+        _locationManager.delegate = self;
+        
+        // 每隔多少米定位一次，与精确度冲突，此项有值，则精确度无效；
+        _locationManager.distanceFilter = 100;
+        
+        /**
+         kCLLocationAccuracyBestForNavigation // 最适合导航
+         kCLLocationAccuracyBest; // 最好的
+         kCLLocationAccuracyNearestTenMeters; // 10m
+         kCLLocationAccuracyHundredMeters; // 100m
+         kCLLocationAccuracyKilometer; // 1000m
+         kCLLocationAccuracyThreeKilometers; // 3000m
+         */
+        // 精确度越高, 越耗电, 定位时间越长
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        
+        
+        // 前台定位授权(默认情况下,不可以在后台获取位置, 勾选后台模式 location update, 但是 会出现蓝条)
+        [_locationManager requestWhenInUseAuthorization];
+        
+        
+    }
+    return _locationManager;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setUpScrollView];
+    
+    [self.locationManager startUpdatingLocation];
+    
 }
 
-//- (void)setUpScrollView
-//{
-//    LKIndexPageView *scrollView = [[LKIndexPageView alloc] initWithFrame:(CGRectMake(0, 44, LKScreenSize.width, 240))];
-//    [self.view addSubview:scrollView];
-//
-//}
+
+
+#pragma mark - 获取位置信息
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    //    NSLog(@"定位到了");
+    /**
+     *  CLLocation 详解
+     *  coordinate : 经纬度
+     *  altitude : 海拔
+     *  course : 航向
+     *  speed ; 速度
+     */
+    JKLog(@"imhere");
+
+    self.currentLocation = [locations lastObject];
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    JKLog(@"%@", error);
+}
 
 #pragma mark - 设置按钮
 - (void)setUpScrollView
@@ -117,17 +176,20 @@
     
     _delegate = storeVc;
     
+    // 参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [LKBasedataAPI findDelicacyStoreWithParamter:nil Success:^(id  _Nullable responseObject) {
+    params[@"latitude"] = @(self.currentLocation.coordinate.latitude);
+    params[@"longitude"] = @(self.currentLocation.coordinate.longitude);
+    params[@"category"] = storeVc.title;
+
+    JKLog(@"%f", self.currentLocation.coordinate.latitude);
+    
+    if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithParams:)]) {
         
-        if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithArray:)]) {
-            [_delegate indexViewController:self didClickBtnWithArray:responseObject];
-        }
+        [_delegate indexViewController:self didClickBtnWithParams:params];
         
-    } Failure:^(id  _Nullable error) {
-        
-        
-    }];
+    }
 
     [self.navigationController pushViewController:storeVc animated:YES];
     
@@ -135,6 +197,5 @@
     self.hidesBottomBarWhenPushed = NO;
     
 }
-
 
 @end

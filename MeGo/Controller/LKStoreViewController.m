@@ -10,21 +10,33 @@
 #import "LKBasedataAPI.h"
 #import "LKDelicacyStoreCell.h"
 #import <MJRefresh.h>
-#import "LKPopUpMenu.h"
+#import "LKToolBarMenu.h"
+#import "LKMenuDataProcessing.h"
+#import "LKDelicacyStoreModel.h"
+#import "LKWebViewController.h"
 
 
-@interface LKStoreViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface LKStoreViewController ()<UITableViewDataSource, UITableViewDelegate, LKToolBarMenuDelegate, LKMenuDataProcessingDelegate>
 
-/** 记录工具栏按钮状态*/
-@property (nonatomic, strong) UIButton *selectedBtn;
+/** 加载二级菜单数据*/
+@property (nonatomic, strong) LKMenuDataProcessing *menuDataManager;
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+/** 显示商品数据的表格*/
+@property (strong, nonatomic) UITableView *tableView;
 /** 帖子数据 */
 @property (nonatomic, strong) NSMutableArray *cities;
+
+/** 上一次的请求参数 */
+@property (nonatomic, strong) NSMutableDictionary *addNewParams;
+
 /** 当前页码 */
 @property (nonatomic, assign) NSInteger page;
 /** 上一次的请求参数 */
 @property (nonatomic, strong) NSDictionary *params;
+
+/** 记录菜单数据 */
+@property (nonatomic, strong) NSArray *dataIndexArray;
 
 @end
 
@@ -32,25 +44,25 @@
 
 static NSString * const LKStoreCellID = @"store";
 
-- (UIButton *)selectedBtn
-{
-    if (!_selectedBtn) {
-        _selectedBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    }
-    return _selectedBtn;
-}
-
+#pragma mark - 初始化控制器
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     //测试API
     UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
-    btn.frame = CGRectMake(300, 150, 60, 30);
+    btn.frame = CGRectMake(200, 150, 90, 90);
     
     [self.view addSubview:btn];
     
-    [btn setTitle:@"testAPI" forState:UIControlStateNormal];
+    // 字体选择方法
+//    NSArray *arr = [UIFont fontNamesForFamilyName:@"PingFang TC"];
+//    NSArray *arr = [UIFont familyNames];
+//    JKLog(@"arr:%@",arr);
+    
+    [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:18]];
+    
+    [btn setTitle:@"附近智能" forState:UIControlStateNormal];
     
     btn.backgroundColor = [UIColor redColor];
     
@@ -63,63 +75,146 @@ static NSString * const LKStoreCellID = @"store";
     //加载刷新功能
     [self setUpRefresh];
     
+    //加载菜单栏
+    [self setUpToolBar];
+//    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"北京" forKey:JKCity];
+    
 }
 
 
+#pragma mark - 首页Push本控制器时的代理方法
 
-#pragma mark - menu
-
-- (IBAction)aroundClick:(UIButton *)sender
+//首页传值到本控制器
+- (void)indexViewController:(LKIndexViewController *)viewController didClickBtnWithParams:(NSMutableDictionary *)params;
 {
-    if (self.selectedBtn == sender) {
-        if (sender.selected == NO) {
+    self.addNewParams = params;
+    
+    [self loadNewStores];
+}
+
+#pragma mark - 下拉菜单的代理方法
+- (void)menuSelectedButtonIndex:(NSInteger)index LeftIndex:(NSInteger)left RightIndex:(NSInteger)right
+{
+    JKLog(@"ButtonIndex:%ld, Left:%ld, Right:%ld",index,left,right);
+    
+    NSString *paramter = self.dataIndexArray[index][left][right];
+    
+    switch (index) {
             
-            [LKPopUpMenu menuWithLinkageMenuInController:self completion:^{
+        case 0:
+            
+            if (right == 0) { // 二级菜单选项为第一项时：
                 
-                sender.selected = YES;
-                self.selectedBtn = sender;
-            }];
-        }else{
-            
-            [LKPopUpMenu dismissInViewController:self completion:^{
+                if (left == 0) { // 一、二级菜单选项同为第一项时：
+                    
+                    self.addNewParams[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
+                    
+                    self.addNewParams[@"region"] = nil;
+                    
+                    self.addNewParams[@"latitude"] = nil;
+                    
+                    self.addNewParams[@"longitude"] = nil;
+                    
+                    [self loadNewStores];
+                    
+                    break;
+                }
                 
-                sender.selected = NO;
-            }];
-        }
-    }else{
-        
-        [LKPopUpMenu dismissInViewController:self completion:^{
+                paramter = [paramter substringFromIndex:2];
+                
+                self.addNewParams[@"region"] = paramter;
+                
+                self.addNewParams[@"latitude"] = nil;
+                
+                self.addNewParams[@"longitude"] = nil;
+                
+                [self loadNewStores];
+                
+                break;
+            }
             
-            self.selectedBtn.selected = NO;
-        }];
-        
-        [LKPopUpMenu menuWithLinkageMenuInController:self completion:^{
+            self.addNewParams[@"region"] = paramter;
             
-            sender.selected = YES;
-            self.selectedBtn = sender;
-        }];
+            self.addNewParams[@"latitude"] = nil;
+            
+            self.addNewParams[@"longitude"] = nil;
+            
+            [self loadNewStores];
+
+            break;
+            
+        case 1:
+            
+            if (right == 0) {
+                
+                paramter = [paramter substringFromIndex:2];
+                
+                self.addNewParams[@"category"] = paramter;
+                
+                [self loadNewStores];
+                
+                break;
+            }
+            self.addNewParams[@"category"] = paramter;
+            
+            [self loadNewStores];
+            
+        default:
+            break;
     }
+}
+
+#pragma mark - 获得菜单数据
+// 发送网络请求，获得菜单数据；
+- (void)setUpToolBar
+{
+#warning 是否需要做缓存处理
+    
+    LKMenuDataProcessing *mdp = [[LKMenuDataProcessing alloc] initMenuDataWithTitle:self.title];
+    
+    mdp.delegate = self;
+    
+    self.menuDataManager = mdp;
+    
+}
+
+#pragma mark - 菜单栏数据的代理方法
+- (void)returnMenuDataWithTitles:(NSArray *)titles LeftArray:(NSArray *)leftArray RightArray:(NSArray *)rightArray
+{
+//    JKLog(@"titles:%@,Left:%@,Right:%@", titles, leftArray, rightArray);
+    
+    self.dataIndexArray = rightArray;
+    
+    // 根据返回的数据创建菜单栏
+    LKToolBarMenu *menu = [[LKToolBarMenu alloc] initMenuWithButtonTitles:titles andLeftListArray:leftArray andRightListArray:rightArray];
+    
+        menu.delegate = self;
+    
+        [self.view addSubview:menu.view];
 }
 
 #pragma mark - 测试API
 - (void)click
 {
-    // 参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    NSInteger page = self.page + 1;
-    params[@"page"] = @2;
     
-    [LKBasedataAPI findDelicacyStoreWithParamter:params Success:^(id responseObject) {
+    // 参数
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    [LKBasedataAPI findCategorySuccess:^(id  _Nullable responseObject) {
         
         JKLog(@"%@",responseObject);
         
-//        将plist文件写至桌面，以便确认参数；
-//                [responseObject writeToFile:@"/Users/LinK/Desktop/DelicacyStore.plist" atomically:YES];
+        //        将plist文件写至桌面，以便确认参数；
+//                        [responseObject writeToFile:@"/Users/LinK/Desktop/Category.plist" atomically:YES];
         
-    } Failure:^(id error) {
+    } failure:^(id  _Nullable error) {
         
         JKLog(@"%@",error);
+
     }];
+    
 }
 
 #pragma mark - Refresh
@@ -139,61 +234,72 @@ static NSString * const LKStoreCellID = @"store";
 
 - (void)loadNewStores
 {
-    
-    //结束上拉刷新，避免冲突
+    JKLog(@"上拉");
+
+    // 结束下拉刷新，避免冲突
     [self.tableView.mj_footer endRefreshing];
     
-    // 参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    self.params = params;
-
+    NSMutableDictionary *params = [self.addNewParams mutableCopy];//
     
-    //获取API
+    // 上拉刷新，初始化页码；
+    NSInteger page = 1;
+    params[@"page"] = @(page);
+    
+    // 参数
+    self.params = params;
+    
+    // 初始化页码参数
+    self.addNewParams = [params mutableCopy];
+    JKLog(@"上%@",self.addNewParams);
+
+    // 获取API
     [LKBasedataAPI findDelicacyStoreWithParamter:params Success:^(id  _Nullable responseObject) {
         
-        //判断是否为最新的一次请求参数，不是的话，立即返回；
+        // 判断是否为最新的一次请求参数，不是的话，立即返回；
         if (self.params != params) return;
         
-        //获得数据
+        // 获得数据
         self.stores = responseObject;
-        
-        //刷新表格
+
+        // 刷新表格
         [self.tableView reloadData];
         
-        //成功刷新后，结束刷新
+        // 成功刷新后，结束刷新
         [self.tableView.mj_header endRefreshing];
         
-        //清空页码，最小值为1；
+        // 清空页码，最小值为1；
         self.page = 1;
        
     } Failure:^(id  _Nullable error) {
         
-        //判断是否为最新的一次请求参数，不是的话，立即返回；
+        // 判断是否为最新的一次请求参数，不是的话，立即返回；
         if (self.params != params) return;
         
-        //刷新失败后，结束刷新
+        // 刷新失败后，结束刷新
         [self.tableView.mj_header endRefreshing];
-        
     }];
-
 }
 
 - (void)loadMoreStores
 {
-    //避免上拉下拉同时进行引发的冲突；
+
+    // 避免上拉下拉同时进行引发的冲突；
     [self.tableView.mj_header endRefreshing];
     
     // 参数
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableDictionary *params = [self.addNewParams mutableCopy];
     NSInteger page = self.page + 1;
     params[@"page"] = @(page);
     self.params = params;
+    JKLog(@"%ld",self.page);
     
+    self.addNewParams = [params mutableCopy];
+    JKLog(@"下%@",self.addNewParams);
     
     //获取API
     [LKBasedataAPI findDelicacyStoreWithParamter:params Success:^(id  _Nullable responseObject) {
         
-        //判断是否为最新的一次请求参数，不是的话，立即返回；
+        //判断是否为最新的一次请求参数；
         if (self.params != params) return;
         
         //将数据加入到数组中
@@ -207,7 +313,6 @@ static NSString * const LKStoreCellID = @"store";
         
         //更新页码
         self.page = page;
-        JKLog(@"%ld",page);
         
     } Failure:^(id  _Nullable error) {
         
@@ -216,27 +321,25 @@ static NSString * const LKStoreCellID = @"store";
         
         //刷新失败后，结束刷新
         [self.tableView.mj_footer endRefreshing];
-        
     }];
     
 }
 
-
 #pragma mark - tableViewDataSouce
-
-//首页传值到本控制器
-- (void)indexViewController:(LKIndexViewController *)viewController didClickBtnWithArray:(NSMutableArray *)stores
-{
-    self.stores = stores;
-    
-    [self.tableView reloadData];
-}
-
 - (void)setUpTableView
 {
+    self.tableView = [[UITableView alloc] initWithFrame:(CGRectMake(0, 44, LKScreenSize.width, LKScreenSize.height - 44)) style:(UITableViewStylePlain)];
+    self.tableView.backgroundColor = JKGlobalBg;
+    
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
 //    self.tableView.autoresizingMask = NO;
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    [self.view addSubview:self.tableView];
+    
     [self.view sendSubviewToBack:self.tableView];
     
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([LKDelicacyStoreCell class]) bundle:nil] forCellReuseIdentifier:LKStoreCellID];
@@ -255,6 +358,31 @@ static NSString * const LKStoreCellID = @"store";
     cell.store = self.stores[indexPath.row];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // cell在xib中的高度，+ 上下边距留出的3;
+    return 88;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LKDelicacyStoreModel *store = self.stores[indexPath.row];
+    
+    LKWebViewController *wvc = [[LKWebViewController alloc] init];
+    
+    // 加载链接
+    [wvc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:store.business_url]]];
+    
+    //隐藏导航栏
+    self.hidesBottomBarWhenPushed = YES;
+
+    [self.navigationController pushViewController:wvc animated:YES];
+    
+    //为了让跳转回来时正常显示tabbar
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 
 @end
