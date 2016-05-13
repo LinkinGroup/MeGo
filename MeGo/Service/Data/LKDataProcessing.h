@@ -10,19 +10,16 @@
 
 @interface LKDataProcessing : NSObject
 
-/**
- * 地区数据转换
- */
+/** 地区数据转换*/
 + (NSMutableArray *)localWithArray:(NSDictionary *)dict;
 
-/**
- * 类型数据转换
- */
+/** 可选城市*/
++ (NSMutableArray *)cityWithArray:(NSDictionary *)dict;
+
+/** 类型数据转换*/
 + (NSMutableArray *)categoryWithArray:(NSDictionary *)dict;
 
-/**
- * 商户数据转换
- */
+/** 商户数据转换*/
 + (NSMutableArray *)storeWithArray:(NSDictionary *)dict;
 
 @end

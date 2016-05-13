@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		22DAD024D7E2274E4CDABDF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0245AE24E51F405294790BD9 /* libPods.a */; };
 		3B62CB761CE1C91F00BD19CD /* LKMenuDataProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B62CB751CE1C91F00BD19CD /* LKMenuDataProcessing.m */; };
+		3B8E73681CE5CE2E00B3A3D7 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8E73651CE5CE2E00B3A3D7 /* ChineseString.m */; };
+		3B8E73691CE5CE2E00B3A3D7 /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8E73671CE5CE2E00B3A3D7 /* pinyin.m */; };
 		3B902C801CE31AF700E64DC8 /* LKCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B902C7F1CE31AF700E64DC8 /* LKCategoryModel.m */; };
 		3B9A2B5F1CC5EE28001C7440 /* MeGo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B9A2B5D1CC5EE28001C7440 /* MeGo.xcdatamodeld */; };
 		3B9A2B611CC5EE28001C7440 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B9A2B601CC5EE28001C7440 /* Assets.xcassets */; };
@@ -35,6 +37,7 @@
 		3BD941B71CD35785009B3A37 /* LKDelicacyStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD941B51CD35785009B3A37 /* LKDelicacyStoreCell.m */; };
 		3BD941B81CD35785009B3A37 /* LKDelicacyStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD941B61CD35785009B3A37 /* LKDelicacyStoreCell.xib */; };
 		3BF1687A1CE4D5CD002882D0 /* LKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF168781CE4D5CD002882D0 /* LKWebViewController.m */; };
+		3BF1687F1CE50601002882D0 /* LKLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1687D1CE50601002882D0 /* LKLocationViewController.m */; };
 		3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF421CC8A48F00B52E02 /* LKNavigationController.m */; };
 		3BF1AF4C1CC9020E00B52E02 /* LKStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */; };
 		3BF1AF4F1CC91FAB00B52E02 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4E1CC91FAB00B52E02 /* Foundation+Log.m */; };
@@ -63,6 +66,10 @@
 		0245AE24E51F405294790BD9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B62CB741CE1C91F00BD19CD /* LKMenuDataProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMenuDataProcessing.h; sourceTree = "<group>"; };
 		3B62CB751CE1C91F00BD19CD /* LKMenuDataProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKMenuDataProcessing.m; sourceTree = "<group>"; };
+		3B8E73641CE5CE2E00B3A3D7 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseString.h; sourceTree = "<group>"; };
+		3B8E73651CE5CE2E00B3A3D7 /* ChineseString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseString.m; sourceTree = "<group>"; };
+		3B8E73661CE5CE2E00B3A3D7 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		3B8E73671CE5CE2E00B3A3D7 /* pinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pinyin.m; sourceTree = "<group>"; };
 		3B902C7E1CE31AF700E64DC8 /* LKCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKCategoryModel.h; sourceTree = "<group>"; };
 		3B902C7F1CE31AF700E64DC8 /* LKCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKCategoryModel.m; sourceTree = "<group>"; };
 		3B9A2B4E1CC5EE28001C7440 /* MeGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +122,8 @@
 		3BD941B61CD35785009B3A37 /* LKDelicacyStoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKDelicacyStoreCell.xib; sourceTree = "<group>"; };
 		3BF168771CE4D5CD002882D0 /* LKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKWebViewController.h; sourceTree = "<group>"; };
 		3BF168781CE4D5CD002882D0 /* LKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKWebViewController.m; sourceTree = "<group>"; };
+		3BF1687C1CE50601002882D0 /* LKLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLocationViewController.h; sourceTree = "<group>"; };
+		3BF1687D1CE50601002882D0 /* LKLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocationViewController.m; sourceTree = "<group>"; };
 		3BF1AF411CC8A48F00B52E02 /* LKNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKNavigationController.h; sourceTree = "<group>"; };
 		3BF1AF421CC8A48F00B52E02 /* LKNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKNavigationController.m; sourceTree = "<group>"; };
 		3BF1AF491CC9020E00B52E02 /* LKStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStoreViewController.h; sourceTree = "<group>"; };
@@ -154,6 +163,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B8E73631CE5CE2E00B3A3D7 /* ChineseSorting */ = {
+			isa = PBXGroup;
+			children = (
+				3B8E73641CE5CE2E00B3A3D7 /* ChineseString.h */,
+				3B8E73651CE5CE2E00B3A3D7 /* ChineseString.m */,
+				3B8E73661CE5CE2E00B3A3D7 /* pinyin.h */,
+				3B8E73671CE5CE2E00B3A3D7 /* pinyin.m */,
+			);
+			path = ChineseSorting;
+			sourceTree = "<group>";
+		};
 		3B9A2B451CC5EE28001C7440 = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +315,7 @@
 		3BCCA6001CC773B500D1B3E6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				3B8E73631CE5CE2E00B3A3D7 /* ChineseSorting */,
 				3BAD643C1CCE60A100066626 /* LKDataProcessing.h */,
 				3BAD643D1CCE60A100066626 /* LKDataProcessing.m */,
 				3B62CB741CE1C91F00BD19CD /* LKMenuDataProcessing.h */,
@@ -319,6 +340,8 @@
 				3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */,
 				3BF168771CE4D5CD002882D0 /* LKWebViewController.h */,
 				3BF168781CE4D5CD002882D0 /* LKWebViewController.m */,
+				3BF1687C1CE50601002882D0 /* LKLocationViewController.h */,
+				3BF1687D1CE50601002882D0 /* LKLocationViewController.m */,
 				3B9CE3311CD9CFFB0035B490 /* LKToolBarMenu */,
 				3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */,
 				3BD941B51CD35785009B3A37 /* LKDelicacyStoreCell.m */,
@@ -542,6 +565,7 @@
 				3B9F4DDF1CDB0F4900583F12 /* LKLinkageTableView.m in Sources */,
 				3BD941B31CD34B50009B3A37 /* LKDelicacyStoreModel.m in Sources */,
 				3BCCA6621CC8058400D1B3E6 /* LKIndexPageView.m in Sources */,
+				3BF1687F1CE50601002882D0 /* LKLocationViewController.m in Sources */,
 				3B9CE3371CDA47FA0035B490 /* LKToolBarButton.m in Sources */,
 				3BF1687A1CE4D5CD002882D0 /* LKWebViewController.m in Sources */,
 				3B902C801CE31AF700E64DC8 /* LKCategoryModel.m in Sources */,
@@ -554,12 +578,14 @@
 				3BD941B71CD35785009B3A37 /* LKDelicacyStoreCell.m in Sources */,
 				3BCCA5F51CC7460000D1B3E6 /* LKTabbarController.m in Sources */,
 				3BAD64311CCE460900066626 /* LKLocationModel.m in Sources */,
+				3B8E73681CE5CE2E00B3A3D7 /* ChineseString.m in Sources */,
 				3BF1AF4C1CC9020E00B52E02 /* LKStoreViewController.m in Sources */,
 				3B62CB761CE1C91F00BD19CD /* LKMenuDataProcessing.m in Sources */,
 				3BCCA5F01CC743FC00D1B3E6 /* AppDelegate.m in Sources */,
 				3B9CE3341CD9D0750035B490 /* LKToolBarMenu.m in Sources */,
 				3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */,
 				3BAD642A1CCE328100066626 /* LKRequestParamters.m in Sources */,
+				3B8E73691CE5CE2E00B3A3D7 /* pinyin.m in Sources */,
 				3BCCA60E1CC7758400D1B3E6 /* UIView+LINKExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

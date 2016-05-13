@@ -99,10 +99,10 @@
         if (success) {
             
             //数据处理
-//            NSMutableArray * array = [LKDataProcessing localWithArray:responseObject];
+            NSMutableArray * array = [LKDataProcessing cityWithArray:responseObject];
             
             //返回数据
-            success(responseObject);
+            success(array);
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

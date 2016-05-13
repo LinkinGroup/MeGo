@@ -43,7 +43,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     //关键参数
-    params[@"city"] = @"北京";
+    params[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
     
     //获取参数
     params = [self  paramtersWithBaseUrl:url paramters:params];
@@ -59,7 +59,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
     //关键参数
-    params[@"city"] = @"北京";
+    params[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
     
     //获取参数
     params = [self  paramtersWithBaseUrl:url paramters:params];
@@ -70,11 +70,13 @@
 //获取可选城市
 + (NSMutableDictionary *)cityParamters
 {
-    NSString *url = @"http://api.dianping.com/v1/metadata/get_cities_with_businesses";
+    // 支持点评业务的地市API：@"http://api.dianping.com/v1/metadata/get_cities_with_businesses"
+    
+    // 支持团购业务的地市，API： http://api.dianping.com/v1/metadata/get_cities_with_deals
+    
+    NSString *url = @"http://api.dianping.com/v1/metadata/get_cities_with_deals";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    //关键参数为空时，返回可选城市
     
     //获取参数
     params = [self  paramtersWithBaseUrl:url paramters:params];
@@ -88,7 +90,7 @@
     NSString *url = @"http://api.dianping.com/v1/business/find_businesses";
     
     //关键参数
-    params[@"city"] = @"北京";
+    params[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
     
     //获取参数
     params = [self paramtersWithBaseUrl:url paramters:params];

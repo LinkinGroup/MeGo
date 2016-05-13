@@ -51,7 +51,7 @@ static NSString * const LKStoreCellID = @"store";
     //测试API
     UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
-    btn.frame = CGRectMake(200, 150, 90, 90);
+    btn.frame = CGRectMake(270, 150, 60, 30);
     
     [self.view addSubview:btn];
     
@@ -62,7 +62,7 @@ static NSString * const LKStoreCellID = @"store";
     
     [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:18]];
     
-    [btn setTitle:@"附近智能" forState:UIControlStateNormal];
+    [btn setTitle:@"API测试按钮" forState:UIControlStateNormal];
     
     btn.backgroundColor = [UIColor redColor];
     
@@ -77,9 +77,6 @@ static NSString * const LKStoreCellID = @"store";
     
     //加载菜单栏
     [self setUpToolBar];
-//    
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"北京" forKey:JKCity];
     
 }
 
@@ -202,12 +199,12 @@ static NSString * const LKStoreCellID = @"store";
     // 参数
 //    NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [LKBasedataAPI findCategorySuccess:^(id  _Nullable responseObject) {
+    [LKBasedataAPI findCitySuccess:^(id  _Nullable responseObject) {
         
         JKLog(@"%@",responseObject);
         
         //        将plist文件写至桌面，以便确认参数；
-//                        [responseObject writeToFile:@"/Users/LinK/Desktop/Category.plist" atomically:YES];
+        //        [responseObject writeToFile:@"/Users/LinK/Desktop/City_Deals.plist" atomically:YES];
         
     } failure:^(id  _Nullable error) {
         

@@ -7,15 +7,14 @@
 //
 
 #import "LKIndexViewController.h"
-#import "LKEncryption.h"
 #import "LKCircularBtn.h"
-#import "LKBasedataAPI.h"
 #import "LKStoreViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "LKLocationViewController.h"
 
 
 
-@interface LKIndexViewController () <UIScrollViewDelegate,UIScrollViewAccessibilityDelegate, CLLocationManagerDelegate>
+@interface LKIndexViewController () <UIScrollViewDelegate,UIScrollViewAccessibilityDelegate, CLLocationManagerDelegate, LKLocationViewControllerDelegate>
 
 /** 位置管理者 */
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -67,10 +66,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setUpNavigation];
+    
     [self setUpScrollView];
     
     [self.locationManager startUpdatingLocation];
     
+}
+
+#pragma mark - 导航栏初始化
+- (void)setUpNavigation
+{
+    //设置导航栏标题
+//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MainTitle"]];
+    
+    //设置导航栏左侧按钮
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"城市" style:(UIBarButtonItemStyleDone) target:self action:@selector(locationSelected)];
+    
+    NSString *city = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
+    
+    if (city) {
+        
+        self.navigationItem.leftBarButtonItem.title = city;
+    }
+}
+
+// 地址选择界面代理
+- (void)didSelectedButtonWithCity:(NSString *)city
+{
+    self.navigationItem.leftBarButtonItem.title = city;
+}
+
+- (void)locationSelected
+{
+    LKLocationViewController *sub = [[LKLocationViewController alloc] init];
+    
+    sub.delegate = self;
+    
+    // 隐藏tabbar
+    self.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:sub animated:YES];
+    
+    // 为了让跳转回来时正常显示tabbar
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 

@@ -34,8 +34,6 @@
     self.webView.frame = LKScreenFrame;
     
     [self.view addSubview:self.webView];
-    
-//    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
 }
 
 @end
