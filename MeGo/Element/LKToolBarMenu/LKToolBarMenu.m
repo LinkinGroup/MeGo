@@ -9,6 +9,8 @@
 #import "LKToolBarMenu.h"
 #import <FlatUIKit.h>
 
+#define LKNavationMaxY -64
+
 @implementation LKToolBarMenu
 
 - (instancetype)initWithMenuFrame:(CGRect)frame
@@ -45,7 +47,7 @@
 {
     if (self = [super init]) {
         
-        self.view.frame = CGRectMake(0, 0, LKScreenSize.width, 108);
+        self.view.frame = CGRectMake(0, LKNavationMaxY - 44, LKScreenSize.width, 108);
         
         // 按钮设置
         _button = [[LKToolBarButton alloc] initWithTitles:titles];
@@ -66,6 +68,15 @@
         
         // 初始化_buttonIndexArray的对象数量；
         [self initSelectedArray:titles];
+        
+        [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:21 options:(UIViewAnimationOptionCurveLinear) animations:^{
+            
+            self.view.frame = CGRectMake(0, LKNavationMaxY, LKScreenSize.width, 108);
+            
+        } completion:^(BOOL finished) {
+            
+            
+        }];
         
     }
     return self;
@@ -93,7 +104,11 @@
 {
     _lastIndex = index;
     
-    [self.view setFrame:[UIScreen mainScreen].bounds];
+    CGRect frame = [UIScreen mainScreen].bounds;
+    
+    frame.origin.y = LKNavationMaxY;
+    
+    [self.view setFrame:frame];
     
     _buttonSelectedIndex = index - 10000;
     
@@ -122,7 +137,7 @@
 - (void)hideMenuWithButtonIndex:(NSString *)btnIndex
 {
     // 隐藏菜单时，缩小Menu的尺寸
-    [self.view setFrame:CGRectMake(0, 0, LKScreenSize.width, 108)];
+    [self.view setFrame:CGRectMake(0, LKNavationMaxY, LKScreenSize.width, 108)];
     
     // 调用button的方法，归位相应按钮
     [_button hideMenuWithIndex:btnIndex];

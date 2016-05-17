@@ -51,7 +51,7 @@ static NSString * const LKStoreCellID = @"store";
     //测试API
     UIButton *btn = [UIButton buttonWithType:(UIButtonTypeCustom)];
     
-    btn.frame = CGRectMake(270, 150, 60, 30);
+    btn.frame = CGRectMake(270, 150, 90, 30);
     
     [self.view addSubview:btn];
     
@@ -60,7 +60,7 @@ static NSString * const LKStoreCellID = @"store";
 //    NSArray *arr = [UIFont familyNames];
 //    JKLog(@"arr:%@",arr);
     
-    [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:18]];
+    [btn.titleLabel setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:14]];
     
     [btn setTitle:@"API测试按钮" forState:UIControlStateNormal];
     
@@ -68,6 +68,16 @@ static NSString * const LKStoreCellID = @"store";
     
     [btn addTarget:self action:@selector(click) forControlEvents:(UIControlEventTouchUpInside)];
     
+    self.view.backgroundColor = [UIColor purpleColor];
+    
+    
+    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
+    
+    // 设置控制器属性，以免控件被偏移出理想位置；
+    self.automaticallyAdjustsScrollViewInsets= NO;
+    
+    // 初始化导航栏
+    [self setUpNavationBar];
     
     //初始化表格
     [self setUpTableView];
@@ -80,12 +90,72 @@ static NSString * const LKStoreCellID = @"store";
     
 }
 
+#pragma mark - 初始化导航栏
+- (void)setUpNavationBar
+{
+    // setTranslucent 系统默认为yes，状态栏及导航栏底部是透明的，界面上的组件应该从屏幕顶部开始显示，因为是半透明的，可以看到，所以为了不和状态栏及导航栏重叠，第一个组件的y应该从44+20的位置算起；
+    // 而将setTranslucent设置为no时，则状态栏及导航样不为透明的，界面上的组件就是紧挨着导航栏显示了，所以就不需要让第一个组件在y方向偏离44+20的高度了。
+    [self.navigationController.navigationBar setTranslucent:NO];
+    
+    
+    
+    //    [bar setBarTintColor:[UIColor whiteColor]];
+    
+    // 导航栏按钮的颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
+    
+    // 另一种写法：
+    //    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor orangeColor] forKey:NSForegroundColorAttributeName];
+    
+    NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
+    
+    // PingFangSC-Semibold
+    // Georgia-BoldItalic
+    // STHeitiJ-Medium
+    titleAttr[NSFontAttributeName] = [UIFont fontWithName:@"STHeitiJ-Medium" size:18];
+    //    titleAttr[NSForegroundColorAttributeName] = [UIColor grayColor];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:titleAttr];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
+    
+    [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
+    
+    self.navigationItem.leftBarButtonItem = item;
+}
+
+- (void)backToIndexPage
+{
+    
+//    [self.textField resignFirstResponder];
+    CATransition *transion=[CATransition animation];
+    //设置转场动画的类型
+    transion.type=@"cube";
+    //设置转场动画的方向
+    transion.subtype=@"fromLeft";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
 
 #pragma mark - 首页Push本控制器时的代理方法
-
-//首页传值到本控制器
+// 首页传值到本控制器
 - (void)indexViewController:(LKIndexViewController *)viewController didClickBtnWithParams:(NSMutableDictionary *)params;
 {
+    self.addNewParams = params;
+    
+    [self loadNewStores];
+}
+
+#pragma mark - 首页Push本控制器时的代理方法
+// 搜索控制器传值到本控制器
+- (void)searchingWithParams:(NSMutableDictionary *)params
+{
+    self.title = @"全部";
+    
     self.addNewParams = params;
     
     [self loadNewStores];
@@ -157,6 +227,16 @@ static NSString * const LKStoreCellID = @"store";
             self.addNewParams[@"category"] = paramter;
             
             [self loadNewStores];
+            
+            break;
+            
+        case 2:
+            
+            self.addNewParams[@"sort"] = @(right + 1);
+            
+            [self loadNewStores];
+
+            break;
             
         default:
             break;
@@ -279,7 +359,6 @@ static NSString * const LKStoreCellID = @"store";
 
 - (void)loadMoreStores
 {
-
     // 避免上拉下拉同时进行引发的冲突；
     [self.tableView.mj_header endRefreshing];
     
@@ -325,7 +404,7 @@ static NSString * const LKStoreCellID = @"store";
 #pragma mark - tableViewDataSouce
 - (void)setUpTableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:(CGRectMake(0, 44, LKScreenSize.width, LKScreenSize.height - 44)) style:(UITableViewStylePlain)];
+    self.tableView = [[UITableView alloc] initWithFrame:(CGRectMake(0, 44, LKScreenSize.width, LKScreenSize.height - 44-64)) style:(UITableViewStylePlain)];
     self.tableView.backgroundColor = JKGlobalBg;
     
     self.tableView.dataSource = self;
@@ -374,6 +453,15 @@ static NSString * const LKStoreCellID = @"store";
     
     //隐藏导航栏
     self.hidesBottomBarWhenPushed = YES;
+    
+    CATransition *transion=[CATransition animation];
+    //设置转场动画的类型
+    transion.type=@"cube";
+    //设置转场动画的方向
+    transion.subtype=@"fromRight";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
 
     [self.navigationController pushViewController:wvc animated:YES];
     

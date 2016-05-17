@@ -10,18 +10,6 @@
 
 @implementation LKCircularBtn
 
-- (void)setUp
-{
-    self.titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel.font = [UIFont systemFontOfSize:14];
-
-    
-    [self setTitleColor: [UIColor darkGrayColor] forState:(UIControlStateNormal)];
-//    self.userInteractionEnabled = NO;
-
-
-}
-
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -37,6 +25,16 @@
 }
 
 
+- (void)setUp
+{
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
+    
+    [self setTitleColor: [UIColor grayColor] forState:(UIControlStateNormal)];
+    //    self.userInteractionEnabled = NO;
+}
+
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -46,7 +44,7 @@
     self.imageView.height = self.imageView.width;
     
     self.titleLabel.x = 0;
-    self.titleLabel.y = self.imageView.height;
+    self.titleLabel.y = self.imageView.height + 6;
     self.titleLabel.width = self.width;
     self.titleLabel.height = self.height - self.titleLabel.y;
     

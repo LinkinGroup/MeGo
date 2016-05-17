@@ -34,24 +34,26 @@
     
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
+    // 加载TabBar的初始化设置
+    [self setUpTabBar];
+}
+
+// 初始化TabBar
+- (void)setUpTabBar
+{
     //设置tabBar的背景图片
-    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbar-light"]];
+//    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbar-light"]];
+    [self.tabBar setBarTintColor:[UIColor whiteColor]];
 
     //主页按钮
     [self setUpBarButton:[[LKIndexViewController alloc] init] image:@"tabBar_essence_icon" selectedImage:@"tabBar_essence_click_icon" title:@"首页"];
     
     //团购页面按钮
     [self setUpBarButton:[[LKGroupSaleViewController alloc] init] image:@"tabBar_new_icon" selectedImage:@"tabBar_new_click_icon" title:@"团购"];
-
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setUpBarButton:(UIViewController *)vc image:(NSString *)image selectedImage:(NSString *)selectedImage title:(NSString *)title
@@ -61,6 +63,7 @@
     [vc.tabBarItem setSelectedImage:[UIImage imageNamed:selectedImage]];
     LKNavigationController *nvc = [[LKNavigationController alloc] initWithRootViewController:vc];
     [self addChildViewController:nvc];
+    
 }
 
 @end

@@ -57,7 +57,7 @@
     NSMutableArray *indexArray = [ChineseString IndexArray:cityArray];
     NSMutableArray *letterResultArr = [ChineseString LetterSortArray:cityArray];
     
-    [indexArray insertObject:@"热门城市" atIndex:0];
+    [indexArray insertObject:@"热门" atIndex:0];
     [letterResultArr insertObject:hotCityArray atIndex:0];
     
     // 生成数组

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LKIndexViewController.h"
+#import "LKSearchingViewController.h"
 
-@interface LKStoreViewController : UIViewController<LKIndexViewControllerDelegate>
+@interface LKStoreViewController : UIViewController<LKIndexViewControllerDelegate, LKSearchingViewControllerDelegate>
 
 /** 表格数据数组*/
 @property (nonatomic, strong) NSMutableArray *stores;

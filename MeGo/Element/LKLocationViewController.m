@@ -27,9 +27,40 @@ static NSString *LKLocationCellID = @"Cell";
     
     [super viewDidLoad];
     
+    self.title = @"城市列表";
+    
     [self setUpTableView];
     
+    [self setUpNavigation];
+    
     [self loadData];
+    
+}
+
+#pragma mark - 初始化导航栏
+- (void)setUpNavigation
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
+    
+    [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
+    
+    self.navigationItem.leftBarButtonItem = item;
+}
+
+- (void)backToIndexPage
+{
+    // 设置转场动画
+    CATransition *transion = [CATransition animation];
+    // 设置转场动画的类型
+    transion.type = @"cube";
+    // 设置转场动画的方向
+    transion.subtype = @"fromTop";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 #pragma mark - 初始化表格
@@ -40,6 +71,12 @@ static NSString *LKLocationCellID = @"Cell";
     self.tableView.delegate = self;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:LKLocationCellID];
+    
+    // 修改索引
+//    self.tableView.sectionIndexBackgroundColor = [UIColor clearColor];
+    self.tableView.sectionIndexColor = [UIColor orangeColor];
+//    self.tableView.sectionIndexTrackingBackgroundColor = [UIColor blackColor];
+    self.tableView.sectionIndexMinimumDisplayRowCount = 3;
 
 }
 
@@ -62,19 +99,20 @@ static NSString *LKLocationCellID = @"Cell";
 
 #pragma mark - Table view data source
 
--(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return self.indexArray;
 }
 
+// 实现viewForHeaderInSection，就不会调用此方法；
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSString *key = [self.indexArray objectAtIndex:section];
-    
+
     return key;
 }
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.indexArray count];
 }
@@ -106,7 +144,13 @@ static NSString *LKLocationCellID = @"Cell";
     
     lab.backgroundColor = [UIColor grayColor];
     
-    lab.text = [NSString stringWithFormat:@"   %@", [self.indexArray objectAtIndex:section]];
+    NSString *textName = [self.indexArray objectAtIndex:section];
+    
+    if ([textName isEqualToString:@"热门"]) {
+        textName = @"热门城市";
+    }
+    
+    lab.text = [NSString stringWithFormat:@"   %@", textName];
     
     lab.textColor = [UIColor whiteColor];
     
@@ -134,7 +178,17 @@ static NSString *LKLocationCellID = @"Cell";
         [_delegate didSelectedButtonWithCity:city];
     }
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    // 设置转场动画
+    CATransition *transion = [CATransition animation];
+    // 设置转场动画的类型
+    transion.type = @"cube";
+    // 设置转场动画的方向
+    transion.subtype = @"fromTop";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
 @end

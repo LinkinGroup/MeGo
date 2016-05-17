@@ -48,6 +48,10 @@
 {
 
     if (self.districts && self.locations && self.categories && self.subcategories) {
+        
+        // 智能排序数据准备；
+        NSMutableArray *sortArray = [LKMenuDataProcessing setUpSortArray];
+        
         // leftArray;
         NSArray *leftArray = [[NSArray alloc] initWithObjects:self.districts,
                               self.categories,
@@ -57,7 +61,7 @@
         // rightArray;
         NSArray *rightArray = [[NSArray alloc] initWithObjects:self.locations,
                                self.subcategories,
-                               [[NSArray alloc] init], nil];
+                               sortArray, nil];
 
         if ([_delegate respondsToSelector:@selector(returnMenuDataWithTitles:LeftArray:RightArray:)]) {
         [_delegate returnMenuDataWithTitles:self.titles LeftArray:leftArray RightArray:rightArray];
@@ -115,7 +119,15 @@
     // 附近中的首个数组；
     [self.districts insertObject:@"热门商区" atIndex:0];
     
-    NSArray *array = [[NSArray alloc] initWithObjects:@"全部商区",@"三里屯", @"中关村",@"望京", @"国贸",@"五道口", @"西单", nil];
+    NSArray *array = nil;
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:JKCity] isEqualToString:@"北京"]) {
+        
+        array = [[NSArray alloc] initWithObjects:@"全部商区",@"三里屯", @"中关村",@"望京", @"国贸",@"五道口", @"西单", nil];
+    }else{
+        array = [[NSArray alloc] initWithObjects:@"全部商区", nil];
+
+    }
+    
     [self.locations insertObject:array atIndex:0];
     
     [self setUpData];
@@ -183,6 +195,16 @@
         [self.subcategories[i] insertObject:[firstVaule mutableCopy] atIndex:0];
     }
     [self setUpData];
+}
+
+// 排序数组
++ (NSMutableArray *)setUpSortArray
+{
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:@"智能排序", @"星级最高", @"评价最好", @"环境最佳", @"服务最佳", @"人气最高", @"离我最近", @"人均最低", @"人均最高", nil];
+    
+    NSMutableArray *sortArray = [[NSMutableArray alloc] initWithObjects:array, nil];
+
+    return sortArray;
 }
 
 @end

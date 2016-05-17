@@ -27,6 +27,8 @@
     [super viewDidLoad];
 
     [self setUpWebView];
+    
+    [self setUpNavigation];
 }
 
 - (void)setUpWebView
@@ -34,6 +36,32 @@
     self.webView.frame = LKScreenFrame;
     
     [self.view addSubview:self.webView];
+}
+
+- (void)setUpNavigation
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
+    
+    [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
+    
+    self.navigationItem.leftBarButtonItem = item;
+}
+
+- (void)backToIndexPage
+{
+    
+    //    [self.textField resignFirstResponder];
+    CATransition *transion=[CATransition animation];
+    //设置转场动画的类型
+    transion.type=@"cube";
+    //设置转场动画的方向
+    transion.subtype=@"fromLeft";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 @end

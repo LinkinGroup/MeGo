@@ -13,11 +13,6 @@
 
 @optional
 
-/**
- * 点击首页中的按钮，传出模型；
- */
-//- (void)indexViewController:(LKIndexViewController *)viewController didClickBtnWithArray:(NSMutableArray *)stores;
-
 - (void)indexViewController:(LKIndexViewController *)viewController didClickBtnWithParams:(NSMutableDictionary *)params;
 
 @end

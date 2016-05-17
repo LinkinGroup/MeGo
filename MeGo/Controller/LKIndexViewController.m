@@ -11,10 +11,10 @@
 #import "LKStoreViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LKLocationViewController.h"
+#import "LKScrollView.h"
+#import "LKSearchingViewController.h"
 
-
-
-@interface LKIndexViewController () <UIScrollViewDelegate,UIScrollViewAccessibilityDelegate, CLLocationManagerDelegate, LKLocationViewControllerDelegate>
+@interface LKIndexViewController () <LKScrollViewDelegate, CLLocationManagerDelegate, LKLocationViewControllerDelegate>
 
 /** 位置管理者 */
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -22,11 +22,11 @@
 /** 保存最新的位置信息*/
 @property (nonatomic, strong) CLLocation *currentLocation;
 
+/** 导航栏搜索控件*/
+@property (nonatomic, strong) UIImageView *titleView;
 
-/** 指示器*/
-@property (nonatomic, strong) UIPageControl *pageControl;
-/** scrollView*/
-@property (nonatomic, strong) UIScrollView *scrollView;
+/** 导航栏地址按钮*/
+@property (nonatomic, strong) UIBarButtonItem *leftButtonItem;
 
 @end
 
@@ -54,10 +54,8 @@
         // 精确度越高, 越耗电, 定位时间越长
         _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         
-        
         // 前台定位授权(默认情况下,不可以在后台获取位置, 勾选后台模式 location update, 但是 会出现蓝条)
         [_locationManager requestWhenInUseAuthorization];
-        
         
     }
     return _locationManager;
@@ -66,36 +64,85 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setUpNavigation];
+    // 设置控制器属性，以免控件被偏移出理想位置；
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    
+//    self.view.autoresizingMask = YES;
+//    
+//    self.view.autoresizesSubviews = YES;
     
-    [self setUpScrollView];
+    [self setUpNavigation];
     
     [self.locationManager startUpdatingLocation];
     
+    [self setUpScrollView];
+    
+}
+
+- (void)setUpScrollView
+{
+    LKScrollView *scrollView = [[LKScrollView alloc] initWithScrollViewFrame:(CGRectMake(0, 0, LKScreenSize.width, 240))];
+    
+    scrollView.delegate = self;
+    
+    [self addChildViewController:scrollView];
+    [self.view addSubview:scrollView.view];
 }
 
 #pragma mark - 导航栏初始化
 - (void)setUpNavigation
 {
-    //设置导航栏标题
-//    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MainTitle"]];
+    // 加载导航栏的搜索功能
+    [self setUpNavigationSearchField];
     
-    //设置导航栏左侧按钮
+    // 影响控件y值的两个方法：
+    // 设置导航栏是否透明
+    [self.navigationController.navigationBar setTranslucent:NO];
+    // 此方法通常用在栈顶控制器
+    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"城市" style:(UIBarButtonItemStyleDone) target:self action:@selector(locationSelected)];
+    // 设置背影颜色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
     
+    // 设置字体颜色
+    [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
+    
+    // 访问偏好设置，查看上次选择的城市
     NSString *city = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
     
     if (city) {
         
-        self.navigationItem.leftBarButtonItem.title = city;
+        city = [NSString stringWithFormat:@"     %@ ▽", city];
+        
+    }else {
+        
+        city = @"     城市 ▽";
     }
+    
+    //设置导航栏左侧按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:city style:(UIBarButtonItemStyleDone) target:self action:@selector(locationSelected)];
+    
+    self.leftButtonItem = self.navigationItem.leftBarButtonItem;
+    
+    // 设置push其他控制器之后显示的返回按钮
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
+    
+    self.navigationItem.backBarButtonItem = item;
+}
+
+// 被Push的控制器导航栏上的返回按钮，会被此方法监听
+- (void)backToIndexPage
+{
+    JKLog(@"back");
+    [self.navigationController popToRootViewControllerAnimated:YES];
+
 }
 
 // 地址选择界面代理
 - (void)didSelectedButtonWithCity:(NSString *)city
 {
-    self.navigationItem.leftBarButtonItem.title = city;
+    self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"     %@ ▽", city];
+    
 }
 
 - (void)locationSelected
@@ -107,13 +154,72 @@
     // 隐藏tabbar
     self.hidesBottomBarWhenPushed = YES;
     
-    [self.navigationController pushViewController:sub animated:YES];
+    // 设置转场动画
+    CATransition *transion = [CATransition animation];
+    // 设置转场动画的类型
+    transion.type = @"cube";
+    // 设置转场动画的方向
+    transion.subtype = @"fromBottom";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+
+    [self.navigationController pushViewController:sub animated:NO];
     
     // 为了让跳转回来时正常显示tabbar
     self.hidesBottomBarWhenPushed = NO;
 }
 
+// 导航栏搜索功能
+- (void)setUpNavigationSearchField
+{
+    // 设置导航栏搜索控件背景
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, 180, 30))];
+    [titleView setImage:[UIImage imageNamed:@"home_topbar_search"]];
+    titleView.userInteractionEnabled = YES;
+        titleView.layer.cornerRadius = titleView.frame.size.height * 0.5;
+        titleView.layer.masksToBounds = YES;
+    titleView.layer.borderColor = [UIColor orangeColor].CGColor;
+    titleView.layer.borderWidth = 1.5;
+    
+    // 设置导航栏搜索控件放大镜
+    UIImageView *searchView =[[UIImageView alloc] initWithFrame:(CGRectMake(9, 6, 18, 18))];
+    [searchView setImage:[UIImage imageNamed:@"home_topbar_icon_search_default"] ];
+    [titleView addSubview:searchView];
+    
+    // 设置导航栏搜索控件占位文字
+    UILabel *text = [[UILabel alloc] initWithFrame:(CGRectMake(33, 6, 1200, 18))];
+    text.text = @"输入商户名、地点";
+    text.textColor = [UIColor lightGrayColor];
+    text.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
+    [titleView addSubview:text];
+    
+    // 添加点击监听控件
+    UIView *view = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, 180, 30))];
+    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(presentSearchView)];
+    [view addGestureRecognizer:tap];
+    [titleView addSubview:view];
+    
+    self.titleView = titleView;
+    
+    self.navigationItem.titleView = titleView;
 
+    //    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MainTitle"]];
+    
+//    textfield.placeholder = @"🔍输入商户名、地点";
+}
+
+// 导航栏搜索控件点击监听
+- (void)presentSearchView
+{
+    //隐藏导航栏
+    self.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:[[LKSearchingViewController alloc] init] animated: NO];
+    
+    //为了让跳转回来时正常显示tabbar
+    self.hidesBottomBarWhenPushed = NO;
+}
 
 #pragma mark - 获取位置信息
 
@@ -133,83 +239,19 @@
     
 }
 
+// 位置信息获取失败反馈：
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     JKLog(@"%@", error);
 }
 
-#pragma mark - 设置按钮
-- (void)setUpScrollView
-{
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, 291))];
-    scrollView.contentSize = CGSizeMake(LKScreenSize.width * 3, 0);
-    scrollView.pagingEnabled = YES;
-    [self.view addSubview:scrollView];
-    self.scrollView = scrollView;
-    self.scrollView.delegate = self;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    
-    
-    CGFloat pcW = 60;
-    CGFloat pcH = 15;
-    CGFloat pcX = (LKScreenSize.width - pcW) / 2;
-    CGFloat pcY = CGRectGetMaxY(self.scrollView.frame) - 24;
-    self.pageControl = [[UIPageControl alloc] initWithFrame:(CGRectMake(pcX, pcY, pcW, pcH))];
-    
-    _pageControl.numberOfPages = 3;
-    _pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
-    _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
-    
-    [self.view addSubview:_pageControl];
-    
-    
-    //按钮设置
-    NSInteger cols = 12;
-    CGFloat btnW = 60;
-    CGFloat btnH = 81;
-    CGFloat margin = (LKScreenSize.width - btnW * 4) / (4 + 1);
-    CGFloat btnX = 0;
-    CGFloat btnY = 0;
-    NSInteger row = 0;
-    NSInteger col = 0;
-    NSInteger marginIndex = 0;
-    
-    
-    for (int i = 0; i < 24; i++) {
-        LKCircularBtn *btn = [[LKCircularBtn alloc] init];
-        col = i % cols;
-        row = i / cols;
-        marginIndex = i / 4 + 1 - row * 3;
-        
-        btnX = margin * marginIndex + col * (btnW + margin);
-        btnY = margin - 12 + row * (btnH + margin - 12);
-        btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
-        
-        //        btn.backgroundColor = [UIColor redColor];
-        [btn setImage:[UIImage imageNamed:@"findhome_20160126194705meishi"] forState:(UIControlStateNormal)];
-        [btn setTitle:@"美食" forState:(UIControlStateNormal)];
-        
-        [btn addTarget:self action:@selector(btnClick:) forControlEvents:(UIControlEventTouchUpInside)];
-        
-        [self.scrollView addSubview:btn];
-        
-    }
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    self.pageControl.currentPage = (int)(scrollView.contentOffset.x / scrollView.frame.size.width);
-}
-
 #pragma mark - 向Push出的控制器传值
-
-- (void)btnClick:(UIButton *)btn
+- (void)didSelectedBtn:(UIButton *)sender
 {
     LKStoreViewController *storeVc = [[LKStoreViewController alloc] init];
     
     //设置导航栏标题
-    storeVc.title = btn.titleLabel.text;
+    storeVc.title = sender.titleLabel.text;
     
     //隐藏导航栏
     self.hidesBottomBarWhenPushed = YES;
@@ -222,16 +264,25 @@
     params[@"latitude"] = @(self.currentLocation.coordinate.latitude);
     params[@"longitude"] = @(self.currentLocation.coordinate.longitude);
     params[@"category"] = storeVc.title;
-
+    
     JKLog(@"%f", self.currentLocation.coordinate.latitude);
     
     if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithParams:)]) {
         
         [_delegate indexViewController:self didClickBtnWithParams:params];
-        
     }
-
-    [self.navigationController pushViewController:storeVc animated:YES];
+    
+    
+    CATransition *transion=[CATransition animation];
+    //设置转场动画的类型
+    transion.type=@"cube";
+    //设置转场动画的方向
+    transion.subtype=@"fromRight";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+    
+    [self.navigationController pushViewController:storeVc animated:NO];
     
     //为了让跳转回来时正常显示tabbar
     self.hidesBottomBarWhenPushed = NO;
