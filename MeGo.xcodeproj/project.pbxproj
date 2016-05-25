@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		22DAD024D7E2274E4CDABDF3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0245AE24E51F405294790BD9 /* libPods.a */; };
+		3B249DD01CF44CB50051F81F /* LKUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B249DCF1CF44CB50051F81F /* LKUserDefaults.m */; };
+		3B5FCE071CF4B18F00EFA0B7 /* LKSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5FCE061CF4B18F00EFA0B7 /* LKSettingViewController.m */; };
+		3B5FCE1C1CF4DDD100EFA0B7 /* LKSettingPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5FCE1B1CF4DDD100EFA0B7 /* LKSettingPicViewController.m */; };
 		3B62CB761CE1C91F00BD19CD /* LKMenuDataProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B62CB751CE1C91F00BD19CD /* LKMenuDataProcessing.m */; };
 		3B8E73681CE5CE2E00B3A3D7 /* ChineseString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8E73651CE5CE2E00B3A3D7 /* ChineseString.m */; };
 		3B8E73691CE5CE2E00B3A3D7 /* pinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8E73671CE5CE2E00B3A3D7 /* pinyin.m */; };
@@ -22,7 +25,7 @@
 		3BAD642A1CCE328100066626 /* LKRequestParamters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD64291CCE328100066626 /* LKRequestParamters.m */; };
 		3BAD64311CCE460900066626 /* LKLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD64301CCE460900066626 /* LKLocationModel.m */; };
 		3BAD643E1CCE60A100066626 /* LKDataProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD643D1CCE60A100066626 /* LKDataProcessing.m */; };
-		3BCCA5E61CC743C400D1B3E6 /* LKGroupSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5DE1CC743C400D1B3E6 /* LKGroupSaleViewController.m */; };
+		3BAEE9DC1CEDA8A200D51CC4 /* LKNetWorkReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */; };
 		3BCCA5E81CC743C400D1B3E6 /* LKIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5E11CC743C400D1B3E6 /* LKIndexViewController.m */; };
 		3BCCA5E91CC743C400D1B3E6 /* LKIndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCCA5E21CC743C400D1B3E6 /* LKIndexViewController.xib */; };
 		3BCCA5F01CC743FC00D1B3E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5EE1CC743FC00D1B3E6 /* AppDelegate.m */; };
@@ -32,7 +35,6 @@
 		3BCCA60A1CC7742900D1B3E6 /* LKBasedataAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA6091CC7742900D1B3E6 /* LKBasedataAPI.m */; };
 		3BCCA60E1CC7758400D1B3E6 /* UIView+LINKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA60D1CC7758400D1B3E6 /* UIView+LINKExtension.m */; };
 		3BCCA6121CC799F500D1B3E6 /* LKCircularBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA6111CC799F500D1B3E6 /* LKCircularBtn.m */; };
-		3BCCA6621CC8058400D1B3E6 /* LKIndexPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */; };
 		3BD941B31CD34B50009B3A37 /* LKDelicacyStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD941B21CD34B50009B3A37 /* LKDelicacyStoreModel.m */; };
 		3BD941B71CD35785009B3A37 /* LKDelicacyStoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BD941B51CD35785009B3A37 /* LKDelicacyStoreCell.m */; };
 		3BD941B81CD35785009B3A37 /* LKDelicacyStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD941B61CD35785009B3A37 /* LKDelicacyStoreCell.xib */; };
@@ -43,6 +45,12 @@
 		3BF1AF4F1CC91FAB00B52E02 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4E1CC91FAB00B52E02 /* Foundation+Log.m */; };
 		3BF4C9A91CEB0F9A002FE497 /* LKSearchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4C9A81CEB0F9A002FE497 /* LKSearchingViewController.m */; };
 		3BF4C9AC1CEB97F9002FE497 /* LKSearchingField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4C9AB1CEB97F9002FE497 /* LKSearchingField.m */; };
+		3BF59E1F1CECE27300D2C077 /* FeTenDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E1E1CECE27300D2C077 /* FeTenDot.m */; };
+		3BF59E281CECE86E00D2C077 /* FeThreeDotGlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E251CECE86E00D2C077 /* FeThreeDotGlow.m */; };
+		3BF59E291CECE86E00D2C077 /* UIColor+flat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E271CECE86E00D2C077 /* UIColor+flat.m */; };
+		3BF59E2C1CECE9BC00D2C077 /* FeSpinnerTenDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E2B1CECE9BC00D2C077 /* FeSpinnerTenDot.m */; };
+		3BF59E2F1CECEA1000D2C077 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E2E1CECEA1000D2C077 /* FXBlurView.m */; };
+		3BF6C2971CF21F8F006FF9B3 /* LKTmpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF6C2961CF21F8F006FF9B3 /* LKTmpManage.m */; };
 		3BF7552D1CD8F376000D29F7 /* LKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7552C1CD8F376000D29F7 /* LKLocation.m */; };
 		3BF7552F1CD90D60000D29F7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF7552E1CD90D60000D29F7 /* CoreLocation.framework */; };
 		3BF777E91CE99FEF00361F82 /* LKScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF777E81CE99FEF00361F82 /* LKScrollView.m */; };
@@ -67,6 +75,12 @@
 
 /* Begin PBXFileReference section */
 		0245AE24E51F405294790BD9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B249DCE1CF44CB50051F81F /* LKUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKUserDefaults.h; sourceTree = "<group>"; };
+		3B249DCF1CF44CB50051F81F /* LKUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKUserDefaults.m; sourceTree = "<group>"; };
+		3B5FCE051CF4B18F00EFA0B7 /* LKSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSettingViewController.h; sourceTree = "<group>"; };
+		3B5FCE061CF4B18F00EFA0B7 /* LKSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSettingViewController.m; sourceTree = "<group>"; };
+		3B5FCE1A1CF4DDD100EFA0B7 /* LKSettingPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSettingPicViewController.h; sourceTree = "<group>"; };
+		3B5FCE1B1CF4DDD100EFA0B7 /* LKSettingPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSettingPicViewController.m; sourceTree = "<group>"; };
 		3B62CB741CE1C91F00BD19CD /* LKMenuDataProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKMenuDataProcessing.h; sourceTree = "<group>"; };
 		3B62CB751CE1C91F00BD19CD /* LKMenuDataProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKMenuDataProcessing.m; sourceTree = "<group>"; };
 		3B8E73641CE5CE2E00B3A3D7 /* ChineseString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseString.h; sourceTree = "<group>"; };
@@ -97,8 +111,8 @@
 		3BAD64301CCE460900066626 /* LKLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocationModel.m; sourceTree = "<group>"; };
 		3BAD643C1CCE60A100066626 /* LKDataProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDataProcessing.h; sourceTree = "<group>"; };
 		3BAD643D1CCE60A100066626 /* LKDataProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDataProcessing.m; sourceTree = "<group>"; };
-		3BCCA5DD1CC743C400D1B3E6 /* LKGroupSaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKGroupSaleViewController.h; sourceTree = "<group>"; };
-		3BCCA5DE1CC743C400D1B3E6 /* LKGroupSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKGroupSaleViewController.m; sourceTree = "<group>"; };
+		3BAEE9DA1CEDA8A200D51CC4 /* LKNetWorkReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKNetWorkReloadView.h; sourceTree = "<group>"; };
+		3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKNetWorkReloadView.m; sourceTree = "<group>"; };
 		3BCCA5E01CC743C400D1B3E6 /* LKIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKIndexViewController.h; sourceTree = "<group>"; };
 		3BCCA5E11CC743C400D1B3E6 /* LKIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKIndexViewController.m; sourceTree = "<group>"; };
 		3BCCA5E21CC743C400D1B3E6 /* LKIndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKIndexViewController.xib; sourceTree = "<group>"; };
@@ -116,8 +130,6 @@
 		3BCCA60D1CC7758400D1B3E6 /* UIView+LINKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LINKExtension.m"; sourceTree = "<group>"; };
 		3BCCA6101CC799F500D1B3E6 /* LKCircularBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKCircularBtn.h; path = ../LKCircularBtn.h; sourceTree = "<group>"; };
 		3BCCA6111CC799F500D1B3E6 /* LKCircularBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKCircularBtn.m; path = ../LKCircularBtn.m; sourceTree = "<group>"; };
-		3BCCA6601CC8058400D1B3E6 /* LKIndexPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKIndexPageView.h; sourceTree = "<group>"; };
-		3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKIndexPageView.m; sourceTree = "<group>"; };
 		3BD941B11CD34B50009B3A37 /* LKDelicacyStoreModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDelicacyStoreModel.h; sourceTree = "<group>"; };
 		3BD941B21CD34B50009B3A37 /* LKDelicacyStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDelicacyStoreModel.m; sourceTree = "<group>"; };
 		3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDelicacyStoreCell.h; sourceTree = "<group>"; };
@@ -136,6 +148,18 @@
 		3BF4C9A81CEB0F9A002FE497 /* LKSearchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSearchingViewController.m; sourceTree = "<group>"; };
 		3BF4C9AA1CEB97F9002FE497 /* LKSearchingField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSearchingField.h; sourceTree = "<group>"; };
 		3BF4C9AB1CEB97F9002FE497 /* LKSearchingField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSearchingField.m; sourceTree = "<group>"; };
+		3BF59E1D1CECE27300D2C077 /* FeTenDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeTenDot.h; sourceTree = "<group>"; };
+		3BF59E1E1CECE27300D2C077 /* FeTenDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeTenDot.m; sourceTree = "<group>"; };
+		3BF59E241CECE86E00D2C077 /* FeThreeDotGlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeThreeDotGlow.h; sourceTree = "<group>"; };
+		3BF59E251CECE86E00D2C077 /* FeThreeDotGlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeThreeDotGlow.m; sourceTree = "<group>"; };
+		3BF59E261CECE86E00D2C077 /* UIColor+flat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+flat.h"; sourceTree = "<group>"; };
+		3BF59E271CECE86E00D2C077 /* UIColor+flat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+flat.m"; sourceTree = "<group>"; };
+		3BF59E2A1CECE9BC00D2C077 /* FeSpinnerTenDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeSpinnerTenDot.h; sourceTree = "<group>"; };
+		3BF59E2B1CECE9BC00D2C077 /* FeSpinnerTenDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeSpinnerTenDot.m; sourceTree = "<group>"; };
+		3BF59E2D1CECEA1000D2C077 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
+		3BF59E2E1CECEA1000D2C077 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
+		3BF6C2951CF21F8F006FF9B3 /* LKTmpManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTmpManage.h; sourceTree = "<group>"; };
+		3BF6C2961CF21F8F006FF9B3 /* LKTmpManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTmpManage.m; sourceTree = "<group>"; };
 		3BF7552B1CD8F376000D29F7 /* LKLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLocation.h; sourceTree = "<group>"; };
 		3BF7552C1CD8F376000D29F7 /* LKLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocation.m; sourceTree = "<group>"; };
 		3BF7552E1CD90D60000D29F7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -225,6 +249,16 @@
 				3BF1AF4E1CC91FAB00B52E02 /* Foundation+Log.m */,
 				3BCCA60C1CC7758400D1B3E6 /* UIView+LINKExtension.h */,
 				3BCCA60D1CC7758400D1B3E6 /* UIView+LINKExtension.m */,
+				3BF59E2A1CECE9BC00D2C077 /* FeSpinnerTenDot.h */,
+				3BF59E2B1CECE9BC00D2C077 /* FeSpinnerTenDot.m */,
+				3BF59E1D1CECE27300D2C077 /* FeTenDot.h */,
+				3BF59E1E1CECE27300D2C077 /* FeTenDot.m */,
+				3BF59E2D1CECEA1000D2C077 /* FXBlurView.h */,
+				3BF59E2E1CECEA1000D2C077 /* FXBlurView.m */,
+				3BF59E241CECE86E00D2C077 /* FeThreeDotGlow.h */,
+				3BF59E251CECE86E00D2C077 /* FeThreeDotGlow.m */,
+				3BF59E261CECE86E00D2C077 /* UIColor+flat.h */,
+				3BF59E271CECE86E00D2C077 /* UIColor+flat.m */,
 				3BCCA5EF1CC743FC00D1B3E6 /* main.m */,
 				3BCCA60B1CC7746900D1B3E6 /* PrefixHeader.pch */,
 				3B9A2B601CC5EE28001C7440 /* Assets.xcassets */,
@@ -286,8 +320,8 @@
 				3BCCA5E21CC743C400D1B3E6 /* LKIndexViewController.xib */,
 				3BF1AF491CC9020E00B52E02 /* LKStoreViewController.h */,
 				3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */,
-				3BCCA5DD1CC743C400D1B3E6 /* LKGroupSaleViewController.h */,
-				3BCCA5DE1CC743C400D1B3E6 /* LKGroupSaleViewController.m */,
+				3B5FCE051CF4B18F00EFA0B7 /* LKSettingViewController.h */,
+				3B5FCE061CF4B18F00EFA0B7 /* LKSettingViewController.m */,
 				3BCCA5F21CC7460000D1B3E6 /* Root */,
 			);
 			path = Controller;
@@ -329,6 +363,10 @@
 				3BAD643D1CCE60A100066626 /* LKDataProcessing.m */,
 				3B62CB741CE1C91F00BD19CD /* LKMenuDataProcessing.h */,
 				3B62CB751CE1C91F00BD19CD /* LKMenuDataProcessing.m */,
+				3B249DCE1CF44CB50051F81F /* LKUserDefaults.h */,
+				3B249DCF1CF44CB50051F81F /* LKUserDefaults.m */,
+				3BF6C2951CF21F8F006FF9B3 /* LKTmpManage.h */,
+				3BF6C2961CF21F8F006FF9B3 /* LKTmpManage.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -343,8 +381,6 @@
 		3BCCA60F1CC796CB00D1B3E6 /* Element */ = {
 			isa = PBXGroup;
 			children = (
-				3BCCA6601CC8058400D1B3E6 /* LKIndexPageView.h */,
-				3BCCA6611CC8058400D1B3E6 /* LKIndexPageView.m */,
 				3BF4C9AA1CEB97F9002FE497 /* LKSearchingField.h */,
 				3BF4C9AB1CEB97F9002FE497 /* LKSearchingField.m */,
 				3BF168771CE4D5CD002882D0 /* LKWebViewController.h */,
@@ -353,6 +389,10 @@
 				3BF1687D1CE50601002882D0 /* LKLocationViewController.m */,
 				3BF4C9A71CEB0F9A002FE497 /* LKSearchingViewController.h */,
 				3BF4C9A81CEB0F9A002FE497 /* LKSearchingViewController.m */,
+				3BAEE9DA1CEDA8A200D51CC4 /* LKNetWorkReloadView.h */,
+				3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */,
+				3B5FCE1A1CF4DDD100EFA0B7 /* LKSettingPicViewController.h */,
+				3B5FCE1B1CF4DDD100EFA0B7 /* LKSettingPicViewController.m */,
 				3BF777E61CE99FD300361F82 /* LKScrollView */,
 				3B9CE3311CD9CFFB0035B490 /* LKToolBarMenu */,
 				3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */,
@@ -584,10 +624,9 @@
 				3BCCA60A1CC7742900D1B3E6 /* LKBasedataAPI.m in Sources */,
 				3BF1AF4F1CC91FAB00B52E02 /* Foundation+Log.m in Sources */,
 				3BAD643E1CCE60A100066626 /* LKDataProcessing.m in Sources */,
-				3BCCA5E61CC743C400D1B3E6 /* LKGroupSaleViewController.m in Sources */,
 				3B9F4DDF1CDB0F4900583F12 /* LKLinkageTableView.m in Sources */,
 				3BD941B31CD34B50009B3A37 /* LKDelicacyStoreModel.m in Sources */,
-				3BCCA6621CC8058400D1B3E6 /* LKIndexPageView.m in Sources */,
+				3BF59E2F1CECEA1000D2C077 /* FXBlurView.m in Sources */,
 				3BF1687F1CE50601002882D0 /* LKLocationViewController.m in Sources */,
 				3B9CE3371CDA47FA0035B490 /* LKToolBarButton.m in Sources */,
 				3BF1687A1CE4D5CD002882D0 /* LKWebViewController.m in Sources */,
@@ -595,18 +634,27 @@
 				3BCCA5E81CC743C400D1B3E6 /* LKIndexViewController.m in Sources */,
 				3BF7552D1CD8F376000D29F7 /* LKLocation.m in Sources */,
 				3B9A2B5F1CC5EE28001C7440 /* MeGo.xcdatamodeld in Sources */,
+				3BF59E291CECE86E00D2C077 /* UIColor+flat.m in Sources */,
+				3BF59E281CECE86E00D2C077 /* FeThreeDotGlow.m in Sources */,
+				3B5FCE1C1CF4DDD100EFA0B7 /* LKSettingPicViewController.m in Sources */,
+				3BAEE9DC1CEDA8A200D51CC4 /* LKNetWorkReloadView.m in Sources */,
 				3BCCA6121CC799F500D1B3E6 /* LKCircularBtn.m in Sources */,
 				3BCCA5F11CC743FC00D1B3E6 /* main.m in Sources */,
 				3BCCA6061CC773B500D1B3E6 /* LKEncryption.m in Sources */,
 				3BD941B71CD35785009B3A37 /* LKDelicacyStoreCell.m in Sources */,
+				3BF59E1F1CECE27300D2C077 /* FeTenDot.m in Sources */,
+				3B5FCE071CF4B18F00EFA0B7 /* LKSettingViewController.m in Sources */,
 				3BF777E91CE99FEF00361F82 /* LKScrollView.m in Sources */,
 				3BCCA5F51CC7460000D1B3E6 /* LKTabbarController.m in Sources */,
+				3B249DD01CF44CB50051F81F /* LKUserDefaults.m in Sources */,
 				3BAD64311CCE460900066626 /* LKLocationModel.m in Sources */,
 				3BF4C9A91CEB0F9A002FE497 /* LKSearchingViewController.m in Sources */,
 				3B8E73681CE5CE2E00B3A3D7 /* ChineseString.m in Sources */,
 				3BF1AF4C1CC9020E00B52E02 /* LKStoreViewController.m in Sources */,
 				3B62CB761CE1C91F00BD19CD /* LKMenuDataProcessing.m in Sources */,
+				3BF59E2C1CECE9BC00D2C077 /* FeSpinnerTenDot.m in Sources */,
 				3BCCA5F01CC743FC00D1B3E6 /* AppDelegate.m in Sources */,
+				3BF6C2971CF21F8F006FF9B3 /* LKTmpManage.m in Sources */,
 				3B9CE3341CD9D0750035B490 /* LKToolBarMenu.m in Sources */,
 				3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */,
 				3BF4C9AC1CEB97F9002FE497 /* LKSearchingField.m in Sources */,
@@ -738,7 +786,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				GCC_PREFIX_HEADER = MeGo/PrefixHeader.pch;
 				INFOPLIST_FILE = MeGo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -753,7 +801,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				GCC_PREFIX_HEADER = MeGo/PrefixHeader.pch;
 				INFOPLIST_FILE = MeGo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = LinkinGroup.MeGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

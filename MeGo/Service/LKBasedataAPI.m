@@ -9,8 +9,60 @@
 #import "LKBasedataAPI.h"
 #import "LKRequestParamters.h"
 #import "LKDataProcessing.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "FeTenDot.h"
 
 @implementation LKBasedataAPI
+
+// 蒙版样式设置
++ (void)setUpSVP
+{
+    [SVProgressHUD setBackgroundColor:[UIColor orangeColor]];
+    
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    
+    [SVProgressHUD setFont:[UIFont fontWithName:@"PingFangSC-Semibold" size:18]];
+    
+    [SVProgressHUD setDefaultStyle:(SVProgressHUDStyleCustom)];
+    
+    [SVProgressHUD setDefaultMaskType:(SVProgressHUDMaskTypeNone)];
+}
+
++ (void)netWorkInspectorGoToWork
+{
+    // 蒙版样式设置
+    [LKBasedataAPI setUpSVP];
+    
+    /*
+     AFNetworkReachabilityStatusUnknown          = -1,  未识别
+     AFNetworkReachabilityStatusNotReachable     = 0,   未连接
+     AFNetworkReachabilityStatusReachableViaWWAN = 1,   3G
+     AFNetworkReachabilityStatusReachableViaWiFi = 2,  wifi
+     */
+    
+    // 如果要检测网络状态的变化,必须用检测管理器的单例的startMonitoring
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    
+    // 检测网络连接的单例,网络变化时的回调方法
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:@(status) forKey:JKNetWorK];
+        
+        NSLog(@"%ld", status);
+        if (status == 0) {
+            
+            [SVProgressHUD showInfoWithStatus:@"当前网络不可用，\n请连接到手机移动网络\n或者Wifi "];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [SVProgressHUD dismiss];
+            });
+        }
+    }];
+}
+
+
 
 //获取当前城市的地区信息
 + (void)findLocationSuccess:(void(^)(id responseObject))success
@@ -119,6 +171,7 @@
                               Success:(void(^)(id responseObject))success
                               Failure:(void(^)(id error))failure
 {
+    
     if (!params) {
         params = [NSMutableDictionary dictionary];
     }
@@ -131,6 +184,7 @@
     //用AFN发送网络请求
     [[AFHTTPSessionManager manager] GET:signUrl parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
+        
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         //成功后返回数据
@@ -138,6 +192,16 @@
             
             //数据处理
             NSMutableArray * array = [LKDataProcessing storeWithArray:responseObject];
+            
+            if ([array firstObject] == nil) {
+                
+                [SVProgressHUD showInfoWithStatus:@"没有找到更多信息，试一试在菜单或搜索栏中加入更多的关键字吧~"];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [SVProgressHUD dismiss];
+                });
+            }
             
             //返回数据
             success(array);
@@ -147,6 +211,7 @@
         
         //失败后返回失败原因
         if (failure) {
+            
             failure(error);
         }
     }];

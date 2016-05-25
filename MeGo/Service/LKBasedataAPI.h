@@ -10,6 +10,9 @@
 
 @interface LKBasedataAPI : NSObject
 
+/** 查询网络连接*/
++ (void)netWorkInspectorGoToWork;
+
 /**
  * 获取当前城市的地区信息
  */

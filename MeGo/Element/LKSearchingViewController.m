@@ -14,6 +14,7 @@
 /** 导航栏搜索控件*/
 @property (nonatomic, strong) UIImageView *titleView;
 
+/** 导航栏上的文本框*/
 @property (nonatomic, strong) UITextField *textField;
 
 @end
@@ -102,6 +103,13 @@
     // 设置字体颜色
     [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
     
+    // 设置push其他控制器之后显示的返回按钮
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
+    
+    [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
+    
+    self.navigationItem.leftBarButtonItem = item;
+    
     // 加载搜索控件
     [self setUpNavigationSearchField];
 
@@ -144,15 +152,20 @@
     //    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"MainTitle"]];
     
     //    textfield.placeholder = @"🔍输入商户名、地点";
-    
-    // 设置push其他控制器之后显示的返回按钮
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
-    
-    [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
-    
-    self.navigationItem.leftBarButtonItem = item;
 
     [self titleViewAnimation];
+}
+
+// searchingField动画
+- (void)titleViewAnimation
+{
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:51 options:(UIViewAnimationOptionCurveLinear) animations:^{
+        
+        [self.titleView setFrame:(CGRectMake(0, 0, 261, 30))];
+        
+    } completion:^(BOOL finished) {
+        
+    }];
 }
 
 // 返回首页
@@ -196,20 +209,6 @@
         
     }];
     
-    
-    
-}
-
-// searchingField动画
-- (void)titleViewAnimation
-{
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:51 options:(UIViewAnimationOptionCurveLinear) animations:^{
-        
-        [self.titleView setFrame:(CGRectMake(0, 0, 261, 30))];
-        
-    } completion:^(BOOL finished) {
-        
-    }];
 }
 
 #pragma mark tableView方法

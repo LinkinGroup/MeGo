@@ -33,7 +33,10 @@
 
 /** 距离 */
 @property (nonatomic, assign) NSNumber *distance;
-
+/** 经度 */
+@property (nonatomic, assign) CGFloat latitude;
+/** 经度 */
+@property (nonatomic, assign) CGFloat longitude;
 
 
 /** URL*/

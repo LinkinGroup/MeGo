@@ -222,6 +222,11 @@
         cell.backgroundView = noSelectView;
         cell.selectedBackgroundView = selectView;
     }
+    
+    // 字体设置
+//    cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:21];
+//    cell.textLabel.textColor = [UIColor darkGrayColor];
+    
     return cell;
 }
 
@@ -290,7 +295,7 @@
         [self showLastSelectedLeft:left Right:right];
         
         _rootView.center = CGPointMake(self.view.frame.size.width / 2, 0 - _rootView.bounds.size.height / 2);
-        [UIView animateWithDuration:0.5 animations:^{
+        [UIView animateWithDuration:0.3 animations:^{
             _rootView.center = CGPointMake(self.view.frame.size.width / 2, _rootView.bounds.size.height / 2);
         }];
     } else {

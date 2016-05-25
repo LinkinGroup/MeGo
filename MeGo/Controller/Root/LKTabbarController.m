@@ -8,7 +8,7 @@
 
 #import "LKTabbarController.h"
 #import "LKIndexViewController.h"
-#import "LKGroupSaleViewController.h"
+#import "LKSettingViewController.h"
 #import "LKNavigationController.h"
 
 @interface LKTabbarController ()
@@ -21,12 +21,12 @@
 + (void)initialize
 {
     NSMutableDictionary *titleAttr = [NSMutableDictionary dictionary];
-    titleAttr[NSFontAttributeName] = [UIFont systemFontOfSize:12];
+    titleAttr[NSFontAttributeName] = [UIFont fontWithName:@"PingFangSC-Semibold" size:10];
     titleAttr[NSForegroundColorAttributeName] = [UIColor grayColor];
     
     NSMutableDictionary *selectedtitleAttr = [NSMutableDictionary dictionary];
-    selectedtitleAttr[NSFontAttributeName] = [UIFont boldSystemFontOfSize:12];
-    selectedtitleAttr[NSForegroundColorAttributeName] = [UIColor blackColor];
+    selectedtitleAttr[NSFontAttributeName] = [UIFont fontWithName:@"PingFangSC-Semibold" size:10];
+    selectedtitleAttr[NSForegroundColorAttributeName] = [UIColor orangeColor];
     
     UITabBarItem *item = [UITabBarItem appearance];
     [item setTitleTextAttributes:titleAttr forState:(UIControlStateNormal)];
@@ -50,10 +50,10 @@
     [self.tabBar setBarTintColor:[UIColor whiteColor]];
 
     //主页按钮
-    [self setUpBarButton:[[LKIndexViewController alloc] init] image:@"tabBar_essence_icon" selectedImage:@"tabBar_essence_click_icon" title:@"首页"];
+    [self setUpBarButton:[[LKIndexViewController alloc] init] image:@"index" selectedImage:@"index_click" title:@"首 页"];
     
     //团购页面按钮
-    [self setUpBarButton:[[LKGroupSaleViewController alloc] init] image:@"tabBar_new_icon" selectedImage:@"tabBar_new_click_icon" title:@"团购"];
+    [self setUpBarButton:[[LKSettingViewController alloc] init] image:@"setting" selectedImage:@"setting_click" title:@"设 置"];
 }
 
 - (void)setUpBarButton:(UIViewController *)vc image:(NSString *)image selectedImage:(NSString *)selectedImage title:(NSString *)title

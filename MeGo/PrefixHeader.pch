@@ -28,7 +28,16 @@
 #define JKLog(...)
 #endif
 
+// 偏好设置中的缓存关键字
 #define JKCity @"JKCity"
+
+#define JKNetWorK @"JKNetWorK"
+
+#define JKLocation @"JKLocation"
+
+#define JKShowPicture @"JKShowPicture"
+
+
 
 #define JKLogFunction JKLog(@"%s", __func__)
 

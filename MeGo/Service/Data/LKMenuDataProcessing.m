@@ -116,7 +116,7 @@
         [self.locations[i] insertObject:[firstVaule mutableCopy] atIndex:0];
     }
     
-    // 附近中的首个数组；
+    // 附近中的第二个数组；
     [self.districts insertObject:@"热门商区" atIndex:0];
     
     NSArray *array = nil;
@@ -129,6 +129,13 @@
     }
     
     [self.locations insertObject:array atIndex:0];
+    
+    // 附近中的首个数组
+    [self.districts insertObject:@"附近" atIndex:0];
+    
+    NSArray *distanceArray = [[NSArray alloc] initWithObjects:@"附近（智能范围）", @"500米", @"1000米",@"2000米",@"5000米",nil];
+    
+    [self.locations insertObject:distanceArray atIndex:0];
     
     [self setUpData];
 }

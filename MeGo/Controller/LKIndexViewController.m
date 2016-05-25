@@ -13,14 +13,14 @@
 #import "LKLocationViewController.h"
 #import "LKScrollView.h"
 #import "LKSearchingViewController.h"
+#import "LKBasedataAPI.h"
+#import "LKUserDefaults.h"
+
 
 @interface LKIndexViewController () <LKScrollViewDelegate, CLLocationManagerDelegate, LKLocationViewControllerDelegate>
 
 /** 位置管理者 */
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
-/** 保存最新的位置信息*/
-@property (nonatomic, strong) CLLocation *currentLocation;
 
 /** 导航栏搜索控件*/
 @property (nonatomic, strong) UIImageView *titleView;
@@ -62,11 +62,15 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
     // 设置控制器属性，以免控件被偏移出理想位置；
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    
+    
+//    self.view.backgroundColor = JKGlobalBg;
+    self.view.backgroundColor = [UIColor whiteColor];
+//
 //    self.view.autoresizingMask = YES;
 //    
 //    self.view.autoresizesSubviews = YES;
@@ -77,16 +81,25 @@
     
     [self setUpScrollView];
     
+    // 开启网络状态检查
+    [LKBasedataAPI netWorkInspectorGoToWork];
+    
 }
 
+// 走马灯ScrollView
 - (void)setUpScrollView
 {
-    LKScrollView *scrollView = [[LKScrollView alloc] initWithScrollViewFrame:(CGRectMake(0, 0, LKScreenSize.width, 240))];
+    LKScrollView *scrollView = [[LKScrollView alloc] initWithScrollViewFrame:(CGRectMake(0, 0, LKScreenSize.width, 245))];
     
     scrollView.delegate = self;
     
     [self addChildViewController:scrollView];
-    [self.view addSubview:scrollView.view];
+    
+    UIView *view = [[UIView alloc] initWithFrame:scrollView.view.frame];
+    view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:view];
+    [view addSubview:scrollView.view];
 }
 
 #pragma mark - 导航栏初始化
@@ -235,8 +248,22 @@
      */
     JKLog(@"imhere");
 
-    self.currentLocation = [locations lastObject];
+    // 写入缓存
+    [LKUserDefaults saveLocation:[locations lastObject]];
     
+#warning 下一版本开启
+    // 城市定位
+//    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
+//    
+//    [geoCoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//        
+//        for (CLPlacemark * placemark in placemarks) {
+//            
+//            NSDictionary *test = [placemark addressDictionary];
+//            //  Country(国家)  State(城市)  SubLocality(区)
+//            NSLog(@"%@", [test objectForKey:@"State"]);
+//        }
+//    }];
 }
 
 // 位置信息获取失败反馈：
@@ -244,7 +271,6 @@
 {
     JKLog(@"%@", error);
 }
-
 #pragma mark - 向Push出的控制器传值
 - (void)didSelectedBtn:(UIButton *)sender
 {
@@ -258,14 +284,17 @@
     
     _delegate = storeVc;
     
-    // 参数
+    // 创建参数字典
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    params[@"latitude"] = @(self.currentLocation.coordinate.latitude);
-    params[@"longitude"] = @(self.currentLocation.coordinate.longitude);
+    // 传入经纬度
+    NSArray *location = [[NSUserDefaults standardUserDefaults]objectForKey:JKLocation];
+    params[@"latitude"] = location[0];
+    params[@"longitude"] = location[1];
+    
     params[@"category"] = storeVc.title;
     
-    JKLog(@"%f", self.currentLocation.coordinate.latitude);
+    JKLog(@"%@", location[0]);
     
     if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithParams:)]) {
         

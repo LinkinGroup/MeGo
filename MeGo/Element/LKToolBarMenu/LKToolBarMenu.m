@@ -13,36 +13,6 @@
 
 @implementation LKToolBarMenu
 
-- (instancetype)initWithMenuFrame:(CGRect)frame
-{
-    self = [super init];
-    
-    if (self) {
-        
-        CGRect aframe = frame;
-        aframe.origin.y = -50;
-        
-        UIView *toolbar = [[UIView alloc] initWithFrame:aframe];
-        
-        toolbar.backgroundColor = JKCloudsColor;
-        toolbar.layer.cornerRadius = 6;
-//        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:aframe];
-        
-        [UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:6 initialSpringVelocity:6 options:(UIViewAnimationOptionCurveEaseOut) animations:^{
-            
-            toolbar.frame = frame;
-            
-        } completion:nil];
-        
-        
-        
-        [self.view addSubview:toolbar];
-    }
-    return self;
-}
-
-/************************  separation  ******************************/
-
 - (id)initMenuWithButtonTitles:(NSArray*)titles andLeftListArray:(NSArray*)leftArray andRightListArray:(NSArray *)rightArray
 {
     if (self = [super init]) {
@@ -69,7 +39,7 @@
         // 初始化_buttonIndexArray的对象数量；
         [self initSelectedArray:titles];
         
-        [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:21 options:(UIViewAnimationOptionCurveLinear) animations:^{
+        [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:21 options:(UIViewAnimationOptionCurveLinear) animations:^{
             
             self.view.frame = CGRectMake(0, LKNavationMaxY, LKScreenSize.width, 108);
             

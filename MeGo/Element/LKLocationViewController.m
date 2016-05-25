@@ -171,8 +171,8 @@ static NSString *LKLocationCellID = @"Cell";
 {
     NSString *city = self.letterResultArr[indexPath.section][indexPath.row];
     
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:city forKey:JKCity];
+    // 保存城市选项
+    [[NSUserDefaults standardUserDefaults] setObject:city forKey:JKCity];
     
     if ([_delegate respondsToSelector:@selector(didSelectedButtonWithCity:)]) {
         [_delegate didSelectedButtonWithCity:city];

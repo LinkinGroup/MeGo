@@ -35,9 +35,7 @@
 /** 代理属性*/
 @property (nonatomic, weak) id<LKToolBarMenuDelegate> delegate;
 
-
-- (instancetype)initWithMenuFrame:(CGRect)frame;
-
+/** 加载菜单*/
 - (id)initMenuWithButtonTitles:(NSArray*)titles andLeftListArray:(NSArray*)leftArray andRightListArray:(NSArray *)rightArray;
 
 @end

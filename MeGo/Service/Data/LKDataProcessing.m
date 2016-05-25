@@ -43,7 +43,8 @@
             
         }else if ([cityArray[i] isEqualToString:@"其它城市"]) {
             
-            i = 8;
+            // 退出循环；
+            i = 30;
             
             break;
         }

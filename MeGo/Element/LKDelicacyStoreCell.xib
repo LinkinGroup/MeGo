@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
@@ -65,8 +66,21 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="123" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opU-0B-j2D" userLabel="distance">
+                        <rect key="frame" x="315" y="58" width="51" height="18"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="51" id="XCL-nF-Srq"/>
+                            <constraint firstAttribute="height" constant="18" id="wMe-mz-bAg"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="opU-0B-j2D" secondAttribute="trailing" constant="9" id="0rJ-nG-U4X"/>
+                    <constraint firstItem="opU-0B-j2D" firstAttribute="centerY" secondItem="8qP-FQ-VXs" secondAttribute="centerY" id="1iF-13-9Po"/>
                     <constraint firstItem="8qP-FQ-VXs" firstAttribute="centerY" secondItem="qfx-SB-aNf" secondAttribute="centerY" id="2Ze-6M-0fj"/>
                     <constraint firstItem="MuL-ul-4nX" firstAttribute="leading" secondItem="0sd-va-XbR" secondAttribute="trailing" constant="9" id="G2w-ZJ-n9L"/>
                     <constraint firstItem="MuL-ul-4nX" firstAttribute="top" secondItem="0sd-va-XbR" secondAttribute="top" constant="3" id="Ku5-ds-Z2a"/>
@@ -83,13 +97,14 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="categoryLabel" destination="8qP-FQ-VXs" id="Avj-Bv-mZH"/>
+                <outlet property="distanceLabel" destination="opU-0B-j2D" id="TvX-cT-iis"/>
                 <outlet property="locationLabel" destination="qfx-SB-aNf" id="u6m-p5-8zC"/>
                 <outlet property="nameLabel" destination="MuL-ul-4nX" id="Cbl-ji-WWj"/>
                 <outlet property="photoImageView" destination="0sd-va-XbR" id="JsI-Do-chl"/>
                 <outlet property="priceLabel" destination="R1E-hN-VZJ" id="vGf-Tk-hAd"/>
                 <outlet property="starView" destination="aaS-Pp-IRR" id="oDO-ZO-pjF"/>
             </connections>
-            <point key="canvasLocation" x="241.5" y="123.5"/>
+            <point key="canvasLocation" x="138.5" y="149.5"/>
         </tableViewCell>
     </objects>
 </document>

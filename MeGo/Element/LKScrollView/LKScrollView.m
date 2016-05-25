@@ -97,18 +97,32 @@
 
     // 第一页初始化：
     self.viewOne = [[UIView alloc] initWithFrame:(CGRectMake(width, 0, width, height))];
+    
     NSArray *pageOneArray = [[NSArray alloc] initWithObjects:@"美食", @"面包甜点", @"清真菜", @"冰淇淋", @"咖啡厅", @"综合商场", @"运动健身", @"便利店", nil];
-    [self addBtnInView:self.viewOne andTitle:pageOneArray];
+    
+    NSArray *pageOneImageArray = [[NSArray alloc] initWithObjects:@"delicacy", @"sweetmeat", @"qingzhen", @"iceCream", @"coffee", @"department", @"sports", @"dimeStore",  nil];
+    
+    [self addBtnInView:self.viewOne title:pageOneArray andImage:pageOneImageArray];
+    
     
     // 第二页初始化：
     self.viewTwo = [[UIView alloc] initWithFrame:(CGRectMake(width * 2, 0, width, height))];
-    NSArray *pageTwoArray = [[NSArray alloc] initWithObjects:@"电影院", @"KTV", @"密室", @"桌面游戏", @"私人影院", @"瑜伽", @"亲子游乐", @"酒店", nil];
-    [self addBtnInView:self.viewTwo andTitle:pageTwoArray];
+    
+    NSArray *pageTwoArray = [[NSArray alloc] initWithObjects:@"电影院", @"KTV", @"密室", @"桌面游戏", @"私人影院", @"瑜伽", @"亲子玩乐", @"酒店", nil];
+    
+    NSArray *pageTwoImageArray = [[NSArray alloc] initWithObjects:@"cinema", @"ktv", @"search", @"deskGame", @"privateCinema", @"yoga", @"toy", @"hotel",  nil];
+    
+    [self addBtnInView:self.viewTwo title:pageTwoArray andImage:pageTwoImageArray];
 
+    
     // 第三页初始化：
     self.viewThree = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, width, height))];
+    
     NSArray *pageThreeArray = [[NSArray alloc] initWithObjects:@"家政", @"快照", @"家电维修", @"送水站", @"搬家", @"厕所", @"银行", @"宠物店", nil];
-    [self addBtnInView:self.viewThree andTitle:pageThreeArray];
+    
+    NSArray *pageThreeImageArray = [[NSArray alloc] initWithObjects:@"houseKeeping", @"snapshoot", @"maintenance", @"waterStation", @"move", @"wc", @"bank", @"chongwu",  nil];
+    
+    [self addBtnInView:self.viewThree title:pageThreeArray andImage:pageThreeImageArray];
     
     [self.scrollView addSubview:self.viewOne];
     [self.scrollView addSubview:self.viewTwo];
@@ -117,7 +131,7 @@
 }
 
 // 添加按钮
-- (void)addBtnInView:(UIView *)view andTitle:(NSArray *)titles
+- (void)addBtnInView:(UIView *)view title:(NSArray *)titles andImage:(NSArray *)images
 {
     //按钮设置
     NSInteger cols = 4;
@@ -140,7 +154,9 @@
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
         
         //        btn.backgroundColor = [UIColor redColor];
-        [btn setImage:[UIImage imageNamed:@"findhome_20160126194705meishi"] forState:(UIControlStateNormal)];
+        //        findhome_20160126194705meishi
+        NSString *image = images[i];
+        [btn setImage:[UIImage imageNamed:image] forState:(UIControlStateNormal)];
         [btn setTitle:titles[i] forState:(UIControlStateNormal)];
         
         [btn addTarget:self action:@selector(btnClick:) forControlEvents:(UIControlEventTouchUpInside)];
@@ -157,7 +173,7 @@
     
     // 尺寸设置
     CGFloat x = (frame.size.width -100) / 2;
-    CGFloat y = frame.size.height - 10;
+    CGFloat y = frame.size.height - 10 -11;
     CGFloat height = 10;
     self.pageControl = [[UIPageControl alloc] initWithFrame:(CGRectMake(x, y, width, height))];
     
@@ -168,6 +184,7 @@
     self.pageControl.currentPage = 0;
     
     [self.view addSubview:self.pageControl];
+    
 }
 
 #pragma mark - 点击按钮触发的代理方法
