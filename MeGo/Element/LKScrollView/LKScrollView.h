@@ -11,7 +11,10 @@
 @protocol LKScrollViewDelegate <NSObject>
 
 @optional
+
 - (void)didSelectedBtn:(UIButton *)sender;
+
+- (void)didScroll:(UIScrollView *)scrollView;
 
 @end
 

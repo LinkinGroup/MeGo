@@ -10,6 +10,7 @@
 #import "LKBasedataAPI.h"
 #import "LKLocationModel.h"
 #import "LKCategoryModel.h"
+#import "LKCacheManage.h"
 
 @interface LKMenuDataProcessing ()
 
@@ -19,9 +20,9 @@
 @property (nonatomic, strong) NSMutableArray *locations;
 
 
-/** 可选种类一级菜单数据*/
+/** 可选种类一级菜单数据(已做缓存处理)*/
 @property (nonatomic, strong) NSMutableArray *categories;
-/** 可选种类二级菜单数据*/
+/** 可选种类二级菜单数据(已做缓存处理)*/
 @property (nonatomic, strong) NSMutableArray *subcategories;
 
 @end
@@ -140,9 +141,33 @@
     [self setUpData];
 }
 
-// 加载类型菜单中的数组
+// 加载类型菜单中的数组(已做缓存处理)
 - (void)loadCategory
 {
+    NSTimeInterval hours = [LKCacheManage checkCalendarByHourWithKey:JKFileTimeForCategory];
+    
+    // 获取cache
+    NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    
+    // 获取文件的全路径
+    NSString *filePathCategory = [cachePath stringByAppendingPathComponent:JKFileCategory];
+    
+    NSString *filePathSubCategory = [cachePath stringByAppendingPathComponent:JKFileSubCategory];
+    
+    // 把自定义对象归档
+    self.categories = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathCategory];
+    
+    // 判断缓存是否有值
+    if (self.categories && hours < 72) {
+
+        self.subcategories = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathSubCategory];
+        
+        [self setUpData];
+        
+        return;
+    }
+/************************************** 没有缓存时 **************************************/
+
     // 创建临时数组，储存遍历出的数据
     NSMutableArray *categoriesArray = [NSMutableArray array];
     NSMutableArray *subcategories = [NSMutableArray array];
@@ -201,6 +226,23 @@
         
         [self.subcategories[i] insertObject:[firstVaule mutableCopy] atIndex:0];
     }
+    
+    /****************************** 存入缓存(Cache) ******************************/
+    // 获取cache
+    NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
+    
+    // 获取文件的全路径
+    NSString *filePathCategory = [cachePath stringByAppendingPathComponent:JKFileCategory];
+    
+    NSString *filePathSubCategory = [cachePath stringByAppendingPathComponent:JKFileSubCategory];
+    
+    // 把自定义对象归档
+    [NSKeyedArchiver archiveRootObject:self.categories toFile:filePathCategory];
+    
+    [NSKeyedArchiver archiveRootObject:self.subcategories toFile:filePathSubCategory];
+    
+    [LKCacheManage markTheTimeToKey:JKFileTimeForCategory];
+    
     [self setUpData];
 }
 

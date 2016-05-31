@@ -45,6 +45,14 @@
     [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
     
     self.navigationItem.leftBarButtonItem = item;
+    
+    // 设置导航栏标题颜色和字体
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 44))];
+    titleLabel.text = self.title;
+    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+    titleLabel.textColor = [UIColor orangeColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
 }
 
 - (void)backToIndexPage

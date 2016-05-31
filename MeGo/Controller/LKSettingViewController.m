@@ -8,11 +8,23 @@
 
 #import "LKSettingViewController.h"
 #import "LKSettingPicViewController.h"
-#import "LKTmpManage.h"
+#import "LKCacheManage.h"
 #import <FlatUIKit/FlatUIKit.h>
+#import "LKTabbarController.h"
 
 
-@interface LKSettingViewController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, FUIAlertViewDelegate>
+@interface LKSettingViewController ()<UITableViewDataSource, UITableViewDelegate,  FUIAlertViewDelegate>
+
+/** 顶部图片*/
+@property (nonatomic, strong) UIImageView *headerImageView;
+
+/** 顶部图片*/
+@property (nonatomic, strong) UIImageView *headerHudImageView;
+
+/** 表格顶部*/
+@property (nonatomic, strong) UIImageView *tableHeaderView;
+
+
 
 /** 显示商品数据的表格*/
 @property (strong, nonatomic) UITableView *tableView;
@@ -23,6 +35,39 @@
 
 static NSString * const LKSettingCellID = @"setting";
 
+#pragma mark - 懒加载
+- (UIImageView *)headerImageView
+{
+    if (!_headerImageView) {
+        _headerImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 240 / 375)];
+        _headerImageView.autoresizingMask=UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _headerImageView.clipsToBounds=YES;
+        _headerImageView.contentMode = UIViewContentModeScaleToFill; //UIViewContentModeScaleAspectFill;
+    }
+    return _headerImageView;
+}
+
+- (UIImageView *)headerHudImageView
+{
+    if (!_headerHudImageView) {
+        _headerHudImageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 240 / 375)];
+        _headerHudImageView.autoresizingMask=UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        _headerHudImageView.clipsToBounds=YES;
+        _headerHudImageView.contentMode = UIViewContentModeScaleToFill; //UIViewContentModeScaleAspectFill;
+    }
+    return _headerHudImageView;
+}
+
+- (UIView *)tableHeaderView
+{
+    if (!_tableHeaderView) {
+        
+        _tableHeaderView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0,LKScreenSize.width, LKScreenSize.width * 240 / 375)];
+    }
+    return _tableHeaderView;
+}
+
+#pragma mark - 初始化设置
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -38,6 +83,61 @@ static NSString * const LKSettingCellID = @"setting";
     [self setUpTableView];
 }
 
+// 控制器显示时调用
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
+    
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+    JKLogFunction;
+    
+    //    [self setHidesBottomBarWhenPushed:NO];
+    //    [self.tabBarController.view layoutIfNeeded];
+    //    [self.view layoutIfNeeded];
+    
+    //    [super viewDidAppear:animated];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
+    
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+    //    [self setHidesBottomBarWhenPushed:NO];
+    //    tabbarController.indicator.hidden =YES;
+    JKLogFunction;
+    
+}
+
+- (void)showIndicator
+{
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+}
+
+// 导航栏初始化
 - (void)setUpNavigation
 {
     // 设置导航栏是否透明
@@ -53,7 +153,7 @@ static NSString * const LKSettingCellID = @"setting";
     [self.navigationController.navigationBar setTintColor:[UIColor orangeColor]];
     
     // 设置导航栏标题颜色和字体
-    UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 40))];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 44))];
     titleLabel.text = @"设  置";
     titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
     titleLabel.textColor = [UIColor orangeColor];
@@ -66,6 +166,7 @@ static NSString * const LKSettingCellID = @"setting";
     self.navigationItem.backBarButtonItem = item;
 }
 
+// 设置tableView
 - (void)setUpTableView
 {
     // 调整导航栏为不透明后，向下偏移量多出了64，因此减去64；
@@ -81,6 +182,18 @@ static NSString * const LKSettingCellID = @"setting";
     [self.view addSubview:self.tableView];
     
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:LKSettingCellID];
+    
+    // headerView设置
+    self.headerImageView.image = [UIImage imageNamed:@"Flag"];
+    self.headerImageView.contentMode = UIViewContentModeScaleToFill;
+    [self.tableHeaderView addSubview:self.headerImageView];
+    
+    // headerHudView设置
+    self.headerHudImageView.image = [UIImage imageNamed:@"HudS"];
+    self.headerHudImageView.contentMode = UIViewContentModeScaleToFill;
+    [self.tableHeaderView addSubview:self.headerHudImageView];
+    
+    self.tableView.tableHeaderView = self.tableHeaderView;
 
 }
 
@@ -132,23 +245,64 @@ static NSString * const LKSettingCellID = @"setting";
     return cell;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGPoint offset = scrollView.contentOffset;
+    if (offset.y < 0) {
+        CGRect rect = self.tableHeaderView.frame;
+        rect.origin.y = offset.y;
+        rect.size.height = CGRectGetHeight(rect)-offset.y;
+        rect.origin.x += offset.y;
+        rect.size.width -= offset.y *2;
+        self.headerImageView.frame = rect;
+        
+//        CGRect rectHud = self.tableHeaderView.frame;
+//        rectHud.origin.y = offset.y *4;
+//        rectHud.size.height = CGRectGetHeight(rect)-offset.y *5.5;
+//        rectHud.origin.x += offset.y *4;
+//        rectHud.size.width -= offset.y *8;
+        CGRect rectHud = self.tableHeaderView.frame;
+
+        rectHud.size.height = rectHud.size.height * (-offset.y *2) +0.5;
+        rectHud.size.width = rectHud.size.width * (-offset.y *2);
+        self.headerHudImageView.frame = rectHud;
+        self.headerHudImageView.center = self.headerImageView.center;
+        self.tableHeaderView.clipsToBounds = NO;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
             
-        case 0:
+        case 0:{
+            
+            //隐藏导航栏
+            self.hidesBottomBarWhenPushed = YES;
+            
+            CATransition *transion=[CATransition animation];
+            //设置转场动画的类型
+            transion.type=@"cube";
+            //设置转场动画的方向
+            transion.subtype=@"fromRight";
+            
+            //把动画添加到某个view的图层上
+            [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
             
             [self.navigationController pushViewController:[[LKSettingPicViewController alloc] initWithStyle:(UITableViewStyleGrouped)] animated:YES];
             
-            break;
+            //为了让跳转回来时正常显示tabbar
+            self.hidesBottomBarWhenPushed = NO;
+            
+            break;}
             
         case 1:{
             
-            CGFloat tmpSize = [LKTmpManage checkTmpSize];
+            CGFloat tmpSize = [LKCacheManage checkCacheSize];
             
             NSString *message = nil;
             NSString *cancelTitle = @"取消";
-            NSString *clear = @"清除";
+            NSString *clear = @"清除所有缓存";
             
             if (tmpSize) {
                 
@@ -159,9 +313,8 @@ static NSString * const LKSettingCellID = @"setting";
                 cancelTitle = @"OK";
                 clear = nil;
             }
-
             
-            FUIAlertView *alert = [[FUIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:clear, nil];
+            FUIAlertView *alert = [[FUIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:cancelTitle otherButtonTitles:clear, @"只清除图片缓存", nil];
             
             // alertView设置
             alert.titleLabel.textColor = [UIColor cloudsColor];
@@ -193,7 +346,6 @@ static NSString * const LKSettingCellID = @"setting";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    JKLog(@"%ld",buttonIndex);
     
     switch (buttonIndex) {
             
@@ -203,9 +355,11 @@ static NSString * const LKSettingCellID = @"setting";
             
         case 1:
             
-            [LKTmpManage clearAllTmp];
+            [LKCacheManage clearAllCache];
             
-            [self.tableView reloadData];
+        case 2:
+            
+            [LKCacheManage clearPics];
             
         default:
             break;

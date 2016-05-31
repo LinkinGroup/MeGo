@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSArray *regions;
 
 /** 平均价格*/
-@property (nonatomic, assign) NSNumber *avg_price;
+@property (nonatomic, strong) NSNumber *avg_price;
 
 /** 平均评分*/
 @property (nonatomic, strong) NSNumber *avg_rating;
@@ -30,6 +30,9 @@
 
 /** 图标URL */
 @property (nonatomic, copy) NSString *photo_url;
+
+/** 图标URL */
+@property (nonatomic, copy) NSString *s_photo_url;
 
 /** 距离 */
 @property (nonatomic, assign) NSNumber *distance;

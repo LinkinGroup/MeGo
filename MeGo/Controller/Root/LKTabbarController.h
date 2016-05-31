@@ -10,4 +10,9 @@
 
 @interface LKTabbarController : UITabBarController
 
+/** 指示器*/
+@property (nonatomic, strong) UIView *indicator;
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController;
+
 @end

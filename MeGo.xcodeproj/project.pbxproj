@@ -26,8 +26,8 @@
 		3BAD64311CCE460900066626 /* LKLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD64301CCE460900066626 /* LKLocationModel.m */; };
 		3BAD643E1CCE60A100066626 /* LKDataProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD643D1CCE60A100066626 /* LKDataProcessing.m */; };
 		3BAEE9DC1CEDA8A200D51CC4 /* LKNetWorkReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */; };
+		3BB372291CFB58780096F91F /* LKStarsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB372281CFB58780096F91F /* LKStarsView.m */; };
 		3BCCA5E81CC743C400D1B3E6 /* LKIndexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5E11CC743C400D1B3E6 /* LKIndexViewController.m */; };
-		3BCCA5E91CC743C400D1B3E6 /* LKIndexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BCCA5E21CC743C400D1B3E6 /* LKIndexViewController.xib */; };
 		3BCCA5F01CC743FC00D1B3E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5EE1CC743FC00D1B3E6 /* AppDelegate.m */; };
 		3BCCA5F11CC743FC00D1B3E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5EF1CC743FC00D1B3E6 /* main.m */; };
 		3BCCA5F51CC7460000D1B3E6 /* LKTabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BCCA5F41CC7460000D1B3E6 /* LKTabbarController.m */; };
@@ -43,6 +43,8 @@
 		3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF421CC8A48F00B52E02 /* LKNavigationController.m */; };
 		3BF1AF4C1CC9020E00B52E02 /* LKStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */; };
 		3BF1AF4F1CC91FAB00B52E02 /* Foundation+Log.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF1AF4E1CC91FAB00B52E02 /* Foundation+Log.m */; };
+		3BF36C351CF969A800B480ED /* NSDate+LINKExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF36C341CF969A800B480ED /* NSDate+LINKExtension.m */; };
+		3BF36C381CF981F400B480ED /* LKCacheManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF36C371CF981F400B480ED /* LKCacheManage.m */; };
 		3BF4C9A91CEB0F9A002FE497 /* LKSearchingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4C9A81CEB0F9A002FE497 /* LKSearchingViewController.m */; };
 		3BF4C9AC1CEB97F9002FE497 /* LKSearchingField.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF4C9AB1CEB97F9002FE497 /* LKSearchingField.m */; };
 		3BF59E1F1CECE27300D2C077 /* FeTenDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E1E1CECE27300D2C077 /* FeTenDot.m */; };
@@ -50,7 +52,6 @@
 		3BF59E291CECE86E00D2C077 /* UIColor+flat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E271CECE86E00D2C077 /* UIColor+flat.m */; };
 		3BF59E2C1CECE9BC00D2C077 /* FeSpinnerTenDot.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E2B1CECE9BC00D2C077 /* FeSpinnerTenDot.m */; };
 		3BF59E2F1CECEA1000D2C077 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF59E2E1CECEA1000D2C077 /* FXBlurView.m */; };
-		3BF6C2971CF21F8F006FF9B3 /* LKTmpManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF6C2961CF21F8F006FF9B3 /* LKTmpManage.m */; };
 		3BF7552D1CD8F376000D29F7 /* LKLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF7552C1CD8F376000D29F7 /* LKLocation.m */; };
 		3BF7552F1CD90D60000D29F7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BF7552E1CD90D60000D29F7 /* CoreLocation.framework */; };
 		3BF777E91CE99FEF00361F82 /* LKScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BF777E81CE99FEF00361F82 /* LKScrollView.m */; };
@@ -113,9 +114,10 @@
 		3BAD643D1CCE60A100066626 /* LKDataProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKDataProcessing.m; sourceTree = "<group>"; };
 		3BAEE9DA1CEDA8A200D51CC4 /* LKNetWorkReloadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKNetWorkReloadView.h; sourceTree = "<group>"; };
 		3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKNetWorkReloadView.m; sourceTree = "<group>"; };
+		3BB372271CFB58780096F91F /* LKStarsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStarsView.h; sourceTree = "<group>"; };
+		3BB372281CFB58780096F91F /* LKStarsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStarsView.m; sourceTree = "<group>"; };
 		3BCCA5E01CC743C400D1B3E6 /* LKIndexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKIndexViewController.h; sourceTree = "<group>"; };
 		3BCCA5E11CC743C400D1B3E6 /* LKIndexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKIndexViewController.m; sourceTree = "<group>"; };
-		3BCCA5E21CC743C400D1B3E6 /* LKIndexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKIndexViewController.xib; sourceTree = "<group>"; };
 		3BCCA5ED1CC743FC00D1B3E6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3BCCA5EE1CC743FC00D1B3E6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3BCCA5EF1CC743FC00D1B3E6 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -144,6 +146,10 @@
 		3BF1AF491CC9020E00B52E02 /* LKStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStoreViewController.h; sourceTree = "<group>"; };
 		3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStoreViewController.m; sourceTree = "<group>"; };
 		3BF1AF4E1CC91FAB00B52E02 /* Foundation+Log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Foundation+Log.m"; sourceTree = "<group>"; };
+		3BF36C331CF969A800B480ED /* NSDate+LINKExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LINKExtension.h"; sourceTree = "<group>"; };
+		3BF36C341CF969A800B480ED /* NSDate+LINKExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LINKExtension.m"; sourceTree = "<group>"; };
+		3BF36C361CF981F400B480ED /* LKCacheManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKCacheManage.h; sourceTree = "<group>"; };
+		3BF36C371CF981F400B480ED /* LKCacheManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKCacheManage.m; sourceTree = "<group>"; };
 		3BF4C9A71CEB0F9A002FE497 /* LKSearchingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSearchingViewController.h; sourceTree = "<group>"; };
 		3BF4C9A81CEB0F9A002FE497 /* LKSearchingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSearchingViewController.m; sourceTree = "<group>"; };
 		3BF4C9AA1CEB97F9002FE497 /* LKSearchingField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSearchingField.h; sourceTree = "<group>"; };
@@ -158,8 +164,6 @@
 		3BF59E2B1CECE9BC00D2C077 /* FeSpinnerTenDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeSpinnerTenDot.m; sourceTree = "<group>"; };
 		3BF59E2D1CECEA1000D2C077 /* FXBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXBlurView.h; sourceTree = "<group>"; };
 		3BF59E2E1CECEA1000D2C077 /* FXBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXBlurView.m; sourceTree = "<group>"; };
-		3BF6C2951CF21F8F006FF9B3 /* LKTmpManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKTmpManage.h; sourceTree = "<group>"; };
-		3BF6C2961CF21F8F006FF9B3 /* LKTmpManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKTmpManage.m; sourceTree = "<group>"; };
 		3BF7552B1CD8F376000D29F7 /* LKLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLocation.h; sourceTree = "<group>"; };
 		3BF7552C1CD8F376000D29F7 /* LKLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocation.m; sourceTree = "<group>"; };
 		3BF7552E1CD90D60000D29F7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -259,6 +263,8 @@
 				3BF59E251CECE86E00D2C077 /* FeThreeDotGlow.m */,
 				3BF59E261CECE86E00D2C077 /* UIColor+flat.h */,
 				3BF59E271CECE86E00D2C077 /* UIColor+flat.m */,
+				3BF36C331CF969A800B480ED /* NSDate+LINKExtension.h */,
+				3BF36C341CF969A800B480ED /* NSDate+LINKExtension.m */,
 				3BCCA5EF1CC743FC00D1B3E6 /* main.m */,
 				3BCCA60B1CC7746900D1B3E6 /* PrefixHeader.pch */,
 				3B9A2B601CC5EE28001C7440 /* Assets.xcassets */,
@@ -317,7 +323,6 @@
 			children = (
 				3BCCA5E01CC743C400D1B3E6 /* LKIndexViewController.h */,
 				3BCCA5E11CC743C400D1B3E6 /* LKIndexViewController.m */,
-				3BCCA5E21CC743C400D1B3E6 /* LKIndexViewController.xib */,
 				3BF1AF491CC9020E00B52E02 /* LKStoreViewController.h */,
 				3BF1AF4A1CC9020E00B52E02 /* LKStoreViewController.m */,
 				3B5FCE051CF4B18F00EFA0B7 /* LKSettingViewController.h */,
@@ -365,8 +370,8 @@
 				3B62CB751CE1C91F00BD19CD /* LKMenuDataProcessing.m */,
 				3B249DCE1CF44CB50051F81F /* LKUserDefaults.h */,
 				3B249DCF1CF44CB50051F81F /* LKUserDefaults.m */,
-				3BF6C2951CF21F8F006FF9B3 /* LKTmpManage.h */,
-				3BF6C2961CF21F8F006FF9B3 /* LKTmpManage.m */,
+				3BF36C361CF981F400B480ED /* LKCacheManage.h */,
+				3BF36C371CF981F400B480ED /* LKCacheManage.m */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -393,6 +398,8 @@
 				3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */,
 				3B5FCE1A1CF4DDD100EFA0B7 /* LKSettingPicViewController.h */,
 				3B5FCE1B1CF4DDD100EFA0B7 /* LKSettingPicViewController.m */,
+				3BB372271CFB58780096F91F /* LKStarsView.h */,
+				3BB372281CFB58780096F91F /* LKStarsView.m */,
 				3BF777E61CE99FD300361F82 /* LKScrollView */,
 				3B9CE3311CD9CFFB0035B490 /* LKToolBarMenu */,
 				3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */,
@@ -546,7 +553,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BCCA5E91CC743C400D1B3E6 /* LKIndexViewController.xib in Resources */,
 				3B9A2B611CC5EE28001C7440 /* Assets.xcassets in Resources */,
 				3BD941B81CD35785009B3A37 /* LKDelicacyStoreCell.xib in Resources */,
 			);
@@ -654,11 +660,13 @@
 				3B62CB761CE1C91F00BD19CD /* LKMenuDataProcessing.m in Sources */,
 				3BF59E2C1CECE9BC00D2C077 /* FeSpinnerTenDot.m in Sources */,
 				3BCCA5F01CC743FC00D1B3E6 /* AppDelegate.m in Sources */,
-				3BF6C2971CF21F8F006FF9B3 /* LKTmpManage.m in Sources */,
+				3BF36C381CF981F400B480ED /* LKCacheManage.m in Sources */,
 				3B9CE3341CD9D0750035B490 /* LKToolBarMenu.m in Sources */,
+				3BF36C351CF969A800B480ED /* NSDate+LINKExtension.m in Sources */,
 				3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */,
 				3BF4C9AC1CEB97F9002FE497 /* LKSearchingField.m in Sources */,
 				3BAD642A1CCE328100066626 /* LKRequestParamters.m in Sources */,
+				3BB372291CFB58780096F91F /* LKStarsView.m in Sources */,
 				3B8E73691CE5CE2E00B3A3D7 /* pinyin.m in Sources */,
 				3BCCA60E1CC7758400D1B3E6 /* UIView+LINKExtension.m in Sources */,
 			);

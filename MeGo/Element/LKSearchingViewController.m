@@ -119,7 +119,7 @@
 - (void)setUpNavigationSearchField
 {
     // 设置导航栏搜索控件背景
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, 180, 30))];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width / 2, 30))];
     [titleView setImage:[UIImage imageNamed:@"home_topbar_search"]];
     titleView.userInteractionEnabled = YES;
     titleView.layer.cornerRadius = titleView.frame.size.height * 0.5;
@@ -173,25 +173,57 @@
 {
     [self.textField resignFirstResponder];
     
+    /******************************************************************************/
+    // 此段代码因iPhone4至5s不能适当跳转，在此添加：
+    self.titleView.hidden = YES;
+
+    // 设置导航栏搜索控件背景
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width / 2, 30))];
+    [titleView setImage:[UIImage imageNamed:@"home_topbar_search"]];
+    titleView.userInteractionEnabled = YES;
+    titleView.layer.cornerRadius = titleView.frame.size.height * 0.5;
+    titleView.layer.masksToBounds = YES;
+    titleView.layer.borderColor = [UIColor orangeColor].CGColor;
+    titleView.layer.borderWidth = 1.5;
+    
+    // 设置导航栏搜索控件放大镜
+    UIImageView *searchView =[[UIImageView alloc] initWithFrame:(CGRectMake(9, 6, 18, 18))];
+    [searchView setImage:[UIImage imageNamed:@"home_topbar_icon_search_default"] ];
+    [titleView addSubview:searchView];
+    
+    // 设置导航栏搜索控件占位文字
+    UILabel *text = [[UILabel alloc] initWithFrame:(CGRectMake(33, 6, 120, 18))];
+    text.text = @"输入商户名、地点";//
+    text.textColor = [UIColor lightGrayColor];
+    text.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
+    [titleView addSubview:text];
+    
+    self.navigationItem.titleView = titleView;
+    /******************************************************************************/
+    
     // 仿造目标控制器导航栏布局
-    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.3 initialSpringVelocity:51 options:(UIViewAnimationOptionCurveLinear) animations:^{
+    [UIView animateWithDuration:0.3 delay:0 usingSpringWithDamping:0.2 initialSpringVelocity:21 options:(UIViewAnimationOptionCurveLinear) animations:^{
         
-        [self.titleView setFrame:(CGRectMake(0, 0, 180, 30))];
+        [titleView setFrame:(CGRectMake(0, 0, LKScreenSize.width / 2, 30))];
         
         // 访问偏好设置，查看上次选择的城市
         NSString *city = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
         
         if (city) {
             
-            city = [NSString stringWithFormat:@"     %@ ▽", city];
+            city = [NSString stringWithFormat:@"%@ ▽", city];
             
         }else {
             
-            city = @"     城市 ▽";
+            city = @"城市 ▽";
         }
         
         //设置导航栏左侧按钮
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:city style:(UIBarButtonItemStyleDone) target:nil action:nil];
+        CGFloat margin = (LKScreenSize.width - 240) / 5;
+        UIBarButtonItem *leftItem = [UIBarButtonItem alloc];
+        [leftItem setTitlePositionAdjustment:UIOffsetMake(margin -9 , 0) forBarMetrics:(UIBarMetricsDefault)];
+        
+        self.navigationItem.leftBarButtonItem = [leftItem initWithTitle:city style:(UIBarButtonItemStyleDone) target:nil action:nil];
         
     } completion:^(BOOL finished) {
         
@@ -205,10 +237,10 @@
         //把动画添加到某个view的图层上
         [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
         
-        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self.navigationController popViewControllerAnimated:NO];
+//        [self.navigationController popToRootViewControllerAnimated:NO];
         
     }];
-    
 }
 
 #pragma mark tableView方法

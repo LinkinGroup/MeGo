@@ -26,6 +26,10 @@
 /** View3*/
 @property (nonatomic, strong) UIView *viewThree;
 
+/** 记录间距*/
+@property (nonatomic, assign) CGFloat margin;
+
+
 @end
 
 @implementation LKScrollView
@@ -38,11 +42,9 @@
         
         self.view.frame = frame;
         
-        [self setUpPageControlWithFrame:frame];
-        
         [self setUpScrollViewWithFrame:frame];
         
-        [self setUpViewWithFrame:frame];
+//        [self setUpViewWithFrame:frame];
     }
     return self;
 }
@@ -52,15 +54,22 @@
 {
     if (self = [super init]) {
         
-        CGRect frame = CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width,240);
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        
+        CGFloat margin = (width - 60 * 4) / (4 + 1);
+        
+        self.margin = margin;
+        
+        CGFloat height = margin * 2.5 + 81 * 2 + 28 ;
+
+        CGRect frame = CGRectMake(0, 0, width, height);
         
         self.view.frame = frame;
         
-        [self setUpPageControlWithFrame:frame];
-        
         [self setUpScrollViewWithFrame:frame];
-        
-        [self setUpViewWithFrame:frame];
+
+
+//        [self setUpViewWithFrame:frame];
     }
     return self;
 }
@@ -72,7 +81,7 @@
     // 尺寸设置
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - 10)];
     scrollView.contentSize = CGSizeMake(frame.size.width * 3, 0);
-    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.automaticallyAdjustsScrollViewInsets = NO;
 
     scrollView.pagingEnabled = YES;
 //    self.scrollView.autoresizingMask = NO;
@@ -86,6 +95,9 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     
     [self.scrollView setContentOffset:(CGPointMake(frame.size.width, 0))];
+    
+    [self setUpViewWithFrame:frame];
+
 }
 
 // 初始化PageView
@@ -128,6 +140,9 @@
     [self.scrollView addSubview:self.viewTwo];
     [self.scrollView addSubview:self.viewThree];
     
+    
+    [self setUpPageControlWithFrame:frame];
+    
 }
 
 // 添加按钮
@@ -148,7 +163,7 @@
         col = i % cols;
         row = i / cols;
 //        marginIndex = i / 4 + 1 - row * 3;
-        
+
         btnX = margin + col * (btnW + margin);
         btnY = margin - 3 + row * (btnH + margin - 3);
         btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
@@ -173,9 +188,11 @@
     
     // 尺寸设置
     CGFloat x = (frame.size.width -100) / 2;
-    CGFloat y = frame.size.height - 10 -11;
+//    CGFloat y = frame.size.height - 10 -11;
+    CGFloat y = self.margin * 2.5 + 81 * 2;
     CGFloat height = 10;
     self.pageControl = [[UIPageControl alloc] initWithFrame:(CGRectMake(x, y, width, height))];
+    JKLog(@"PC:%f",self.margin );
     
     // 属性设置
     self.pageControl.numberOfPages = 3;
@@ -185,6 +202,10 @@
     
     [self.view addSubview:self.pageControl];
     
+//    self.scrollView.frame = CGRectMake(0, 0, frame.size.width, y + 18);
+    JKLog(@"SCRO:%f",self.scrollView.height);
+
+    
 }
 
 #pragma mark - 点击按钮触发的代理方法
@@ -193,6 +214,13 @@
     if ([_delegate respondsToSelector:@selector(didSelectedBtn:)]) {
         
         [_delegate didSelectedBtn:btn];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([_delegate respondsToSelector:@selector(didScroll:)]) {
+        [_delegate didScroll:scrollView];
     }
 }
 

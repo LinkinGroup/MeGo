@@ -59,7 +59,7 @@ static NSString *LKLocationCellID = @"Cell";
     //把动画添加到某个view的图层上
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:NO];
     
 }
 
@@ -188,7 +188,11 @@ static NSString *LKLocationCellID = @"Cell";
     //把动画添加到某个view的图层上
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
     
-    [self.navigationController popToRootViewControllerAnimated:NO];
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+    [self.navigationController popViewControllerAnimated:NO];
+
+    
+    
 }
 
 @end

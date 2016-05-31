@@ -24,6 +24,11 @@
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self setUpNavigationBar];
+}
+
+- (void)setUpNavigationBar
+{
     // 导航栏设置
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 40))];
     titleLabel.text = @"图片设置";
@@ -32,8 +37,28 @@
     titleLabel.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    // 导航栏左边按钮
+    UIBarButtonItem *itemLeft = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    
+    [itemLeft setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
+    
+    self.navigationItem.leftBarButtonItem = itemLeft;
+    
 }
 
+- (void)back
+{
+    CATransition *transion=[CATransition animation];
+    //设置转场动画的类型
+    transion.type=@"cube";
+    //设置转场动画的方向
+    transion.subtype=@"fromLeft";
+    
+    //把动画添加到某个view的图层上
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+    
+    [self.navigationController popViewControllerAnimated:NO];
+}
 
 #pragma mark - Table view data source
 
@@ -50,19 +75,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-            
+    // cell设置
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
     FUISwitch *switchView = [[FUISwitch alloc] initWithFrame:CGRectMake(0, 0, 72, 36)];
     cell.accessoryView = switchView;
     
     // 开关控制
     int isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:JKShowPicture] intValue];
-    if (isOn) {
-        switchView.on = YES;
-    }else{
-        switchView.on = NO;
-    }
     
+    switch (isOn) {
+            
+        case 2:
+            
+            switchView.on = YES;
+            
+            break;
+        case 1:
+            
+            switchView.on = NO;
+            
+        default:
+            break;
+    }
     
     // switchView设置
     switchView.onColor = [UIColor whiteColor];
@@ -93,7 +127,7 @@
 {
     UISwitch* switchControl = sender;
     
-    [[NSUserDefaults standardUserDefaults] setObject:@(switchControl.on) forKey:JKShowPicture];
+    [[NSUserDefaults standardUserDefaults] setObject:@(switchControl.on + 1) forKey:JKShowPicture];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

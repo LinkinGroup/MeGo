@@ -9,6 +9,8 @@
 #import "LKNavigationController.h"
 #import "UIBarButtonItem+FlatUI.h"
 #import <FlatUIKit.h>
+#import "LKTabbarController.h"
+#import "LKIndexViewController.h"
 
 @interface LKNavigationController ()
 
@@ -76,10 +78,21 @@
     [super presentViewController:viewControllerToPresent animated:flag completion:completion];
 }
 
+// tabbar的指示器需要隐藏
+- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = YES;
+    JKLog(@"%@",tabbarController.indicator);
+    
+    [super pushViewController:viewController animated:animated];
+}
 
 - (void)back
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 @end

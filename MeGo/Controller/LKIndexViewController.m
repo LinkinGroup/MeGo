@@ -15,6 +15,8 @@
 #import "LKSearchingViewController.h"
 #import "LKBasedataAPI.h"
 #import "LKUserDefaults.h"
+#import "LKStarsView.h"
+#import "LKTabbarController.h"
 
 
 @interface LKIndexViewController () <LKScrollViewDelegate, CLLocationManagerDelegate, LKLocationViewControllerDelegate>
@@ -22,11 +24,17 @@
 /** 位置管理者 */
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
-/** 导航栏搜索控件*/
-@property (nonatomic, strong) UIImageView *titleView;
-
 /** 导航栏地址按钮*/
 @property (nonatomic, strong) UIBarButtonItem *leftButtonItem;
+
+/** stars*/
+@property (nonatomic, strong) UIImageView *starsView;
+
+/** stars第二张*/
+@property (nonatomic, strong) UIImageView *starsViewSec;
+
+/** starsCloud*/
+@property (nonatomic, strong) UIImageView *starsCloud;
 
 @end
 
@@ -65,11 +73,20 @@
     
     [super viewDidLoad];
     
+    // 用户首次打开软件时调用
+    // 开关控制
+    int isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:JKShowPicture] intValue];
+    
+    if (!isOn) {
+        [[NSUserDefaults standardUserDefaults] setObject:@(2) forKey:JKShowPicture];
+    }
+    JKLog(@"%d",isOn);
+    
     // 设置控制器属性，以免控件被偏移出理想位置；
     self.automaticallyAdjustsScrollViewInsets = NO;
     
 //    self.view.backgroundColor = JKGlobalBg;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
 //
 //    self.view.autoresizingMask = YES;
 //    
@@ -79,27 +96,154 @@
     
     [self.locationManager startUpdatingLocation];
     
+    [self setUpBackgroundView];
+
     [self setUpScrollView];
-    
     // 开启网络状态检查
     [LKBasedataAPI netWorkInspectorGoToWork];
+
+}
+
+#pragma mark - tabbar指示器消失BUG修复代码
+// 控制器显示时调用
+- (void)viewWillAppear:(BOOL)animated
+{
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
     
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
+    
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+    JKLogFunction;
+}
+
+// 控制器显示时调用
+- (void)viewWillLayoutSubviews
+{
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
+    JKLogFunction;
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+}
+
+
+- (void)setUpBackgroundView
+{
+    UIView *imageView = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 559 / 375))];
+    
+    UIImageView *lightView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 559 / 375))];
+    lightView.image = [UIImage imageNamed:@"light"];
+    
+    UIImageView *starsView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
+    starsView.image = [UIImage imageNamed:@"stars"];
+    
+    UIImageView *starsViewSec = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
+    starsViewSec.image = [UIImage imageNamed:@"starsSec"];
+    
+    UIImageView *starsCloud = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
+    starsCloud.image = [UIImage imageNamed:@"starCloud"];
+    
+    self.starsView = starsView;
+    self.starsViewSec = starsViewSec;
+    self.starsCloud = starsCloud;
+    
+    [imageView sendSubviewToBack:starsView];
+//    [imageView addSubview:lightView];
+    [imageView addSubview:starsView];
+    [imageView addSubview:starsViewSec];
+    [imageView addSubview:starsCloud];
+
+    // 自动播放开关，耗用CPU2%
+//    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(starViewAnimation)];
+//    
+//    // 添加主运行循环
+//    [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    
+    [self.view addSubview:imageView];
+}
++ (void)initialize
+{
+    JKLog(@"123");
+}
+
+static CGFloat _starX = 0;
+static CGFloat _starSecX = 0;
+static CGFloat _starCloudX = 0;
+
+- (void)starViewAnimation
+{
+    _starSecX -= 0.5;
+    _starX -= 0.6;
+    _starCloudX -= 0.3;
+
+    
+    if (_starX < - LKScreenSize.width) {
+        _starX = 0;
+    }
+    if (_starSecX < - LKScreenSize.width) {
+        _starSecX = 0;
+    }
+    if (_starCloudX < - LKScreenSize.width) {
+        _starCloudX = 0;
+    }
+    self.starsCloud.x = _starCloudX;
+    self.starsView.x = _starX;
+    self.starsViewSec.x = _starSecX;
 }
 
 // 走马灯ScrollView
 - (void)setUpScrollView
 {
-    LKScrollView *scrollView = [[LKScrollView alloc] initWithScrollViewFrame:(CGRectMake(0, 0, LKScreenSize.width, 245))];
+//    LKScrollView *scrollView = [[LKScrollView alloc] initWithScrollViewFrame:(CGRectMake(0, 0, LKScreenSize.width, 245))];
+
+    LKScrollView *scrollView = [[LKScrollView alloc] initWithScrollView];
     
+    CGFloat width = scrollView.view.width;
+    
+    CGFloat height = scrollView.view.height;
+
     scrollView.delegate = self;
     
     [self addChildViewController:scrollView];
     
-    UIView *view = [[UIView alloc] initWithFrame:scrollView.view.frame];
+    UIView *view = [[UIView alloc] initWithFrame:(CGRectMake(0, -height, width, height))];
     view.backgroundColor = [UIColor whiteColor];
-    
-    [self.view addSubview:view];
     [view addSubview:scrollView.view];
+
+    [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:9 initialSpringVelocity:1 options:(UIViewAnimationOptionCurveEaseInOut) animations:^{
+        
+        [self.view addSubview:view];
+//        scrollView.view.frame = CGRectMake(0, 0, LKScreenSize.width, 245);
+        view.frame = CGRectMake(0, 0, width, height); //scrollView.view.frame;
+
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+
+// scrollView 代理方法
+- (void)didScroll:(UIScrollView *)scrollView
+{
+//    CGFloat x = scrollView.contentOffset.x;
+//    CGFloat moveX = 0;
+//    
+//    if (x - LKScreenSize.width < 0) { //左边移动
+//        moveX = LKScreenSize.width - x;
+//    }else{
+//        moveX =
+//    }
+    
+//    JKLog(@"123:%f",x);
+    
+    [self starViewAnimation];
 }
 
 #pragma mark - 导航栏初始化
@@ -125,36 +269,30 @@
     
     if (city) {
         
-        city = [NSString stringWithFormat:@"     %@ ▽", city];
+        city = [NSString stringWithFormat:@"%@ ▽", city];
         
     }else {
         
-        city = @"     城市 ▽";
+        city = @"城市 ▽";
     }
     
-    //设置导航栏左侧按钮
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:city style:(UIBarButtonItemStyleDone) target:self action:@selector(locationSelected)];
+    // 设置导航栏左侧按钮
+    // 计算左侧偏移量：
+    CGFloat margin = (LKScreenSize.width - 240) / 5;
+    UIBarButtonItem *leftItem = [UIBarButtonItem alloc];
+    [leftItem setTitlePositionAdjustment:UIOffsetMake(margin -9 , 0) forBarMetrics:(UIBarMetricsDefault)];
     
-    self.leftButtonItem = self.navigationItem.leftBarButtonItem;
+    self.navigationItem.leftBarButtonItem = [leftItem initWithTitle:city style:(UIBarButtonItemStyleDone) target:self action:@selector(locationSelected)];
     
-    // 设置push其他控制器之后显示的返回按钮
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
+//    self.navigationItem.leftBarButtonItem.
+//    self.leftButtonItem = self.navigationItem.leftBarButtonItem;
     
-    self.navigationItem.backBarButtonItem = item;
-}
-
-// 被Push的控制器导航栏上的返回按钮，会被此方法监听
-- (void)backToIndexPage
-{
-    JKLog(@"back");
-    [self.navigationController popToRootViewControllerAnimated:YES];
-
 }
 
 // 地址选择界面代理
 - (void)didSelectedButtonWithCity:(NSString *)city
 {
-    self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"     %@ ▽", city];
+    self.navigationItem.leftBarButtonItem.title = [NSString stringWithFormat:@"%@ ▽", city];
     
 }
 
@@ -187,7 +325,7 @@
 - (void)setUpNavigationSearchField
 {
     // 设置导航栏搜索控件背景
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, 180, 30))];
+    UIImageView *titleView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width / 2, 30))];
     [titleView setImage:[UIImage imageNamed:@"home_topbar_search"]];
     titleView.userInteractionEnabled = YES;
         titleView.layer.cornerRadius = titleView.frame.size.height * 0.5;
@@ -201,19 +339,17 @@
     [titleView addSubview:searchView];
     
     // 设置导航栏搜索控件占位文字
-    UILabel *text = [[UILabel alloc] initWithFrame:(CGRectMake(33, 6, 1200, 18))];
-    text.text = @"输入商户名、地点";
+    UILabel *text = [[UILabel alloc] initWithFrame:(CGRectMake(33, 6, 120, 18))];
+    text.text = @"输入商户名、地点";//
     text.textColor = [UIColor lightGrayColor];
     text.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
     [titleView addSubview:text];
     
     // 添加点击监听控件
-    UIView *view = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, 180, 30))];
-    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(presentSearchView)];
+    UIView *view = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width / 2, 30))];
+    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushSearchView)];
     [view addGestureRecognizer:tap];
     [titleView addSubview:view];
-    
-    self.titleView = titleView;
     
     self.navigationItem.titleView = titleView;
 
@@ -223,7 +359,7 @@
 }
 
 // 导航栏搜索控件点击监听
-- (void)presentSearchView
+- (void)pushSearchView
 {
     //隐藏导航栏
     self.hidesBottomBarWhenPushed = YES;
@@ -301,7 +437,6 @@
         [_delegate indexViewController:self didClickBtnWithParams:params];
     }
     
-    
     CATransition *transion=[CATransition animation];
     //设置转场动画的类型
     transion.type=@"cube";
@@ -315,7 +450,8 @@
     
     //为了让跳转回来时正常显示tabbar
     self.hidesBottomBarWhenPushed = NO;
-    
+//    self.tabBarController.tabBar.hidden = NO;
+
 }
 
 @end

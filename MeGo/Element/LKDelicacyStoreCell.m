@@ -39,15 +39,18 @@
     int status = [[[NSUserDefaults standardUserDefaults] objectForKey:JKNetWorK] intValue];
     int isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:JKShowPicture] intValue];
 
-    if (status == 2 && isOn == 0) {
+    if (status == 1 && isOn == 0) { // status为1时，手机网络为2G/3G/4G网络
         
         self.photoImageView.hidden = YES;
         
     }else{
     
         self.photoImageView.hidden = NO;
-
-        [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:store.photo_url]];
+        /**
+         * 小图片：s_photo_url
+         * 大图片：photo_url
+         */
+        [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:store.s_photo_url]];
         
     }
     self.nameLabel.text = store.name;
@@ -79,9 +82,7 @@
         self.distanceLabel.hidden = NO;
 
         self.distanceLabel.text = [NSString stringWithFormat:@"%.1fkm", (distance / 1000)];
-
     }
-    
 }
 
 - (void)awakeFromNib

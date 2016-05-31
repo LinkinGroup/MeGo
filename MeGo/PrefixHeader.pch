@@ -37,6 +37,13 @@
 
 #define JKShowPicture @"JKShowPicture"
 
+// 缓存中的关键字
+#define JKFileCategory @"MenuDataCategory"
+
+#define JKFileSubCategory @"MenuDataSubCategory"
+
+#define JKFileTimeForCategory @"JKFileTimeForCategory"
+
 
 
 #define JKLogFunction JKLog(@"%s", __func__)

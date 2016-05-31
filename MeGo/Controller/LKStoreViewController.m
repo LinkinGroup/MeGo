@@ -16,7 +16,7 @@
 #import "LKWebViewController.h"
 #import "FeSpinnerTenDot.h"
 #import "LKNetWorkReloadView.h"
-#import "LKTmpManage.h"
+#import "LKCacheManage.h"
 #import <CoreLocation/CoreLocation.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
@@ -69,6 +69,10 @@ typedef enum {
 /** 记录菜单数据 */
 @property (nonatomic, strong) NSArray *dataIndexArray;
 
+/** 判断是否显示动画*/
+@property (nonatomic, assign) BOOL isShowAnimation;
+
+
 @end
 
 @implementation LKStoreViewController
@@ -80,10 +84,8 @@ static NSString * const LKStoreCellID = @"store";
     
     [super viewDidLoad];
     
-    
+
     self.view.backgroundColor = JKGlobalBg; // [UIColor orangeColor];
-    
-//    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
     
     // 设置控制器属性，以免控件被偏移出理想位置；
     self.automaticallyAdjustsScrollViewInsets= NO;
@@ -131,7 +133,6 @@ static NSString * const LKStoreCellID = @"store";
     // 而将setTranslucent设置为no时，则状态栏及导航样不为透明的，界面上的组件就是紧挨着导航栏显示了，所以就不需要让第一个组件在y方向偏离44+20的高度了。
     [self.navigationController.navigationBar setTranslucent:NO];
     
-    
     //    [bar setBarTintColor:[UIColor whiteColor]];
     
     // 导航栏按钮的颜色
@@ -150,6 +151,13 @@ static NSString * const LKStoreCellID = @"store";
     
     [self.navigationController.navigationBar setTitleTextAttributes:titleAttr];
     
+    // 设置导航栏标题颜色和字体
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 44))];
+    titleLabel.text = self.title;
+    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:22];
+    titleLabel.textColor = [UIColor orangeColor];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
     
     // 导航栏左边按钮
     UIBarButtonItem *itemLeft = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
@@ -185,6 +193,8 @@ static NSString * const LKStoreCellID = @"store";
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
+    self.hidesBottomBarWhenPushed = NO;
     
 }
 
@@ -510,7 +520,7 @@ static NSString * const LKStoreCellID = @"store";
 
 - (void)click
 {
-    CGFloat qwe = [LKTmpManage checkTmpSize];
+    CGFloat qwe = [LKCacheManage checkCacheSize];
     JKLog(@"%f",qwe);
     
     // 参数
@@ -534,7 +544,10 @@ static NSString * const LKStoreCellID = @"store";
 {
 //    JKLog(@"%@",[UIFont fontNamesForFamilyName:@"PingFang SC"]);
 
-    [LKTmpManage clearTmpPics];
+//    [LKCacheManage checkCalendar];
+    
+    JKLog(@"%f",LKScreenSize.width);
+    
 }
 
 #pragma mark - Refresh
@@ -586,6 +599,9 @@ static NSString * const LKStoreCellID = @"store";
         // 获得数据
         self.stores = responseObject;
 
+        // 上拉时打开动画开关
+        _isShowAnimation = 1;
+        
         // 刷新表格
         [self.tableView reloadData];
         
@@ -594,10 +610,6 @@ static NSString * const LKStoreCellID = @"store";
         
         // 成功刷新后，结束刷新
         [self.tableView.mj_header endRefreshing];
-        
-        NSThread *blockThread = [NSThread currentThread];
-        
-        JKLog(@"block:%@",thread);
         
         [self.hud dismiss];
         JKLog(@"load");
@@ -653,6 +665,9 @@ static NSString * const LKStoreCellID = @"store";
         
         //将数据加入到数组中
         [self.stores addObjectsFromArray:responseObject];
+        
+        //动画开关关闭；
+        _isShowAnimation = 0;
         
         //刷新表格
         [self.tableView reloadData];
@@ -753,7 +768,7 @@ static NSString * const LKStoreCellID = @"store";
 {
     // 调整导航栏为不透明后，向下偏移量多出了64，因此减去64；
     self.tableView = [[UITableView alloc] initWithFrame:(CGRectMake(0, 44, LKScreenSize.width, LKScreenSize.height - 44-64)) style:(UITableViewStylePlain)];
-//    self.tableView.backgroundColor = JKGlobalBg;
+
     self.tableView.backgroundColor = JKGlobalBg;
 
     
@@ -774,7 +789,6 @@ static NSString * const LKStoreCellID = @"store";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    JKLog(@"count");
     return self.stores.count;
 }
 
@@ -784,28 +798,61 @@ static NSString * const LKStoreCellID = @"store";
     
     cell.store = self.stores[indexPath.row];
     
-    // 动画
-//    CGRect frameOringe = cell.frame;
-//    NSInteger delayNum = indexPath.row % 7;
-//    // 取值为0和1；
-//    NSInteger oddEvenNum = arc4random_uniform(2) + 1;
-//    
-//    CGFloat x = cell.frame.origin.x + LKScreenSize.width * pow(-1, oddEvenNum);
-//    //    NSInteger y = arc4random_uniform(900) - 90;
-//    NSInteger y = cell.frame.origin.y;
-//    
-//    CGRect aFrame = CGRectMake(x , y, cell.frame.size.width, cell.frame.size.height);
-//    
-//    cell.frame = aFrame;
-//    
-//    [UIView animateWithDuration:0.25 delay:0.1 * delayNum usingSpringWithDamping:0.6 initialSpringVelocity:6 options:(UIViewAnimationOptionCurveLinear) animations:^{
-//        
-//        cell.frame = frameOringe;
-//        
-//    } completion:^(BOOL finished) {
-//        
-//    }];
+    NSInteger rows = (LKScreenSize.height - 108) / 88 + 1;
     
+    if (indexPath.row < rows && _isShowAnimation == 1) {
+    
+        // 动画
+        CGRect frameOringe = cell.frame;
+        NSInteger delayNum = indexPath.row % 7;
+        
+        // 取值为0和1；
+        // 随机值：
+//        NSInteger oddEvenNum = arc4random_uniform(2) + 1;
+//        CGFloat x = cell.frame.origin.x + LKScreenSize.width * pow(-1, oddEvenNum);
+        
+        // 固定值：
+        NSInteger rowIndex = indexPath.row;
+        CGFloat x = cell.frame.origin.x + LKScreenSize.width * pow(-1, rowIndex);
+
+        // 随机坐标飞入效果
+        //    NSInteger y = arc4random_uniform(900) - 90;
+        NSInteger y = cell.frame.origin.y;
+        
+        CGRect aFrame = CGRectMake(x , y, cell.frame.size.width, cell.frame.size.height);
+        
+        cell.layer.frame = aFrame;
+        
+        // 在layer上添加动画，动画执行过程中不会影响点击事件；
+        CABasicAnimation * animation = [CABasicAnimation animation];
+
+        animation.keyPath = @"position.x";
+    
+        animation.speed = 1.8;
+    
+        animation.fromValue = @(aFrame.origin.x);
+        
+        animation.toValue = @(frameOringe.origin.x);
+        
+        animation.duration = 0.25 +0.1 *delayNum;
+        
+        [cell.layer addAnimation:animation forKey:nil];
+        
+//        // 普通阻塞式动画
+//        cell.frame = aFrame;
+//        
+//        [UIView animateWithDuration:0.3 delay:0.1 * delayNum usingSpringWithDamping:0.6 initialSpringVelocity:15 options:(UIViewAnimationOptionCurveEaseOut) animations:^{
+//            
+//            cell.frame = frameOringe;
+//            
+//        } completion:^(BOOL finished) {
+//        }];
+        
+    }else if (indexPath.row == 7){
+        
+//        动画开关关闭；
+        _isShowAnimation = 0;
+    }
     return cell;
 }
 
@@ -824,7 +871,9 @@ static NSString * const LKStoreCellID = @"store";
     // 加载链接
     [wvc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:store.business_url]]];
     
-    //隐藏导航栏
+    wvc.title = store.name;
+    
+    // 隐藏tabbar
     self.hidesBottomBarWhenPushed = YES;
     
     CATransition *transion=[CATransition animation];
@@ -836,10 +885,7 @@ static NSString * const LKStoreCellID = @"store";
     //把动画添加到某个view的图层上
     [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
 
-    [self.navigationController pushViewController:wvc animated:YES];
-    
-    //为了让跳转回来时正常显示tabbar
-    self.hidesBottomBarWhenPushed = NO;
+    [self.navigationController pushViewController:wvc animated:NO];
 }
 
 @end
