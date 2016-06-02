@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LKTabbarController.h"
+#import "LKGuide.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +23,7 @@
     self.window.frame = [UIScreen mainScreen].bounds;
     
     //创建窗口的根控制器
-    self.window.rootViewController = [[LKTabbarController alloc] init];
+    self.window.rootViewController = [LKGuide chooseRootViewController];
     
     //显示窗口
     [self.window makeKeyAndVisible];

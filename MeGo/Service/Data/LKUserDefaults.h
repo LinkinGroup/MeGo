@@ -14,4 +14,10 @@
 /** 将定位信息转为数组，写入缓存*/
 + (void)saveLocation:(CLLocation *)location;
 
+/** 从偏好设置中取出*/
++ (id)objectForKey:(NSString *)key;
+
+/** 存到偏好设置中*/
++ (void)setObject:(id)value forKey:(NSString *)key;
+
 @end

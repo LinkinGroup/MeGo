@@ -20,4 +20,16 @@
     [userDefaults setObject:locationArray forKey:JKLocation];
 }
 
+// 从偏好设置中取出
++ (id)objectForKey:(NSString *)key
+{
+    return  [[NSUserDefaults standardUserDefaults] objectForKey:key];
+}
+
+// 存到偏好设置中
++ (void)setObject:(id)value forKey:(NSString *)key
+{
+    [[NSUserDefaults standardUserDefaults] setObject:value forKey:key];
+}
+
 @end

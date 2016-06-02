@@ -84,33 +84,8 @@ static NSString * const LKSettingCellID = @"setting";
 }
 
 // 控制器显示时调用
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
-    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
-    
-    tabbarController.indicator.hidden = NO;
-    
-    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
-    
-    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
-    
-    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
-    JKLogFunction;
-    
-    //    [self setHidesBottomBarWhenPushed:NO];
-    //    [self.tabBarController.view layoutIfNeeded];
-    //    [self.view layoutIfNeeded];
-    
-    //    [super viewDidAppear:animated];
-    
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    
     LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
     
     tabbarController.indicator.hidden = NO;
@@ -120,9 +95,6 @@ static NSString * const LKSettingCellID = @"setting";
     [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
     
     [tabbarController.indicator setFrame:tabbarController.indicator.frame];
-    //    [self setHidesBottomBarWhenPushed:NO];
-    //    tabbarController.indicator.hidden =YES;
-    JKLogFunction;
     
 }
 
@@ -268,6 +240,11 @@ static NSString * const LKSettingCellID = @"setting";
         self.headerHudImageView.frame = rectHud;
         self.headerHudImageView.center = self.headerImageView.center;
         self.tableHeaderView.clipsToBounds = NO;
+        JKLog(@"%@",NSStringFromCGRect(self.headerHudImageView.frame));
+        
+    }else {
+        // 复位，处理6Plus下拉时Hudview放大后无法归位问题；
+        _headerHudImageView.frame=CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 240 / 375);
     }
 }
 

@@ -122,7 +122,7 @@
     
     NSArray *pageTwoArray = [[NSArray alloc] initWithObjects:@"电影院", @"KTV", @"密室", @"桌面游戏", @"私人影院", @"瑜伽", @"亲子玩乐", @"酒店", nil];
     
-    NSArray *pageTwoImageArray = [[NSArray alloc] initWithObjects:@"cinema", @"ktv", @"search", @"deskGame", @"privateCinema", @"yoga", @"toy", @"hotel",  nil];
+    NSArray *pageTwoImageArray = [[NSArray alloc] initWithObjects:@"cinema", @"ktv", @"roomBreak", @"deskGame", @"privateCinema", @"yoga", @"toy", @"hotel",  nil];
     
     [self addBtnInView:self.viewTwo title:pageTwoArray andImage:pageTwoImageArray];
 
@@ -192,7 +192,6 @@
     CGFloat y = self.margin * 2.5 + 81 * 2;
     CGFloat height = 10;
     self.pageControl = [[UIPageControl alloc] initWithFrame:(CGRectMake(x, y, width, height))];
-    JKLog(@"PC:%f",self.margin );
     
     // 属性设置
     self.pageControl.numberOfPages = 3;
@@ -201,10 +200,30 @@
     self.pageControl.currentPage = 0;
     
     [self.view addSubview:self.pageControl];
-    
-//    self.scrollView.frame = CGRectMake(0, 0, frame.size.width, y + 18);
-    JKLog(@"SCRO:%f",self.scrollView.height);
+//    [self uio];
+}
 
+- (void)uio
+{
+    CGFloat height = 180;
+    CGFloat margin = (LKScreenSize.height - 540)/4;
+    UIView *view = [[UIView alloc] initWithFrame:LKScreenFrame];
+    UIView *viewqwe = [[UIView alloc] initWithFrame:LKScreenFrame];
+
+    self.viewOne.frame = CGRectMake(0, margin-20, LKScreenSize.width, height);
+    self.viewTwo.frame = CGRectMake(0, margin*2+height-20, LKScreenSize.width, height);
+    self.viewThree.frame = CGRectMake(0, margin*3 +height*2-20, LKScreenSize.width, height);
+    [view addSubview:self.viewOne];
+    [view addSubview:self.viewTwo];
+    [view addSubview:self.viewThree];
+    view.layer.cornerRadius = 6;
+    view.backgroundColor = [UIColor whiteColor];
+    viewqwe.backgroundColor = [UIColor blackColor];
+    [viewqwe addSubview:view];
+
+    [[UIApplication sharedApplication].keyWindow addSubview:viewqwe];
+    
+    
     
 }
 

@@ -37,6 +37,8 @@
 
 #define JKShowPicture @"JKShowPicture"
 
+#define JKVersionKey @"JKVersionKey"
+
 // 缓存中的关键字
 #define JKFileCategory @"MenuDataCategory"
 

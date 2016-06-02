@@ -91,7 +91,7 @@ static NSString * const LKStoreCellID = @"store";
     self.automaticallyAdjustsScrollViewInsets= NO;
     
     // 加载测试用按钮
-    [self setUpTestBtn];
+//    [self setUpTestBtn];
     
     // 跳转页面时，加载loading动画；
     [self setUpHud];
@@ -99,15 +99,16 @@ static NSString * const LKStoreCellID = @"store";
     // 初始化导航栏
     [self setUpNavationBar];
     
-    //初始化表格
+    // 初始化表格
     [self setUpTableView];
     
-    //加载刷新功能
+    // 加载刷新功能
     [self setUpRefresh];
     
-    //加载菜单栏
+    // 加载菜单栏
     [self setUpToolBar];
     
+    // 首次进入时的下拉刷新
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
         [self loadNewStores];
@@ -357,8 +358,6 @@ static NSString * const LKStoreCellID = @"store";
                         
                         self.addNewParams[@"radius"] = @([paramter intValue]);
 
-                        JKLog(@"[paramter intValue]：%d", [paramter intValue]);
-
                         [self loadNewStores];
 
                         break;
@@ -459,8 +458,6 @@ static NSString * const LKStoreCellID = @"store";
 // 菜单栏数据的代理方法
 - (void)returnMenuDataWithTitles:(NSArray *)titles LeftArray:(NSArray *)leftArray RightArray:(NSArray *)rightArray
 {
-//    JKLog(@"titles:%@,Left:%@,Right:%@", titles, leftArray, rightArray);
-    
     self.dataIndexArray = rightArray;
     
     // 根据返回的数据创建菜单栏
@@ -568,12 +565,6 @@ static NSString * const LKStoreCellID = @"store";
 // 加载新数据
 - (void)loadNewStores
 {
-    JKLog(@"上拉");
-    
-    NSThread *thread = [NSThread currentThread];
-    
-    JKLog(@"%@",thread);
-    
     // 结束下拉刷新，避免冲突
     [self.tableView.mj_footer endRefreshing];
     
@@ -612,7 +603,7 @@ static NSString * const LKStoreCellID = @"store";
         [self.tableView.mj_header endRefreshing];
         
         [self.hud dismiss];
-        JKLog(@"load");
+
         // 清空页码，最小值为1；
         self.page = 1;
        

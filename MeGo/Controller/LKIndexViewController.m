@@ -30,16 +30,26 @@
 /** stars*/
 @property (nonatomic, strong) UIImageView *starsView;
 
+/** starsBundle*/
+@property (nonatomic, strong) UIImageView *starsViewBundle;
+
 /** stars第二张*/
 @property (nonatomic, strong) UIImageView *starsViewSec;
 
+/** stars第二张的Bundle*/
+@property (nonatomic, strong) UIImageView *starsViewSecBundle;
+
 /** starsCloud*/
 @property (nonatomic, strong) UIImageView *starsCloud;
+
+/** starsCloudBundle*/
+@property (nonatomic, strong) UIImageView *starsCloudBundle;
 
 @end
 
 @implementation LKIndexViewController
 
+#pragma mark - 初始化操作
 - (CLLocationManager *)locationManager
 {
     if (!_locationManager) {
@@ -73,6 +83,9 @@
     
     [super viewDidLoad];
     
+    // 显示statusBar
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+    
     // 用户首次打开软件时调用
     // 开关控制
     int isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:JKShowPicture] intValue];
@@ -80,17 +93,12 @@
     if (!isOn) {
         [[NSUserDefaults standardUserDefaults] setObject:@(2) forKey:JKShowPicture];
     }
-    JKLog(@"%d",isOn);
     
     // 设置控制器属性，以免控件被偏移出理想位置；
     self.automaticallyAdjustsScrollViewInsets = NO;
     
 //    self.view.backgroundColor = JKGlobalBg;
     self.view.backgroundColor = [UIColor blackColor];
-//
-//    self.view.autoresizingMask = YES;
-//    
-//    self.view.autoresizesSubviews = YES;
     
     [self setUpNavigation];
     
@@ -104,43 +112,12 @@
 
 }
 
-#pragma mark - tabbar指示器消失BUG修复代码
-// 控制器显示时调用
-- (void)viewWillAppear:(BOOL)animated
-{
-    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
-    
-    tabbarController.indicator.hidden = NO;
-    
-    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
-    
-    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
-    
-    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
-    JKLogFunction;
-}
-
-// 控制器显示时调用
-- (void)viewWillLayoutSubviews
-{
-    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
-    
-    tabbarController.indicator.hidden = NO;
-    
-    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
-    
-    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
-    JKLogFunction;
-    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
-}
-
-
 - (void)setUpBackgroundView
 {
     UIView *imageView = [[UIView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 559 / 375))];
     
-    UIImageView *lightView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 559 / 375))];
-    lightView.image = [UIImage imageNamed:@"light"];
+//    UIImageView *lightView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.width * 559 / 375))];
+//    lightView.image = [UIImage imageNamed:@"light"];
     
     UIImageView *starsView = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
     starsView.image = [UIImage imageNamed:@"stars"];
@@ -148,9 +125,29 @@
     UIImageView *starsViewSec = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
     starsViewSec.image = [UIImage imageNamed:@"starsSec"];
     
-    UIImageView *starsCloud = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
-    starsCloud.image = [UIImage imageNamed:@"starCloud"];
+    self.starsViewBundle = [[UIImageView alloc] initWithFrame:(CGRectMake(LKScreenSize.width *2, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
+    self.starsViewBundle.image = [UIImage imageNamed:@"stars"];
     
+    self.starsViewSecBundle = [[UIImageView alloc] initWithFrame:(CGRectMake(LKScreenSize.width *2, 0, LKScreenSize.width * 2, LKScreenSize.width * 559 / 375))];
+    self.starsViewSecBundle.image = [UIImage imageNamed:@"starsSec"];
+    
+    UIImageView *starsCloud = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 960 / 640))];
+    starsCloud.image = [UIImage imageNamed:@"cloudyLaydown"];
+    
+    UIImageView *starsCloud2 = [[UIImageView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width * 2, LKScreenSize.width * 960 / 640))];
+    starsCloud2.image = [UIImage imageNamed:@"cloudyLaydown"];
+    
+    self.starsCloudBundle = [[UIImageView alloc] initWithFrame:(CGRectMake(LKScreenSize.width * 2, 0, LKScreenSize.width * 2, LKScreenSize.width * 960 / 640))];
+    starsCloud2.image = [UIImage imageNamed:@"cloudyLaydown"];
+    
+    // LOGO位置计算
+    CGFloat width = LKScreenSize.width;
+    CGFloat margin = (width - 60 * 4) / (4 + 1);
+    CGFloat height = margin * 2.5 + 81 * 2 + 28 ;
+    UIImageView *logoView = [[UIImageView alloc] initWithFrame:(CGRectMake(width /4, height + (LKScreenSize.height - height- width /4 - 108)/2, width /2, width /4))];
+    logoView.image = [UIImage imageNamed:@"MeGo"];
+
+    // 添加view
     self.starsView = starsView;
     self.starsViewSec = starsViewSec;
     self.starsCloud = starsCloud;
@@ -159,7 +156,14 @@
 //    [imageView addSubview:lightView];
     [imageView addSubview:starsView];
     [imageView addSubview:starsViewSec];
+    [imageView addSubview:self.starsViewBundle];
+    [imageView addSubview:self.starsViewSecBundle];
     [imageView addSubview:starsCloud];
+    [imageView addSubview:starsCloud2];
+    [imageView addSubview:self.starsCloudBundle];
+//    [imageView bringSubviewToFront:logoView];
+    [imageView addSubview:logoView];
+
 
     // 自动播放开关，耗用CPU2%
 //    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(starViewAnimation)];
@@ -169,34 +173,35 @@
     
     [self.view addSubview:imageView];
 }
-+ (void)initialize
-{
-    JKLog(@"123");
-}
 
-static CGFloat _starX = 0;
-static CGFloat _starSecX = 0;
-static CGFloat _starCloudX = 0;
-
+// ScrollView的滚动关联动画
 - (void)starViewAnimation
 {
-    _starSecX -= 0.5;
-    _starX -= 0.6;
-    _starCloudX -= 0.3;
-
+    self.starsViewSec.x         -= 0.5;
+    self.starsViewSecBundle.x   -= 0.5;
+    self.starsView.x            -= 0.7;
+    self.starsViewBundle.x      -= 0.7;
+    self.starsCloud.x           -= 0.3;
+    self.starsCloudBundle.x     -= 0.3;
     
-    if (_starX < - LKScreenSize.width) {
-        _starX = 0;
+    if (self.starsView.x < - LKScreenSize.width *2) {
+        self.starsView.x = CGRectGetMaxX(self.starsViewBundle.frame);
     }
-    if (_starSecX < - LKScreenSize.width) {
-        _starSecX = 0;
+    if (self.starsViewSec.x < - LKScreenSize.width *2) {
+        self.starsViewSec.x = CGRectGetMaxX(self.starsViewSecBundle.frame);
     }
-    if (_starCloudX < - LKScreenSize.width) {
-        _starCloudX = 0;
+    if (self.starsViewBundle.x < - LKScreenSize.width *2) {
+        self.starsViewBundle.x = CGRectGetMaxX(self.starsView.frame);
     }
-    self.starsCloud.x = _starCloudX;
-    self.starsView.x = _starX;
-    self.starsViewSec.x = _starSecX;
+    if (self.starsViewSecBundle.x < - LKScreenSize.width *2) {
+        self.starsViewSecBundle.x = CGRectGetMaxX(self.starsViewSec.frame);
+    }
+    if (self.starsCloud.x  < - LKScreenSize.width *2) {
+        self.starsCloud.x  = CGRectGetMaxX(self.starsCloudBundle.frame);
+    }
+    if (self.starsCloudBundle.x  < - LKScreenSize.width *2) {
+        self.starsCloudBundle.x  = CGRectGetMaxX(self.starsCloud.frame);
+    }
 }
 
 // 走马灯ScrollView
@@ -370,8 +375,37 @@ static CGFloat _starCloudX = 0;
     self.hidesBottomBarWhenPushed = NO;
 }
 
-#pragma mark - 获取位置信息
+#pragma mark - tabbar指示器消失BUG修复代码
+// 控制器显示时调用
+- (void)viewWillAppear:(BOOL)animated
+{
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
+    
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+    
+}
 
+// 控制器显示时调用
+- (void)viewWillLayoutSubviews
+{
+    LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
+    
+    tabbarController.indicator.hidden = NO;
+    
+    [self.tabBarController.view bringSubviewToFront:tabbarController.indicator];
+    
+    [self.tabBarController.view insertSubview:tabbarController.indicator aboveSubview:self.tabBarController.view];
+    
+    [tabbarController.indicator setFrame:tabbarController.indicator.frame];
+}
+
+#pragma mark - 获取位置信息
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     //    NSLog(@"定位到了");

@@ -84,8 +84,7 @@
     LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
     
     tabbarController.indicator.hidden = YES;
-    JKLog(@"%@",tabbarController.indicator);
-    
+
     [super pushViewController:viewController animated:animated];
 }
 
