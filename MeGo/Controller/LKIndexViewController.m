@@ -464,7 +464,7 @@
     
     params[@"category"] = storeVc.title;
     
-    JKLog(@"%@", location[0]);
+//    JKLog(@"%@", location[0]);
     
     if ([_delegate respondsToSelector:@selector(indexViewController:didClickBtnWithParams:)]) {
         

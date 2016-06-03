@@ -74,14 +74,10 @@
 // 点击立即体验按钮
 - (void)start
 {
-    // 跳转到核心界面,push,modal,切换跟控制器的方法
-    [UIApplication sharedApplication].keyWindow.rootViewController = [[LKTabbarController alloc] init];
-    JKLog(@"come");
-
-    CATransition *anim = [CATransition animation];
-    anim.duration = 0.5;
-    anim.type = @"rippleffect";
-    [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
+    if ([_delegate respondsToSelector:@selector(clickStarBtn)]) {
+        [_delegate clickStarBtn];
+    }
+    
 }
 
 @end

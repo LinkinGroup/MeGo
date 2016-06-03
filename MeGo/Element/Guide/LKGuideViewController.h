@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LKGuideViewDelegate <NSObject>
+
+- (void)clickStarBtn;
+
+@end
+
 @interface LKGuideViewController : UICollectionViewController
+
+/** 代理属性*/
+@property (weak, nonatomic) id<LKGuideViewDelegate> delegate;
 
 @end

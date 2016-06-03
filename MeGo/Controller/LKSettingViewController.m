@@ -11,9 +11,10 @@
 #import "LKCacheManage.h"
 #import <FlatUIKit/FlatUIKit.h>
 #import "LKTabbarController.h"
+#import "LKGuideViewController.h"
 
 
-@interface LKSettingViewController ()<UITableViewDataSource, UITableViewDelegate,  FUIAlertViewDelegate>
+@interface LKSettingViewController ()<UITableViewDataSource, UITableViewDelegate,  FUIAlertViewDelegate, LKGuideViewDelegate>
 
 /** 顶部图片*/
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -24,6 +25,8 @@
 /** 表格顶部*/
 @property (nonatomic, strong) UIImageView *tableHeaderView;
 
+/** 功能简介控制器*/
+@property (nonatomic, strong) LKGuideViewController *gvc;
 
 
 /** 显示商品数据的表格*/
@@ -86,6 +89,7 @@ static NSString * const LKSettingCellID = @"setting";
 // 控制器显示时调用
 - (void)viewWillAppear:(BOOL)animated
 {
+    // 处理tabbar指示器的消失问题
     LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
     
     tabbarController.indicator.hidden = NO;
@@ -96,6 +100,8 @@ static NSString * const LKSettingCellID = @"setting";
     
     [tabbarController.indicator setFrame:tabbarController.indicator.frame];
     
+    // 刷新数据，缓存大小
+    [self.tableView reloadData];
 }
 
 - (void)showIndicator
@@ -174,7 +180,7 @@ static NSString * const LKSettingCellID = @"setting";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -206,9 +212,14 @@ static NSString * const LKSettingCellID = @"setting";
         case 1:
             cell.textLabel.text = @"清除缓存";
             
-//            CGFloat tmpSize = [LKTmpManage checkTmpSize];
-//            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1fM",tmpSize];
+            CGFloat cacheSize = [LKCacheManage checkCacheSize];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1fM",cacheSize];
+            break;
             
+        case 2:
+            cell.textLabel.text = @"功能简介";
+            
+            break;
             
         default:
             break;
@@ -240,7 +251,6 @@ static NSString * const LKSettingCellID = @"setting";
         self.headerHudImageView.frame = rectHud;
         self.headerHudImageView.center = self.headerImageView.center;
         self.tableHeaderView.clipsToBounds = NO;
-        JKLog(@"%@",NSStringFromCGRect(self.headerHudImageView.frame));
         
     }else {
         // 复位，处理6Plus下拉时Hudview放大后无法归位问题；
@@ -316,9 +326,33 @@ static NSString * const LKSettingCellID = @"setting";
             [alert show];
             
             break;}
+            
+        case 2:{
+            
+            LKGuideViewController *gvc = [[LKGuideViewController alloc] init];
+            
+            [self.navigationController presentViewController:gvc animated:YES completion:^{
+                
+                gvc.delegate = self;
+            }];
+            
+            self.gvc = gvc;
+            
+            break;}
+            
         default:
             break;
     }
+}
+
+- (void)clickStarBtn
+{
+    [self.gvc dismissViewControllerAnimated:YES completion:^{
+        
+        // 显示statusBar
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        
+    }];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

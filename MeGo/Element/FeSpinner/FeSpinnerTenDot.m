@@ -376,7 +376,7 @@
 }
 -(void) cleanUp
 {
-    JKLog(@"Clean up");
+//    JKLog(@"Clean up");
     if (objectForExecuting)
         objectForExecuting = nil;
     if (methodForExecuting)

@@ -8,8 +8,9 @@
 
 #import "LKGuideViewController.h"
 #import "LKGuideViewCell.h"
+#import "LKTabbarController.h"
 
-@interface LKGuideViewController ()
+@interface LKGuideViewController ()<LKGuideViewCellDelegate>
 
 @property (nonatomic, assign) CGFloat lastOffsetY;
 
@@ -257,6 +258,8 @@ static NSString * const reuseIdentifier = @"Cell";
             self.sloganView1.image = [UIImage imageNamed:@"sloganLast"];
             self.sloganView1.alpha = 0;
             
+            cell.delegate = self;
+            
             break;
             
         default:
@@ -270,6 +273,30 @@ static NSString * const reuseIdentifier = @"Cell";
     
     return cell;
     
+}
+
+- (void)clickStarBtn
+{
+    // 跳转到核心界面,push,modal,切换跟控制器的方法
+    
+    if ([_delegate respondsToSelector:@selector(clickStarBtn)]) {
+        [_delegate clickStarBtn];
+        return;
+    }
+    
+    JKLog(@"%@",self.tabBarController);
+    if (self.tabBarController) {
+        [UIApplication sharedApplication].keyWindow.rootViewController = self.tabBarController;
+    }else{
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[LKTabbarController alloc] init];
+    }
+    
+    
+    CATransition *anim = [CATransition animation];
+    anim.duration = 0.5;
+    anim.type = @"rippleffect";
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:anim forKey:nil];
+
 }
 
 - (void)viewDidLoad
