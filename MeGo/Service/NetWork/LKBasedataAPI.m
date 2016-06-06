@@ -175,7 +175,7 @@
     if (!params) {
         params = [NSMutableDictionary dictionary];
     }
-    //获取城市参数字典
+    //获取商户参数字典
     params = [LKRequestParamters delicacyStoreParamtersWithParams:params];
     
     //取出带有签名信息的url

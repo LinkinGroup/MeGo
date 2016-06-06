@@ -317,7 +317,7 @@ static NSString * const LKStoreCellID = @"store";
 #pragma mark - 下拉菜单的代理方法(业务逻辑)
 - (void)menuSelectedButtonIndex:(NSInteger)index LeftIndex:(NSInteger)left RightIndex:(NSInteger)right
 {
-    JKLog(@"ButtonIndex:%ld, Left:%ld, Right:%ld",index,left,right);
+    JKLog(@"ButtonIndex:%ld, Left:%ld, Right:%ld",(long)index,(long)left,(long)right);
     
     NSString *paramter = self.dataIndexArray[index][left][right];
     

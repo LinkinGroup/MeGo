@@ -28,6 +28,14 @@
 #define JKLog(...)
 #endif
 
+#ifdef DEBUG
+#define JKLogFunction JKLog(@"%s", __func__)
+#else
+#define JKLogFunction JKLog(@"%s", __func__)
+#endif
+
+
+#pragma mark - 偏好设置中的缓存关键字
 // 偏好设置中的缓存关键字
 #define JKCity @"JKCity"
 
@@ -39,6 +47,12 @@
 
 #define JKVersionKey @"JKVersionKey"
 
+#define JKVersionKey @"JKVersionKey"
+
+#define JKCurrentCity @"JKCurrentCity"
+
+
+#pragma mark - 缓存中的关键字
 // 缓存中的关键字
 #define JKFileCategory @"MenuDataCategory"
 
@@ -47,7 +61,8 @@
 #define JKFileTimeForCategory @"JKFileTimeForCategory"
 
 
-
+#pragma mark - 统一变量
+// 统一变量
 #define JKLogFunction JKLog(@"%s", __func__)
 
 #define JKCloudsColor JKRGBColor(236, 240, 241)

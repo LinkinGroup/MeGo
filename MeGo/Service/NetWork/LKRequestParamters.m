@@ -9,6 +9,7 @@
 #import "LKRequestParamters.h"
 #import "LKEncryption.h"
 #import <CoreLocation/CoreLocation.h>
+#import "LKUserDefaults.h"
 
 @interface LKRequestParamters ()<CLLocationManagerDelegate>
 
@@ -35,39 +36,39 @@
 }
 
 #pragma mark - 业务参数
-//获取当前城市的地区信息
+// 获取当前城市的地区信息
 + (NSMutableDictionary *)locationParamters
 {
     NSString *url = @"http://api.dianping.com/v1/metadata/get_regions_with_businesses";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    //关键参数
+    // 关键参数
     params[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
     
-    //获取参数
+    // 获取参数
     params = [self  paramtersWithBaseUrl:url paramters:params];
     
     return params;
 }
 
-//获取可选类型
+// 获取可选类型
 + (NSMutableDictionary *)categoryParamters
 {
     NSString *url = @"http://api.dianping.com/v1/metadata/get_categories_with_businesses";
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    //关键参数
+    // 关键参数
     params[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
     
-    //获取参数
+    // 获取参数
     params = [self  paramtersWithBaseUrl:url paramters:params];
     
     return params;
 }
 
-//获取可选城市
+// 获取可选城市
 + (NSMutableDictionary *)cityParamters
 {
     // 支持点评业务的地市API：@"http://api.dianping.com/v1/metadata/get_cities_with_businesses"
@@ -78,21 +79,35 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    //获取参数
+    // 获取参数
     params = [self  paramtersWithBaseUrl:url paramters:params];
     
     return params;
 }
 
-//获取美食商户
+// 获取美食商户
 + (NSMutableDictionary *)delicacyStoreParamtersWithParams:(NSMutableDictionary *)params
 {
     NSString *url = @"http://api.dianping.com/v1/business/find_businesses";
     
-    //关键参数
-    params[@"city"] = [[NSUserDefaults standardUserDefaults] objectForKey:JKCity];
+    // 关键参数
+    // 判断是否为GPRS定位城市
+    NSString *GPRSCity = [LKUserDefaults objectForKey:JKCurrentCity];
+    NSString *selectedCity = [LKUserDefaults objectForKey:JKCity];
     
-    //获取参数
+    if ([GPRSCity isEqualToString:selectedCity]) {
+         // 所选城市是GPRS定位城市：
+        params[@"city"] = selectedCity;
+    }else{
+        // 所选城市不是GPRS定位城市：
+        params[@"city"] = selectedCity;
+        params[@"latitude"] = nil;
+        params[@"longitude"] = nil;
+
+    }
+    params[@"city"] = [LKUserDefaults objectForKey:JKCity];
+    
+    // 获取参数
     params = [self paramtersWithBaseUrl:url paramters:params];
     
     return params;

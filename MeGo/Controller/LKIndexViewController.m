@@ -24,6 +24,9 @@
 /** 位置管理者 */
 @property (nonatomic, strong) CLLocationManager *locationManager;
 
+/** 城市定位*/
+@property (nonatomic, strong) CLGeocoder *geoCoder;
+
 /** 导航栏地址按钮*/
 @property (nonatomic, strong) UIBarButtonItem *leftButtonItem;
 
@@ -49,7 +52,7 @@
 
 @implementation LKIndexViewController
 
-#pragma mark - 初始化操作
+#pragma mark - 懒加载
 - (CLLocationManager *)locationManager
 {
     if (!_locationManager) {
@@ -79,6 +82,15 @@
     return _locationManager;
 }
 
+- (CLGeocoder *)geoCoder
+{
+    if (!_geoCoder) {
+        _geoCoder = [[CLGeocoder alloc] init];
+    }
+    return _geoCoder;
+}
+
+#pragma mark - 初始化操作
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -421,19 +433,48 @@
     // 写入缓存
     [LKUserDefaults saveLocation:[locations lastObject]];
     
-#warning 下一版本开启
+    // 城市定位中的字符转为中文
+    // 保存 Device 的现语言 (英语 法语 ，，，)
+    NSMutableArray
+    *userDefaultLanguages = [[NSUserDefaults standardUserDefaults]
+                             objectForKey:@"AppleLanguages"];
+    
+    // 强制 成 简体中文
+    [[NSUserDefaults
+      standardUserDefaults] setObject:[NSArray arrayWithObjects:@"zh-hans",
+                                       nil] forKey:@"AppleLanguages"];
+    
     // 城市定位
-//    CLGeocoder * geoCoder = [[CLGeocoder alloc] init];
-//    
-//    [geoCoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-//        
-//        for (CLPlacemark * placemark in placemarks) {
-//            
-//            NSDictionary *test = [placemark addressDictionary];
-//            //  Country(国家)  State(城市)  SubLocality(区)
-//            NSLog(@"%@", [test objectForKey:@"State"]);
-//        }
-//    }];
+    [self.geoCoder reverseGeocodeLocation:[locations lastObject] completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        CLPlacemark * placemark = [placemarks firstObject];
+        
+        // 获取当前城市方法1：
+//        NSDictionary *test = [placemark addressDictionary];
+        //  Country(国家)  State(城市)  SubLocality(区)
+//        JKLog(@"%@", [test objectForKey:@"State"]);
+        
+//        // 获取当前城市方法2：
+//        JKLog(@"%@", placemark.locality);
+        NSString *currentCity = placemark.locality;
+        
+        // 截取字符
+        NSString *lastWord = [currentCity substringFromIndex:[currentCity length]-1];
+        NSString *GPRSCity = nil;
+        
+        if ([lastWord isEqualToString:@"市"] || [lastWord isEqualToString:@"省"]) {
+            GPRSCity = [currentCity substringToIndex:[currentCity length] -1];
+        }else{
+            GPRSCity = currentCity;
+        }
+        
+        [LKUserDefaults setObject:GPRSCity forKey:JKCurrentCity];
+        
+        // 还原Device 的语言
+        [[NSUserDefaults
+          standardUserDefaults] setObject:userDefaultLanguages
+         forKey:@"AppleLanguages"];
+    }];
 }
 
 // 位置信息获取失败反馈：

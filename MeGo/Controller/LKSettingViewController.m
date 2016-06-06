@@ -102,6 +102,16 @@ static NSString * const LKSettingCellID = @"setting";
     
     // 刷新数据，缓存大小
     [self.tableView reloadData];
+    JKLogFunction;
+
+}
+
+// 控制器显示时调用
+- (void)viewWillLayoutSubviews
+{
+    [self.tableView reloadData];
+    JKLogFunction;
+    
 }
 
 - (void)showIndicator
@@ -368,9 +378,13 @@ static NSString * const LKSettingCellID = @"setting";
             
             [LKCacheManage clearAllCache];
             
+            [self.tableView reloadData];
+            
         case 2:
             
             [LKCacheManage clearPics];
+            
+            [self.tableView reloadData];
             
         default:
             break;

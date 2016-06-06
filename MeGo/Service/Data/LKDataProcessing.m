@@ -12,6 +12,7 @@
 #import "LKCategoryModel.h"
 #import <MJExtension.h>
 #import "ChineseString.h"
+#import "LKUserDefaults.h"
 
 
 @implementation LKDataProcessing
@@ -58,8 +59,14 @@
     NSMutableArray *indexArray = [ChineseString IndexArray:cityArray];
     NSMutableArray *letterResultArr = [ChineseString LetterSortArray:cityArray];
     
+    // 加入热门城市
     [indexArray insertObject:@"热门" atIndex:0];
     [letterResultArr insertObject:hotCityArray atIndex:0];
+    
+    // 加入GPRS定位城市
+    [indexArray insertObject:@"定位" atIndex:0];
+    NSArray *GPRSArray = [NSArray arrayWithObjects:[LKUserDefaults objectForKey:JKCurrentCity], nil];
+    [letterResultArr insertObject:GPRSArray atIndex:0];
     
     // 生成数组
     NSMutableArray *locationArray = [NSMutableArray arrayWithObjects:indexArray, letterResultArr, nil];
@@ -86,6 +93,8 @@
     
     return modelArray;
 }
+
+#pragma mark - 私有方法
 
 
 
