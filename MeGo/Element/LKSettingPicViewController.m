@@ -123,7 +123,7 @@
     return cell;
 }
 
-- (void) switchChanged:(id)sender
+- (void)switchChanged:(id)sender
 {
     UISwitch* switchControl = sender;
     

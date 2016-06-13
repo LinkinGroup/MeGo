@@ -53,6 +53,9 @@
         [self.photoImageView sd_setImageWithURL:[NSURL URLWithString:store.s_photo_url]];
         
     }
+    self.photoImageView.layer.cornerRadius = 12;
+    self.photoImageView.clipsToBounds = YES;
+    
     self.nameLabel.text = store.name;
     
     self.priceLabel.text = [NSString stringWithFormat:@"￥%@/人", store.avg_price];

@@ -145,7 +145,7 @@
     [self changeButtonTitle:rightValue];
     
 #warning Alternative
-    //返回下标，如需返回选中值，则删除这三行；
+    //返回下标；如需返回选中值，则删除这三行；
     NSInteger titleInt = [buttonIndex intValue];
     NSInteger leftValueInt = [left intValue];
     NSInteger rightValueInt = [right intValue];
@@ -209,6 +209,33 @@
     UIButton *button = (UIButton *)[_button viewWithTag:_lastIndex];
     
     [button setTitle:menu forState:UIControlStateNormal];
+}
+
+#pragma mark - collectionView代理方法
+- (void)returnCollectionViewSelectedValue:(NSMutableArray *)filterArray
+{
+    NSString *buttonIndex = [NSString stringWithFormat:@"%ld",(long)_lastIndex - 10000];
+    if ([_delegate respondsToSelector:@selector(collectionViewMenuSelectedButtonIndex:Filter:)]) {
+        [_delegate collectionViewMenuSelectedButtonIndex:[buttonIndex intValue] Filter:filterArray];
+    }
+    
+    [self changButtonTitleColorWithFilter:filterArray];
+}
+
+// 改变筛选按钮的颜色
+- (void)changButtonTitleColorWithFilter:(NSMutableArray *)filterArray
+{
+    UIButton *button = (UIButton *)[_button viewWithTag:_lastIndex];
+    
+    // 判断是否有值
+    if (!filterArray.firstObject) {
+        
+        [button setTitleColor:[UIColor colorWithWhite:0.45 alpha:1] forState:UIControlStateNormal];
+        
+    }else {
+        
+        [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    }
 }
 
 @end

@@ -32,6 +32,10 @@ typedef enum {
 
 @interface LKStoreViewController ()<UITableViewDataSource, UITableViewDelegate, LKToolBarMenuDelegate, LKMenuDataProcessingDelegate, UITextFieldDelegate, LKNetWorkReloadViewDelegate>
 
+
+/** 表格数据数组*/
+@property (nonatomic, strong) NSMutableArray *stores;
+
 /** 蒙版*/
 @property (nonatomic, strong) FeSpinnerTenDot *hud;
 
@@ -51,6 +55,11 @@ typedef enum {
 /** 菜单栏数据*/
 @property (nonatomic, strong) LKToolBarMenu *toolBarMenu;
 
+/** 记录筛选请求数据*/
+@property (nonatomic, strong) NSMutableArray *lastFilterArray;
+
+/** 价格筛选*/
+@property (nonatomic, copy) NSString *priceLimit;
 
 
 /** 显示商品数据的表格*/
@@ -442,6 +451,43 @@ static NSString * const LKStoreCellID = @"store";
     }
 }
 
+- (void)collectionViewMenuSelectedButtonIndex:(NSInteger)index Filter:(NSMutableArray *)filterArray
+{
+    // 对比参数，是否有变化
+    NSMutableArray *array1 = [_lastFilterArray mutableCopy];
+    NSMutableArray *array2 = [filterArray mutableCopy];
+    
+    [array1 removeObjectsInArray:filterArray];
+    [array2 removeObjectsInArray:_lastFilterArray];
+    JKLog(@"array1:%@\narray2:%@",array1,array2);
+
+    
+    if ((array1.firstObject == nil && array2.firstObject == nil)) {
+        return;
+    }
+
+    _lastFilterArray = filterArray;
+    
+    // 初始化筛选数据
+    self.addNewParams[@"has_coupon"]                = nil;
+    self.addNewParams[@"has_deal"]                  = nil;
+    self.addNewParams[@"has_online_reservation"]    = nil;
+
+    for (NSString *param in filterArray) {
+        // [@"has_coupon"] = @(1);此参数已失效
+
+        if ([param isEqualToString:@"团购"]){
+            self.addNewParams[@"has_deal"] = @(1);
+        }else if ([param isEqualToString:@"预订"]){
+            self.addNewParams[@"has_online_reservation"] = @(1);
+        }else{
+            // 保存价格限制字段
+            _priceLimit = param;
+        }
+    }
+    [self loadNewStores];
+}
+
 #pragma mark - 获得菜单数据
 // 发送网络请求，获得菜单数据；
 - (void)setUpToolBar
@@ -568,7 +614,7 @@ static NSString * const LKStoreCellID = @"store";
     // 结束下拉刷新，避免冲突
     [self.tableView.mj_footer endRefreshing];
     
-    NSMutableDictionary *params = [self.addNewParams mutableCopy];//
+    NSMutableDictionary *params = [self.addNewParams mutableCopy];
     
     // 上拉刷新，初始化页码；
     NSInteger page = 1;
@@ -587,8 +633,8 @@ static NSString * const LKStoreCellID = @"store";
         // 判断是否为最新的一次请求参数，不是的话，立即返回；
         if (self.params != params) return;
         
-        // 获得数据
-        self.stores = responseObject;
+        // 获得数据, 判断价格
+        self.stores = [self priceFilterWith:responseObject];
 
         // 上拉时打开动画开关
         _isShowAnimation = 1;
@@ -632,6 +678,47 @@ static NSString * const LKStoreCellID = @"store";
     }];
 }
 
+- (NSMutableArray *)priceFilterWith:(NSMutableArray *)array
+{
+    if (!_priceLimit) {return array;}
+    
+    int price    = 0;
+    int mixLimit = 0;
+    int maxLimit = 0;
+    
+    // 价格限制
+    if ([_priceLimit isEqualToString:@"50以下"]) {
+        
+        mixLimit = -1;
+        maxLimit = 50;
+        
+    }else if ([_priceLimit isEqualToString:@"50-100"]){
+        
+        mixLimit = 50;
+        maxLimit = 100;
+        
+    }else if ([_priceLimit isEqualToString:@"100-300"]){
+        
+        mixLimit = 100;
+        maxLimit = 300;
+        
+    }else if ([_priceLimit isEqualToString:@"300以上"]){
+        
+        mixLimit = 300;
+        maxLimit = INT_MAX;
+    }
+    
+    NSMutableArray *arrayCopy = [array mutableCopy];
+    
+    for (LKDelicacyStoreModel *store in array) {
+        price = [store.avg_price intValue];
+        if (!(price > mixLimit && price <maxLimit)) {
+            [arrayCopy removeObject:store];
+        }
+    }
+    return arrayCopy;
+}
+
 // 加载更多数据
 - (void)loadMoreStores
 {
@@ -655,7 +742,7 @@ static NSString * const LKStoreCellID = @"store";
         if (self.params != params) return;
         
         //将数据加入到数组中
-        [self.stores addObjectsFromArray:responseObject];
+        [self.stores addObjectsFromArray:[self priceFilterWith:responseObject]];
         
         //动画开关关闭；
         _isShowAnimation = 0;
@@ -768,6 +855,8 @@ static NSString * const LKStoreCellID = @"store";
     
 //    self.tableView.autoresizingMask = NO;
     
+    self.tableView.showsVerticalScrollIndicator = NO;
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:self.tableView];
@@ -839,7 +928,7 @@ static NSString * const LKStoreCellID = @"store";
 //        } completion:^(BOOL finished) {
 //        }];
         
-    }else if (indexPath.row == 7){
+    }else if (indexPath.row == rows){
         
 //        动画开关关闭；
         _isShowAnimation = 0;

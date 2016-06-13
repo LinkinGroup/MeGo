@@ -11,6 +11,9 @@
 #import "LKLocationModel.h"
 #import "LKCategoryModel.h"
 #import "LKCacheManage.h"
+#import "LKCollectionModel.h"
+#import "LKCollectionItemModel.h"
+#import <MJExtension/MJExtension.h>
 
 @interface LKMenuDataProcessing ()
 
@@ -39,7 +42,8 @@
         // titles;
         self.titles = @[@"附近",
                         title,
-                        @"智能排序"];
+                        @"智能排序",
+                        @"筛选"];
     }
     return self;
 }
@@ -53,16 +57,23 @@
         // 智能排序数据准备；
         NSMutableArray *sortArray = [LKMenuDataProcessing setUpSortArray];
         
+        // 筛选数据准备
+        NSMutableArray *filterArray = [LKMenuDataProcessing setUpFilterArray];
+        
         // leftArray;
         NSArray *leftArray = [[NSArray alloc] initWithObjects:self.districts,
                               self.categories,
-                              [[NSArray alloc] init], nil];
+                              [[NSArray alloc] init],
+                              filterArray,
+                              nil];
         
         
         // rightArray;
         NSArray *rightArray = [[NSArray alloc] initWithObjects:self.locations,
                                self.subcategories,
-                               sortArray, nil];
+                               sortArray,
+                               [[NSArray alloc] init],
+                               nil];
 
         if ([_delegate respondsToSelector:@selector(returnMenuDataWithTitles:LeftArray:RightArray:)]) {
         [_delegate returnMenuDataWithTitles:self.titles LeftArray:leftArray RightArray:rightArray];
@@ -166,7 +177,7 @@
         
         return;
     }
-/************************************** 没有缓存时 **************************************/
+/********************************* 没有缓存时 *********************************/
 
     // 创建临时数组，储存遍历出的数据
     NSMutableArray *categoriesArray = [NSMutableArray array];
@@ -254,6 +265,44 @@
     NSMutableArray *sortArray = [[NSMutableArray alloc] initWithObjects:array, nil];
 
     return sortArray;
+}
+
+// 筛选数组
++ (NSMutableArray *)setUpFilterArray
+{
+    // 数据
+    // Section0
+    NSDictionary *items0Dict0 = [NSDictionary dictionaryWithObjectsAndKeys:@"满减", @"text", nil];
+    NSDictionary *items0Dict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"团购", @"text", nil];
+    
+    NSArray *items0ArrayNormal = [NSArray arrayWithObjects:items0Dict1, nil];
+    NSMutableArray *items0Array = [LKCollectionItemModel mj_objectArrayWithKeyValuesArray:items0ArrayNormal];
+    
+    NSMutableDictionary *items0 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"优惠", @"name",  items0Array,  @"items",  nil];
+    
+    // Section1
+    NSDictionary *items1Dict0 = [NSDictionary dictionaryWithObjectsAndKeys:@"预订", @"text", nil];
+    
+    NSArray *items1ArrayNormal = [NSArray arrayWithObjects:items1Dict0, nil];
+    NSMutableArray *items1Array = [LKCollectionItemModel mj_objectArrayWithKeyValuesArray:items1ArrayNormal];
+    //        NSArray *items1Array = [NSArray arrayWithObjects:@"预订", nil];
+    NSMutableDictionary *items1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"服务", @"name",  items1Array,  @"items",  nil];
+    
+    // Section2
+    NSDictionary *items2Dict0 = [NSDictionary dictionaryWithObjectsAndKeys:@"50以下", @"text", nil];
+    NSDictionary *items2Dict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"50-100", @"text", nil];
+    NSDictionary *items2Dict2 = [NSDictionary dictionaryWithObjectsAndKeys:@"100-300", @"text", nil];
+    NSDictionary *items2Dict3 = [NSDictionary dictionaryWithObjectsAndKeys:@"300以上", @"text", nil];
+    
+    NSArray *items2ArrayNormal = [NSArray arrayWithObjects:items2Dict0, items2Dict1, items2Dict2, items2Dict3, nil];
+    NSMutableArray *items2Array = [LKCollectionItemModel mj_objectArrayWithKeyValuesArray:items2ArrayNormal];
+    
+    NSMutableDictionary *items2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"价格", @"name",  items2Array,  @"items",  nil];
+    
+    NSArray *array = [NSArray arrayWithObjects:items0, items1, items2, nil];
+    NSMutableArray *filterArray = [LKCollectionModel mj_objectArrayWithKeyValuesArray:array];
+
+    return filterArray;
 }
 
 @end

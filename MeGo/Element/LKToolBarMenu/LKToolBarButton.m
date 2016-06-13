@@ -185,7 +185,6 @@
 // 专门提供给Menu的方法，用来监听tableView的点击
 - (void)hideMenuWithIndex:(NSString *)btnIndex
 {
-    
     //字符串等于点击的内容
     _lastTapObj = btnIndex;
     

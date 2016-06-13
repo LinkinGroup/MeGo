@@ -148,6 +148,8 @@ static NSString *LKLocationCellID = @"Cell";
     
     if ([textName isEqualToString:@"热门"]) {
         textName = @"热门城市";
+    }else if ([textName isEqualToString:@"定位"]){
+        textName = @"GPRS定位城市";
     }
     
     lab.text = [NSString stringWithFormat:@"   %@", textName];

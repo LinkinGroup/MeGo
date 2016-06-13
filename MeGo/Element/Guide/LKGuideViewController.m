@@ -418,8 +418,6 @@ static NSString * const reuseIdentifier = @"Cell";
         self.storeView2.center = CGPointMake(width /4 +width /9 /2, height *0.04 + width*0.825 - width *0.025);
         self.storeView3.center = CGPointMake(width *3 /4 , height *0.04 + width*0.825 + width *0.05 - width *0.025);
         
-        
-        
     }else if (y == height *2){
     
         // 第三页效果显示
@@ -427,6 +425,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.storeView1.alpha = 1;
         self.storeView2.alpha = 1;
         self.storeView3.alpha = 1;
+        
         // 商户图片尺寸固定
         stWidth  = width /2;
         stHeight = width *3 /4;
@@ -437,7 +436,6 @@ static NSString * const reuseIdentifier = @"Cell";
         self.storeView1.center = CGPointMake(width /2 +width /9 /2, height - width *0.375 - width *0.025 - width *0.025 );
         self.storeView2.center = CGPointMake(width /4 +width /9 /2, height *0.04 + width*0.825 - width *0.025);
         self.storeView3.center = CGPointMake(width *3 /4 , height *0.04 + width*0.825 + width *0.05 - width *0.025);
-        
     
     }else if (y > height *2 && y < height * 2.26){
         

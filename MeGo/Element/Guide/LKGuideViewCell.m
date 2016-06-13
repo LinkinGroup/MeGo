@@ -68,7 +68,6 @@
     }else{
         self.startButton.hidden = YES;
     }
-    
 }
 
 // 点击立即体验按钮

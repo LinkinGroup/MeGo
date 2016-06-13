@@ -106,14 +106,6 @@ static NSString * const LKSettingCellID = @"setting";
 
 }
 
-// 控制器显示时调用
-- (void)viewWillLayoutSubviews
-{
-    [self.tableView reloadData];
-    JKLogFunction;
-    
-}
-
 - (void)showIndicator
 {
     LKTabbarController *tabbarController = (LKTabbarController *)self.tabBarController;
@@ -190,7 +182,7 @@ static NSString * const LKSettingCellID = @"setting";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -222,12 +214,19 @@ static NSString * const LKSettingCellID = @"setting";
         case 1:
             cell.textLabel.text = @"清除缓存";
             
+#warning 缓存显示开关
             CGFloat cacheSize = [LKCacheManage checkCacheSize];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.1fM",cacheSize];
             break;
             
         case 2:
             cell.textLabel.text = @"功能简介";
+            
+            break;
+            
+        case 3:
+            
+            cell.textLabel.text = @"审判MeGo";
             
             break;
             
@@ -350,6 +349,12 @@ static NSString * const LKSettingCellID = @"setting";
             
             break;}
             
+        case 3:
+            
+            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id1120321577?mt=8"]];
+            
+            break;
+            
         default:
             break;
     }
@@ -371,6 +376,8 @@ static NSString * const LKSettingCellID = @"setting";
     switch (buttonIndex) {
             
         case 0:
+            
+            [self.tableView reloadData];
             
             break;
             

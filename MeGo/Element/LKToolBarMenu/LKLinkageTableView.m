@@ -50,6 +50,7 @@
         
         [self initFirstTableViewWithFrame:frame];
         [self initSecondTableViewWithFrame:frame];
+        [self initCollectionViewWithFrame:frame];
         
         // 添加表格的父控件，表格的隐藏触发View;
         [self.view addSubview:_rootView];
@@ -107,6 +108,41 @@
     
     // 添加表格
     [_rootView addSubview:_secondTableView];
+}
+
+// 创建collectionView
+- (void)initCollectionViewWithFrame:(CGRect)frame
+{
+    // 取得collectionView数据
+    NSInteger count = _rightItems.count;
+    NSInteger index = 0;
+    NSMutableArray *collectionIndexArray = [NSMutableArray array];
+//    NSMutableArray *filterArray = [NSMutableArray array];
+    
+    for (int i = 0; i < count; i++) {
+        if ([_rightItems[i] count] == 0) {
+            index = i;
+            [collectionIndexArray addObject:@(index)];
+        }
+    }
+    NSMutableDictionary *filterDict = [NSMutableDictionary dictionary];
+    if (collectionIndexArray.count>0) {
+        for (int j = 0; j < collectionIndexArray.count; j++) {
+            index = [collectionIndexArray[j] intValue];
+            [filterDict setObject:_leftItems[index] forKey:@(index)];
+        }
+    }
+    // 创建collectionView
+    _collectionView = [[LKCollectionView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height *0.7) Dict:filterDict];
+    
+    // 隐藏滚动条
+//    _collectionView.showsVerticalScrollIndicator = NO;
+    
+    // 设置数据源和代理
+    _collectionView.delegate = self;
+    
+    // 添加表格
+    [_rootView addSubview:_collectionView];
 }
 
 #pragma mark - 表格代理
@@ -292,7 +328,13 @@
         // 刷新数据
         [self reloadTableViewData:index];
         [self showSingleOrDouble];
-        [self showLastSelectedLeft:left Right:right];
+        
+        // 判断是否为CollectionView
+        if ([_rightItems[index] count] > 0) {
+            [self showLastSelectedLeft:left Right:right];
+        }else{
+            [_collectionView showCollectionViewWithIndex:index];
+        }
         
         _rootView.center = CGPointMake(self.view.frame.size.width / 2, 0 - _rootView.bounds.size.height / 2);
         [UIView animateWithDuration:0.3 animations:^{
@@ -304,24 +346,42 @@
 }
 
 //按了不同按钮,刷新菜单数据
-- (void)reloadTableViewData:(NSInteger)index {
-    
+- (void)reloadTableViewData:(NSInteger)index
+{
     _leftArray = [[NSArray alloc] initWithArray:[_leftItems objectAtIndex:index]];
     _rightArray = [[NSArray alloc] initWithArray:[_rightItems objectAtIndex:index]];
 }
 
 - (void)showSingleOrDouble {
-    if (_leftArray.count <= 0) {
+    
+    if (_leftArray.count <= 0 && _rightArray.count > 0) {
+        
         [_firstTableView setHidden:YES];
+        [_secondTableView setHidden:NO];
+        [_collectionView setHidden:YES];
+
         _secondTableView.frame = CGRectMake( 0, 0, LKScreenSize.width, LKScreenSize.height *0.7);
-    } else {
+        
+    } else if (_leftArray.count > 0  && _rightArray.count > 0){
+        
         [_firstTableView setHidden:NO];
+        [_secondTableView setHidden:NO];
+        [_collectionView setHidden:YES];
+
+
         _secondTableView.frame = CGRectMake(LKScreenSize.width / 2, 0, LKScreenSize.width, LKScreenSize.height *0.7);
+        
+    }else {
+        [_firstTableView setHidden:YES];
+        [_secondTableView setHidden:YES];
+        [_collectionView setHidden:NO];
+
+        
     }
 }
 
 //渐渐隐藏菜单
-#warning 可修改此处
+#warning 可修改此处, 改变隐藏菜单时的动画
 - (void)hideTableView {
     
     isHidden = YES;
@@ -364,6 +424,15 @@
     [_secondTableView reloadData];
     NSIndexPath *rightSelectedIndexPath = [NSIndexPath indexPathForRow:right inSection:0];
     [_secondTableView selectRowAtIndexPath:rightSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+}
+
+- (void)didClickConfirmBtnWithParameter:(NSMutableArray *)filterArray
+{
+    if ([_delegate respondsToSelector:@selector(returnCollectionViewSelectedValue:)]) {
+        [_delegate returnCollectionViewSelectedValue:filterArray];
+    }
+    
+    [self hideTableView];
 }
 
 @end

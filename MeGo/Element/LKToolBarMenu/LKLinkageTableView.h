@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LKCollectionView.h"
 
 @protocol LKLinkageTableViewDelegate <NSObject>
 
@@ -19,15 +19,20 @@
 
 - (void)hideMenuWithButtonIndex:(NSString *)btnIndex;
 
+@optional
+
+- (void)returnCollectionViewSelectedValue:(NSMutableArray *)filterArray;
+
 @end
 
 
-@interface LKLinkageTableView : UIViewController<UITableViewDelegate, UITableViewDataSource> {
+@interface LKLinkageTableView : UIViewController<UITableViewDelegate, UITableViewDataSource, LKcollectionViewDelegate> {
     
-    UIView *_rootView;              //添加表格使用
+    UIView *_rootView;              // 添加表格使用
     
-    UITableView *_firstTableView;   //左边表格
-    UITableView *_secondTableView;  //右边表格
+    UITableView *_firstTableView;       // 左边表格
+    UITableView *_secondTableView;      // 右边表格
+    LKCollectionView *_collectionView;  // collectionView
     
     NSArray *_leftItems;            // 左边表格数据数组
     NSArray *_rightItems;           // 右边表格数据数组

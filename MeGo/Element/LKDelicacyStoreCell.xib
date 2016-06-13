@@ -77,6 +77,18 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dianping57x57" translatesAutoresizingMaskIntoConstraints="NO" id="b3E-rg-mcg">
+                        <rect key="frame" x="348" y="13.5" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="2nZ-3z-bBO"/>
+                            <constraint firstAttribute="height" constant="18" id="fdw-7o-cdn"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="opU-0B-j2D" secondAttribute="trailing" constant="9" id="0rJ-nG-U4X"/>
@@ -85,12 +97,14 @@
                     <constraint firstItem="MuL-ul-4nX" firstAttribute="leading" secondItem="0sd-va-XbR" secondAttribute="trailing" constant="9" id="G2w-ZJ-n9L"/>
                     <constraint firstItem="MuL-ul-4nX" firstAttribute="top" secondItem="0sd-va-XbR" secondAttribute="top" constant="3" id="Ku5-ds-Z2a"/>
                     <constraint firstItem="aaS-Pp-IRR" firstAttribute="leading" secondItem="0sd-va-XbR" secondAttribute="trailing" constant="9" id="MZn-5P-iOh"/>
+                    <constraint firstItem="b3E-rg-mcg" firstAttribute="centerY" secondItem="MuL-ul-4nX" secondAttribute="centerY" id="PTE-3o-lH3"/>
                     <constraint firstItem="R1E-hN-VZJ" firstAttribute="top" secondItem="aaS-Pp-IRR" secondAttribute="top" id="UHz-dv-64C"/>
                     <constraint firstItem="qfx-SB-aNf" firstAttribute="bottom" secondItem="0sd-va-XbR" secondAttribute="bottom" constant="-3" id="bxr-fO-qD4"/>
                     <constraint firstItem="0sd-va-XbR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="emC-6v-MoI"/>
                     <constraint firstItem="R1E-hN-VZJ" firstAttribute="leading" secondItem="aaS-Pp-IRR" secondAttribute="trailing" constant="9" id="jV9-Nw-EaH"/>
                     <constraint firstItem="0sd-va-XbR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="ndf-yL-00Z"/>
                     <constraint firstItem="aaS-Pp-IRR" firstAttribute="top" secondItem="MuL-ul-4nX" secondAttribute="bottom" constant="9" id="pT3-cg-KbQ"/>
+                    <constraint firstAttribute="trailing" secondItem="b3E-rg-mcg" secondAttribute="trailing" constant="9" id="rgM-At-eju"/>
                     <constraint firstItem="8qP-FQ-VXs" firstAttribute="leading" secondItem="qfx-SB-aNf" secondAttribute="trailing" constant="9" id="t68-df-SNc"/>
                     <constraint firstItem="qfx-SB-aNf" firstAttribute="leading" secondItem="0sd-va-XbR" secondAttribute="trailing" constant="9" id="x7f-DG-fJ4"/>
                 </constraints>
@@ -104,7 +118,10 @@
                 <outlet property="priceLabel" destination="R1E-hN-VZJ" id="vGf-Tk-hAd"/>
                 <outlet property="starView" destination="aaS-Pp-IRR" id="oDO-ZO-pjF"/>
             </connections>
-            <point key="canvasLocation" x="138.5" y="149.5"/>
+            <point key="canvasLocation" x="138.5" y="151.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="dianping57x57" width="57" height="57"/>
+    </resources>
 </document>

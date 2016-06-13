@@ -35,6 +35,8 @@
 {
     self.webView.frame = LKScreenFrame;
     
+    self.webView.height -= 64;
+    
     [self.view addSubview:self.webView];
 }
 

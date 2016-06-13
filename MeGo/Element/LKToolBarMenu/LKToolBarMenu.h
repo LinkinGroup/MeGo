@@ -13,7 +13,10 @@
 @protocol LKToolBarMenuDelegate <NSObject>
 
 @optional
+
 - (void)menuSelectedButtonIndex:(NSInteger)index LeftIndex:(NSInteger)left RightIndex:(NSInteger)right;
+
+- (void)collectionViewMenuSelectedButtonIndex:(NSInteger)index Filter:(NSMutableArray *)filterArray;
 
 @end
 
