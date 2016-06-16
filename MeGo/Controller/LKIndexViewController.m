@@ -7,7 +7,6 @@
 //
 
 #import "LKIndexViewController.h"
-#import "LKCircularBtn.h"
 #import "LKStoreViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LKLocationViewController.h"
@@ -15,8 +14,8 @@
 #import "LKSearchingViewController.h"
 #import "LKBasedataAPI.h"
 #import "LKUserDefaults.h"
-#import "LKStarsView.h"
 #import "LKTabbarController.h"
+#import "LKCacheManage.h"
 
 
 @interface LKIndexViewController () <LKScrollViewDelegate, CLLocationManagerDelegate, LKLocationViewControllerDelegate>
@@ -97,7 +96,7 @@
     
     // 显示statusBar
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-    
+
     // 用户首次打开软件时调用
     // 开关控制
     int isOn = [[[NSUserDefaults standardUserDefaults] objectForKey:JKShowPicture] intValue];
@@ -401,6 +400,12 @@
     
     [tabbarController.indicator setFrame:tabbarController.indicator.frame];
     
+    // 缓存处理
+    if ([LKCacheManage checkCalendarByDayWithKey:JKFileTimeForPicture] > 3) {
+        
+        [LKCacheManage markTheTimeToKey:JKFileTimeForPicture];
+        [LKCacheManage clearPics];
+    };
 }
 
 // 控制器显示时调用
@@ -455,7 +460,7 @@
 //        JKLog(@"%@", [test objectForKey:@"State"]);
         
 //        // 获取当前城市方法2：
-//        JKLog(@"%@", placemark.locality);
+        JKLog(@"%@", placemark.locality);
         NSString *currentCity = placemark.locality;
         
         // 截取字符
@@ -469,7 +474,7 @@
         }
         
         [LKUserDefaults setObject:GPRSCity forKey:JKCurrentCity];
-        
+
         // 还原Device 的语言
         [[NSUserDefaults
           standardUserDefaults] setObject:userDefaultLanguages

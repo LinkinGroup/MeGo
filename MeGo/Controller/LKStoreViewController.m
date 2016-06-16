@@ -12,7 +12,6 @@
 #import <MJRefresh.h>
 #import "LKToolBarMenu.h"
 #import "LKMenuDataProcessing.h"
-#import "LKDelicacyStoreModel.h"
 #import "LKWebViewController.h"
 #import "FeSpinnerTenDot.h"
 #import "LKNetWorkReloadView.h"
@@ -93,7 +92,11 @@ static NSString * const LKStoreCellID = @"store";
     
     [super viewDidLoad];
     
-
+    // 缓存管理
+    if (![LKCacheManage checkCalendarByDayWithKey:JKFileTimeForPicture]) {
+        [LKCacheManage markTheTimeToKey:JKFileTimeForPicture];
+    }
+    
     self.view.backgroundColor = JKGlobalBg; // [UIColor orangeColor];
     
     // 设置控制器属性，以免控件被偏移出理想位置；
@@ -117,11 +120,6 @@ static NSString * const LKStoreCellID = @"store";
     // 加载菜单栏
     [self setUpToolBar];
     
-    // 首次进入时的下拉刷新
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    
-        [self loadNewStores];
-    });
 }
 
 - (void)setUpHud
@@ -309,6 +307,11 @@ static NSString * const LKStoreCellID = @"store";
 {
     self.addNewParams = params;
     
+    // 首次进入时的下拉刷新
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [self loadNewStores];
+    });
 //    [self loadNewStores];
 }
 
@@ -952,6 +955,12 @@ static NSString * const LKStoreCellID = @"store";
     [wvc.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:store.business_url]]];
     
     wvc.title = store.name;
+    self.delegate = wvc;
+    
+    // 传递模型
+    if ([_delegate respondsToSelector:@selector(pushWithStore:)]) {
+        [_delegate pushWithStore:store];
+    }
     
     // 隐藏tabbar
     self.hidesBottomBarWhenPushed = YES;

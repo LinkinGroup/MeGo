@@ -291,7 +291,6 @@ static NSString * const reuseIdentifier = @"Cell";
         [UIApplication sharedApplication].keyWindow.rootViewController = [[LKTabbarController alloc] init];
     }
     
-    
     CATransition *anim = [CATransition animation];
     anim.duration = 0.5;
     anim.type = @"rippleffect";

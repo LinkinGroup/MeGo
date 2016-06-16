@@ -94,8 +94,4 @@
     return modelArray;
 }
 
-#pragma mark - 私有方法
-
-
-
 @end

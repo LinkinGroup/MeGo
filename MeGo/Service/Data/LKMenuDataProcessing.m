@@ -155,7 +155,7 @@
 // 加载类型菜单中的数组(已做缓存处理)
 - (void)loadCategory
 {
-    NSTimeInterval hours = [LKCacheManage checkCalendarByHourWithKey:JKFileTimeForCategory];
+    NSTimeInterval days = [LKCacheManage checkCalendarByDayWithKey:JKFileTimeForCategory];
     
     // 获取cache
     NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
@@ -169,12 +169,12 @@
     self.categories = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathCategory];
     
     // 判断缓存是否有值
-    if (self.categories && hours < 72) {
+    if (self.categories && days < 7) {
 
         self.subcategories = [NSKeyedUnarchiver unarchiveObjectWithFile:filePathSubCategory];
         
         [self setUpData];
-        
+
         return;
     }
 /********************************* 没有缓存时 *********************************/
@@ -252,6 +252,7 @@
     
     [NSKeyedArchiver archiveRootObject:self.subcategories toFile:filePathSubCategory];
     
+    // 标记时间
     [LKCacheManage markTheTimeToKey:JKFileTimeForCategory];
     
     [self setUpData];

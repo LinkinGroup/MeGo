@@ -94,7 +94,7 @@
 }
 
 // 查看时间戳
-+ (NSInteger)checkCalendarByHourWithKey:(NSString *)key
++ (NSInteger)checkCalendarByDayWithKey:(NSString *)key
 {
     // 获取cache
     NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES)[0];
@@ -103,7 +103,7 @@
     NSDate *timeNow = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
     
     // 计算时间方法2
-    NSTimeInterval interval = -[timeNow timeIntervalSinceNow] / 60 / 60;
+    NSTimeInterval interval = -[timeNow timeIntervalSinceNow] / 60 / 60 / 24;
     
     return interval;
         JKLog(@"%f",interval);

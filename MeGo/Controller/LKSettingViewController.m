@@ -11,10 +11,10 @@
 #import "LKCacheManage.h"
 #import <FlatUIKit/FlatUIKit.h>
 #import "LKTabbarController.h"
-#import "LKGuideViewController.h"
+#import "LKAboutViewController.h"
 
 
-@interface LKSettingViewController ()<UITableViewDataSource, UITableViewDelegate,  FUIAlertViewDelegate, LKGuideViewDelegate>
+@interface LKSettingViewController ()<UITableViewDataSource, UITableViewDelegate,  FUIAlertViewDelegate>
 
 /** 顶部图片*/
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -24,9 +24,6 @@
 
 /** 表格顶部*/
 @property (nonatomic, strong) UIImageView *tableHeaderView;
-
-/** 功能简介控制器*/
-@property (nonatomic, strong) LKGuideViewController *gvc;
 
 
 /** 显示商品数据的表格*/
@@ -102,7 +99,6 @@ static NSString * const LKSettingCellID = @"setting";
     
     // 刷新数据，缓存大小
     [self.tableView reloadData];
-    JKLogFunction;
 
 }
 
@@ -150,7 +146,7 @@ static NSString * const LKSettingCellID = @"setting";
 - (void)setUpTableView
 {
     // 调整导航栏为不透明后，向下偏移量多出了64，因此减去64；
-    self.tableView = [[UITableView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.height)) style:(UITableViewStylePlain)];
+    self.tableView = [[UITableView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.height - 108)) style:(UITableViewStylePlain)];
     //    self.tableView.backgroundColor = JKGlobalBg;
     self.tableView.backgroundColor = [UIColor whiteColor];
     
@@ -220,16 +216,16 @@ static NSString * const LKSettingCellID = @"setting";
             break;
             
         case 2:
-            cell.textLabel.text = @"功能简介";
+            
+            cell.textLabel.text = @"关于MeGo";
             
             break;
             
         case 3:
             
-            cell.textLabel.text = @"审判MeGo";
+            cell.textLabel.text = @"定位功能设置";
             
             break;
-            
         default:
             break;
     }
@@ -338,36 +334,38 @@ static NSString * const LKSettingCellID = @"setting";
             
         case 2:{
             
-            LKGuideViewController *gvc = [[LKGuideViewController alloc] init];
+            //隐藏导航栏
+            self.hidesBottomBarWhenPushed = YES;
             
-            [self.navigationController presentViewController:gvc animated:YES completion:^{
-                
-                gvc.delegate = self;
-            }];
+            CATransition *transion=[CATransition animation];
+            //设置转场动画的类型
+            transion.type=@"cube";
+            //设置转场动画的方向
+            transion.subtype=@"fromRight";
             
-            self.gvc = gvc;
+            //把动画添加到某个view的图层上
+            [[UIApplication sharedApplication].keyWindow.layer addAnimation:transion forKey:nil];
+            
+            [self.navigationController pushViewController:[[LKAboutViewController alloc] init] animated:YES];
+            
+            //为了让跳转回来时正常显示tabbar
+            self.hidesBottomBarWhenPushed = NO;
+            
+        break;}
+    
+        case 3:{
+            
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            
+            if([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
+            }
             
             break;}
-            
-        case 3:
-            
-            [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id1120321577?mt=8"]];
-            
-            break;
-            
+    
         default:
             break;
     }
-}
-
-- (void)clickStarBtn
-{
-    [self.gvc dismissViewControllerAnimated:YES completion:^{
-        
-        // 显示statusBar
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-        
-    }];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

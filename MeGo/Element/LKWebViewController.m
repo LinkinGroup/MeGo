@@ -7,8 +7,14 @@
 //
 
 #import "LKWebViewController.h"
+#import "LKDelicacyStoreModel.h"
+#import "LKSharingView.h"
 
 @interface LKWebViewController ()
+
+/** 模型*/
+@property (nonatomic, strong) LKDelicacyStoreModel *store;
+
 
 @end
 
@@ -42,11 +48,20 @@
 
 - (void)setUpNavigation
 {
+    // 左侧按钮：
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(backToIndexPage)];
     
     [item setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
     
     self.navigationItem.leftBarButtonItem = item;
+    
+    // 右侧按钮：
+    UIBarButtonItem *itemRight = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(share)];
+    [itemRight setImage:[UIImage imageNamed:@"export"]];
+
+//    [itemRight setImage:[UIImage imageNamed:@"yy_calendar_icon_previous"]];
+    
+    self.navigationItem.rightBarButtonItem = itemRight;
     
     // 设置导航栏标题颜色和字体
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:(CGRectMake(0, 0, 200, 44))];
@@ -57,6 +72,15 @@
     self.navigationItem.titleView = titleLabel;
 }
 
+#pragma mark - 接收模型
+- (void)pushWithStore:(LKDelicacyStoreModel *)store
+{
+    _store = store;
+    JKLog(@"%@",_store);
+
+}
+
+#pragma mark - 导航栏按钮触发方法：
 - (void)backToIndexPage
 {
     
@@ -73,5 +97,21 @@
     [self.navigationController popViewControllerAnimated:YES];
     
 }
+
+// 分享
+- (void)share
+{
+    
+    LKSharingView *sv = [[LKSharingView alloc] initWithFrame:(CGRectMake(0, 0, LKScreenSize.width, LKScreenSize.height))];
+    [[UIApplication sharedApplication].keyWindow addSubview:sv];
+    self.delegate = sv;
+    
+    if ([_delegate respondsToSelector:@selector(didclickShareBtnWithModel:)]) {
+        [_delegate didclickShareBtnWithModel:self.store];
+    }
+    
+}
+
+
 
 @end

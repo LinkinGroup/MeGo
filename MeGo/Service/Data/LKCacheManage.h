@@ -23,6 +23,6 @@
 + (void)markTheTimeToKey:(NSString *)key;
 
 /** 查看时间戳*/
-+ (NSInteger)checkCalendarByHourWithKey:(NSString *)key;
++ (NSInteger)checkCalendarByDayWithKey:(NSString *)key;
 
 @end

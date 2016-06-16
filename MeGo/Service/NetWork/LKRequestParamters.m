@@ -97,15 +97,18 @@
     
     if ([GPRSCity isEqualToString:selectedCity]) {
          // 所选城市是GPRS定位城市：
-        params[@"city"] = selectedCity;
-    }else{
+        params[@"city"] = GPRSCity;
+        
+    }else if (!selectedCity || !GPRSCity){
+        // 未选择城市时会进入这里
+         params[@"city"] = GPRSCity;
+
+    }else {
         // 所选城市不是GPRS定位城市：
         params[@"city"] = selectedCity;
         params[@"latitude"] = nil;
         params[@"longitude"] = nil;
-
     }
-    params[@"city"] = [LKUserDefaults objectForKey:JKCity];
     
     // 获取参数
     params = [self paramtersWithBaseUrl:url paramters:params];

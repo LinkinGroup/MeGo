@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKStoreViewController.h"
 
-@interface LKWebViewController : UIViewController
+@protocol LKWebViewControllerDelegate <NSObject>
+
+- (void)didclickShareBtnWithModel:(LKDelicacyStoreModel *)store;
+
+@end
+
+@interface LKWebViewController : UIViewController<LKStoreViewControllerDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
+
+/** 代理属性*/
+@property (nonatomic, strong) id<LKWebViewControllerDelegate> delegate;
+
 
 @end

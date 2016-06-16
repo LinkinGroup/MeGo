@@ -60,6 +60,7 @@
 
 #define JKFileTimeForCategory @"JKFileTimeForCategory"
 
+#define JKFileTimeForPicture @"JKFileTimeForPicture"
 
 #pragma mark - 统一变量
 // 统一变量

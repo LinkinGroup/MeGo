@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LKIndexViewController.h"
 #import "LKSearchingViewController.h"
+#import "LKDelicacyStoreModel.h"
+
+@protocol LKStoreViewControllerDelegate <NSObject>
+
+- (void)pushWithStore:(LKDelicacyStoreModel *)store;
+
+@end
 
 @interface LKStoreViewController : UIViewController<LKIndexViewControllerDelegate, LKSearchingViewControllerDelegate>
+
+/** 代理属性*/
+@property (nonatomic, weak) id<LKStoreViewControllerDelegate> delegate;
 
 @end
