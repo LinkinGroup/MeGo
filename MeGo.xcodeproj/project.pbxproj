@@ -29,6 +29,12 @@
 		3B9CE3341CD9D0750035B490 /* LKToolBarMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CE3331CD9D0750035B490 /* LKToolBarMenu.m */; };
 		3B9CE3371CDA47FA0035B490 /* LKToolBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9CE3361CDA47FA0035B490 /* LKToolBarButton.m */; };
 		3B9F4DDF1CDB0F4900583F12 /* LKLinkageTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9F4DDE1CDB0F4900583F12 /* LKLinkageTableView.m */; };
+		3BA82D3A1D12879E003E13A1 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA82D361D128706003E13A1 /* libc++.1.dylib */; };
+		3BA82D3C1D1287D6003E13A1 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA82D3B1D1287D6003E13A1 /* libz.1.dylib */; };
+		3BA82D3E1D128807003E13A1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA82D3D1D128807003E13A1 /* libsqlite3.dylib */; };
+		3BA82D421D129A53003E13A1 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD21D1122CF0091D03A /* libz.tbd */; };
+		3BA82D431D129A5F003E13A1 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD01D1122C50091D03A /* libsqlite3.0.tbd */; };
+		3BA82D441D129A70003E13A1 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD41D1122E90091D03A /* libc++.tbd */; };
 		3BAD64311CCE460900066626 /* LKLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD64301CCE460900066626 /* LKLocationModel.m */; };
 		3BAD643E1CCE60A100066626 /* LKDataProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD643D1CCE60A100066626 /* LKDataProcessing.m */; };
 		3BAEE9DC1CEDA8A200D51CC4 /* LKNetWorkReloadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAEE9DB1CEDA8A200D51CC4 /* LKNetWorkReloadView.m */; };
@@ -38,11 +44,7 @@
 		3BB2ADCC1D1121790091D03A /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB2ADC31D1121790091D03A /* FXBlurView.m */; };
 		3BB2ADCD1D1121790091D03A /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADC51D1121790091D03A /* libWeChatSDK.a */; };
 		3BB2ADCF1D1121E20091D03A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADCE1D1121E20091D03A /* SystemConfiguration.framework */; };
-		3BB2ADD11D1122C50091D03A /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD01D1122C50091D03A /* libsqlite3.0.tbd */; };
-		3BB2ADD31D1122CF0091D03A /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD21D1122CF0091D03A /* libz.tbd */; };
-		3BB2ADD51D1122E90091D03A /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD41D1122E90091D03A /* libc++.tbd */; };
 		3BB2ADD71D1127540091D03A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BB2ADD61D1127540091D03A /* CoreTelephony.framework */; };
-		3BB372291CFB58780096F91F /* LKStarsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BB372281CFB58780096F91F /* LKStarsView.m */; };
 		3BC80F6C1D1161E3000C8876 /* LKSharingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC80F6B1D1161E3000C8876 /* LKSharingView.m */; };
 		3BC80F721D11C5F1000C8876 /* LKAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC80F711D11C5F1000C8876 /* LKAboutViewController.m */; };
 		3BC80F751D11D872000C8876 /* LKSharingMegoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BC80F741D11D872000C8876 /* LKSharingMegoView.m */; };
@@ -138,6 +140,11 @@
 		3B9CE3361CDA47FA0035B490 /* LKToolBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKToolBarButton.m; sourceTree = "<group>"; };
 		3B9F4DDD1CDB0F4900583F12 /* LKLinkageTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLinkageTableView.h; sourceTree = "<group>"; };
 		3B9F4DDE1CDB0F4900583F12 /* LKLinkageTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLinkageTableView.m; sourceTree = "<group>"; };
+		3BA82D341D128619003E13A1 /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		3BA82D361D128706003E13A1 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "../../../usr/lib/libc++.1.dylib"; sourceTree = "<group>"; };
+		3BA82D3B1D1287D6003E13A1 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		3BA82D3D1D128807003E13A1 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		3BA82D401D129A12003E13A1 /* libc.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libc.tbd; path = usr/lib/libc.tbd; sourceTree = SDKROOT; };
 		3BAD642F1CCE460900066626 /* LKLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKLocationModel.h; sourceTree = "<group>"; };
 		3BAD64301CCE460900066626 /* LKLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKLocationModel.m; sourceTree = "<group>"; };
 		3BAD643C1CCE60A100066626 /* LKDataProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKDataProcessing.h; sourceTree = "<group>"; };
@@ -161,8 +168,6 @@
 		3BB2ADD21D1122CF0091D03A /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		3BB2ADD41D1122E90091D03A /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3BB2ADD61D1127540091D03A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
-		3BB372271CFB58780096F91F /* LKStarsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKStarsView.h; sourceTree = "<group>"; };
-		3BB372281CFB58780096F91F /* LKStarsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKStarsView.m; sourceTree = "<group>"; };
 		3BC80F6A1D1161E3000C8876 /* LKSharingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKSharingView.h; sourceTree = "<group>"; };
 		3BC80F6B1D1161E3000C8876 /* LKSharingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LKSharingView.m; sourceTree = "<group>"; };
 		3BC80F701D11C5F1000C8876 /* LKAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LKAboutViewController.h; sourceTree = "<group>"; };
@@ -231,10 +236,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA82D441D129A70003E13A1 /* libc++.tbd in Frameworks */,
+				3BA82D431D129A5F003E13A1 /* libsqlite3.0.tbd in Frameworks */,
+				3BA82D421D129A53003E13A1 /* libz.tbd in Frameworks */,
+				3BA82D3C1D1287D6003E13A1 /* libz.1.dylib in Frameworks */,
+				3BA82D3E1D128807003E13A1 /* libsqlite3.dylib in Frameworks */,
+				3BA82D3A1D12879E003E13A1 /* libc++.1.dylib in Frameworks */,
 				3BB2ADD71D1127540091D03A /* CoreTelephony.framework in Frameworks */,
-				3BB2ADD51D1122E90091D03A /* libc++.tbd in Frameworks */,
-				3BB2ADD31D1122CF0091D03A /* libz.tbd in Frameworks */,
-				3BB2ADD11D1122C50091D03A /* libsqlite3.0.tbd in Frameworks */,
 				3BB2ADCF1D1121E20091D03A /* SystemConfiguration.framework in Frameworks */,
 				3BF7552F1CD90D60000D29F7 /* CoreLocation.framework in Frameworks */,
 				22DAD024D7E2274E4CDABDF3 /* libPods.a in Frameworks */,
@@ -267,7 +275,8 @@
 				3B8E73661CE5CE2E00B3A3D7 /* pinyin.h */,
 				3B8E73671CE5CE2E00B3A3D7 /* pinyin.m */,
 			);
-			path = ChineseSorting;
+			name = ChineseSorting;
+			path = ../Service/Data/ChineseSorting;
 			sourceTree = "<group>";
 		};
 		3B9A2B451CC5EE28001C7440 = {
@@ -386,6 +395,7 @@
 		3BB2ADBA1D1121790091D03A /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				3B8E73631CE5CE2E00B3A3D7 /* ChineseSorting */,
 				3BB2ADBB1D1121790091D03A /* FeSpinner */,
 				3BB2ADC41D1121790091D03A /* WeChat */,
 			);
@@ -455,7 +465,6 @@
 		3BCCA6001CC773B500D1B3E6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				3B8E73631CE5CE2E00B3A3D7 /* ChineseSorting */,
 				3BAD643C1CCE60A100066626 /* LKDataProcessing.h */,
 				3BAD643D1CCE60A100066626 /* LKDataProcessing.m */,
 				3B62CB741CE1C91F00BD19CD /* LKMenuDataProcessing.h */,
@@ -490,8 +499,6 @@
 				3BC80F701D11C5F1000C8876 /* LKAboutViewController.h */,
 				3BC80F711D11C5F1000C8876 /* LKAboutViewController.m */,
 				3BF638461CFDE78100E2E32B /* Guide */,
-				3BB372271CFB58780096F91F /* LKStarsView.h */,
-				3BB372281CFB58780096F91F /* LKStarsView.m */,
 				3BF777E61CE99FD300361F82 /* LKScrollView */,
 				3B9CE3311CD9CFFB0035B490 /* LKToolBarMenu */,
 				3BD941B41CD35785009B3A37 /* LKDelicacyStoreCell.h */,
@@ -543,6 +550,11 @@
 		ADBB278334A68240415F4CC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3BA82D401D129A12003E13A1 /* libc.tbd */,
+				3BA82D3D1D128807003E13A1 /* libsqlite3.dylib */,
+				3BA82D3B1D1287D6003E13A1 /* libz.1.dylib */,
+				3BA82D361D128706003E13A1 /* libc++.1.dylib */,
+				3BA82D341D128619003E13A1 /* libc++.1.tbd */,
 				3BB2ADD61D1127540091D03A /* CoreTelephony.framework */,
 				3BB2ADD41D1122E90091D03A /* libc++.tbd */,
 				3BB2ADD21D1122CF0091D03A /* libz.tbd */,
@@ -802,7 +814,6 @@
 				3BF1AF431CC8A48F00B52E02 /* LKNavigationController.m in Sources */,
 				3BF638351CFD4F8F00E2E32B /* LKBasedataAPI.m in Sources */,
 				3BF4C9AC1CEB97F9002FE497 /* LKSearchingField.m in Sources */,
-				3BB372291CFB58780096F91F /* LKStarsView.m in Sources */,
 				3BC80F6C1D1161E3000C8876 /* LKSharingView.m in Sources */,
 				3B8E73691CE5CE2E00B3A3D7 /* pinyin.m in Sources */,
 				3B9A88241D0A6C2100FD6DDB /* LKCollectionHeaderView.m in Sources */,
@@ -928,20 +939,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9123AC89C1A1CE91796B358C /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = MeGo/PrefixHeader.pch;
 				INFOPLIST_FILE = MeGo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MeGo/Vendors/WeChat",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MeGo/Vendors/WeChat";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = MeGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -949,20 +960,20 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CDC7D20899174FE09AC27DD7 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = MeGo/PrefixHeader.pch;
 				INFOPLIST_FILE = MeGo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MeGo/Vendors/WeChat",
-				);
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MeGo/Vendors/WeChat";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = MeGo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

@@ -99,9 +99,12 @@
          // 所选城市是GPRS定位城市：
         params[@"city"] = GPRSCity;
         
-    }else if (!selectedCity || !GPRSCity){
+    }else if (!selectedCity){
         // 未选择城市时会进入这里
-         params[@"city"] = GPRSCity;
+        params[@"city"] = GPRSCity;
+        
+//    }else if (!GPRSCity){
+        
 
     }else {
         // 所选城市不是GPRS定位城市：

@@ -400,7 +400,7 @@
     
     [tabbarController.indicator setFrame:tabbarController.indicator.frame];
     
-    // 缓存处理
+    // 图片缓存处理
     if ([LKCacheManage checkCalendarByDayWithKey:JKFileTimeForPicture] > 3) {
         
         [LKCacheManage markTheTimeToKey:JKFileTimeForPicture];

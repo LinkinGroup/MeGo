@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.3</string>
+	<string>1.0.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -42,10 +42,6 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>报！！！告！ 使用定位服务将会降低电池寿命，MeGo在后台时不会持续调用；如需关闭，可在MeGo的“设置”=&gt;“定位功能设置”中开启/关闭。</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

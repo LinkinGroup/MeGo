@@ -14,46 +14,28 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - DACircularProgress (2.3.1)
   - FlatUIKit (1.6.2)
   - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
-  - pop (1.0.9)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
-  - STPopup (1.6.2)
   - SVProgressHUD (2.0.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
-  - DACircularProgress (~> 2.3.1)
   - FlatUIKit (~> 1.6.2)
   - MJExtension (~> 3.0.10)
   - MJRefresh (~> 3.1.0)
-  - pop (from `https://github.com/facebook/pop.git`)
   - SDWebImage (~> 3.7.5)
-  - STPopup (~> 1.6.2)
   - SVProgressHUD (~> 2.0.3)
-
-EXTERNAL SOURCES:
-  pop:
-    :git: https://github.com/facebook/pop.git
-
-CHECKOUT OPTIONS:
-  pop:
-    :commit: 5fff11a68a9c5327f153d7d1e39a87a8e42f76a6
-    :git: https://github.com/facebook/pop.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   FlatUIKit: 1b41f0d4952ce8d970d8479ce79df54a960242c4
   MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  pop: f667631a5108a2e60d9e8797c9b32ddaf2080bce
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
-  STPopup: dca530d01343df997c5ed42a7465355cd5cbf01d
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
 COCOAPODS: 0.39.0

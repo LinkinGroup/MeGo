@@ -187,10 +187,25 @@
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        //成功后返回数据
+        // 判断请求是否成功
+        if ([responseObject[@"status"]isEqualToString:@"ERROR"]) {
+            
+            [SVProgressHUD showInfoWithStatus:@"MeGo的当日访问量已达到上限，MeGo正在试图解除此限制，对在此期间给您带来的不便深感抱歉"];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [SVProgressHUD dismiss];
+            });
+            
+            //返回数据
+            success([NSArray arrayWithObjects:@"error", nil]);
+            return ;
+        }
+        
+        // 成功后返回数据
         if (success) {
             
-            //数据处理
+            // 数据处理
             NSMutableArray * array = [LKDataProcessing storeWithArray:responseObject];
             
             if ([array firstObject] == nil) {
@@ -202,7 +217,7 @@
                     [SVProgressHUD dismiss];
                 });
             }
-            
+
             //返回数据
             success(array);
         }
@@ -211,7 +226,6 @@
         
         //失败后返回失败原因
         if (failure) {
-            
             failure(error);
         }
     }];

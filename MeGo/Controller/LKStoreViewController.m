@@ -636,6 +636,18 @@ static NSString * const LKStoreCellID = @"store";
         // 判断是否为最新的一次请求参数，不是的话，立即返回；
         if (self.params != params) return;
         
+        if ([[responseObject firstObject] isEqualToString:@"error"]) {
+            // 显示菜单栏
+            self.toolBarMenu.view.hidden = NO;
+            
+            // 成功刷新后，结束刷新
+            [self.tableView.mj_header endRefreshing];
+            
+            [self.hud dismiss];
+            
+            return;
+        }
+        
         // 获得数据, 判断价格
         self.stores = [self priceFilterWith:responseObject];
 

@@ -273,7 +273,7 @@
 {
     // 数据
     // Section0
-    NSDictionary *items0Dict0 = [NSDictionary dictionaryWithObjectsAndKeys:@"满减", @"text", nil];
+//    NSDictionary *items0Dict0 = [NSDictionary dictionaryWithObjectsAndKeys:@"满减", @"text", nil];
     NSDictionary *items0Dict1 = [NSDictionary dictionaryWithObjectsAndKeys:@"团购", @"text", nil];
     
     NSArray *items0ArrayNormal = [NSArray arrayWithObjects:items0Dict1, nil];
